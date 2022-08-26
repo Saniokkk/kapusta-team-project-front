@@ -1,4 +1,4 @@
-import icons from '../../assets/icons/symbol-icons.svg';
+import icons from '../../assets/symbol-icons.svg';
 import styles from './CardExpenses.module.css';
     
 
