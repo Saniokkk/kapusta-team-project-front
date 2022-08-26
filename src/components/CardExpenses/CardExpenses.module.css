@@ -1,0 +1,40 @@
+.item {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+  color: #52555f;
+
+  height: 106px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.icon {
+  position: relative;
+  height: 56px;
+  /* width: auto; */
+}
+
+.icon::after {
+  content: " ";
+  position: absolute;
+  bottom: -3px;
+  left: 0px;
+  /* display: none; */
+  /* width: 100%; */
+  height: 46px;
+  background-color: #1f2023;
+
+  border-radius: 20px;
+}
+
+/* #F5F6FB */

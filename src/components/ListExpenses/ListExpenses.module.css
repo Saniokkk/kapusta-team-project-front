@@ -1,0 +1,7 @@
+.list {
+  width: 1034px;
+  /* display: grid;
+    grid-template-rows: repeat(2, 106px); */
+  /* grid-template-columns: repeat(6, 1fr); */
+  /* display: flex; */
+}
