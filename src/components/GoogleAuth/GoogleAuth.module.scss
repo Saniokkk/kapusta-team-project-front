@@ -1,0 +1,34 @@
+.google__auth {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 32px;
+
+    &_title {
+        text-align: center;
+        font-size: 12px;
+        line-height: 1.16;
+        color: #52555F;
+        margin-bottom: 20px;
+    }
+
+    &_btn {
+        display: flex;
+        align-items: center;
+        padding: 10px 20px;
+        border-radius: 26px;
+        border: none;
+        outline: none;
+        font-weight: 500;
+        font-size: 17px;
+        line-height: 1.14;
+        letter-spacing: 0.02em;
+        background: #F6F7FB;
+
+        &_icon {
+            width: 17px;
+            height: 18px;
+            margin-right: 10px;
+        }
+    }
+}

@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { Header } from "./Header/Header";
-import { Container } from "components/Container";
+import { Background } from "components/Background";
+import { MainTitle } from "components/MainTitle";
 import { FormAuth } from "components/FormAuth";
 import styled from "./Layout.module.scss";
 
@@ -8,18 +9,13 @@ export const Layout = () => {
   return (
     <>
       <Header />
-      <main>
-        <div className={styled.header__hero}>
-          <div>
-            <Container>
-              <h1>Kapusta</h1>
-              <p className={styled.pre__title}>Smart Finance</p>
-            </Container>
-          </div>
-        </div>
+      <Background />
+      <div className={styled.wrapper}>
+        <MainTitle />
         <FormAuth />
-        <Outlet />
-      </main>
+      </div>
+
+      <Outlet />
     </>
   );
 };
