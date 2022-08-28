@@ -1,5 +1,5 @@
 import { Container } from "../../Container/Container";
-import logo from "../../../image/logo.svg";
+import logo from "../../../assets/image/logo.svg";
 import styled from "../Header/Header.module.scss";
 export const Header = () => {
   return (
