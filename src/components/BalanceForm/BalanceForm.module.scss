@@ -1,0 +1,106 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 11px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 0px;
+
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  @media screen and (min-width: 1024px) {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+  }
+}
+.form__title {
+  margin-bottom: 8px;
+  font-family: "Roboto";
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  color: rgba(82, 85, 95, 0.7);
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 0px;
+  }
+}
+
+.form_title__box {
+  display: flex;
+  justify-content: center;
+  @media screen and (min-width: 768px) {
+    margin-right: 21px;
+  }
+}
+
+.form__input {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: right;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  color: #000000;
+  width: 140px;
+  height: 44px;
+
+  padding-right: 16px;
+  background-color: #f5f6fb;
+  border: 2px solid #ffffff;
+  border-radius: 22px 0px 0px 22px;
+  text-align: right;
+  @media screen and (min-width: 768px) {
+    border-radius: 16px;
+
+    padding-right: 20px;
+    text-align: right;
+  }
+  @media screen and (min-width: 1024px) {
+    padding-right: 20px;
+  }
+}
+
+.form__icon {
+  width: 20px;
+  height: 20px;
+}
+
+.form_input__box {
+  display: flex;
+}
+
+.form__button {
+  display: flex;
+  align-items: center;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  text-transform: uppercase;
+  color: rgba(82, 85, 95, 0.7);
+  background-color: #f5f6fb;
+  padding: 12px 22px 12px 18px;
+  border: 2px solid #ffffff;
+  border-radius: 0px 22px 22px 0px;
+  @media screen and (min-width: 768px) {
+    margin-left: 15px;
+    border: 2px solid #ffffff;
+    border-radius: 16px;
+    padding: 12px 6px;
+  }
+}
+
+.form__button:hover {
+  background-color: #ff751d;
+  color: #ffffff;
+}

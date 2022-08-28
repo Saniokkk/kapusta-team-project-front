@@ -1,0 +1,29 @@
+.report {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+  @media screen and (min-width: 768px) {
+    margin-bottom: 0;
+  }
+
+  @media screen and (min-width: 1024px) {
+    margin-bottom: 0;
+    margin-left: auto;
+  }
+}
+
+.report__text {
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.04em;
+  color: rgba(82, 85, 95, 0.7);
+}
+
+.report__icon {
+  width: 14px;
+  height: 14px;
+  margin-left: 20px;
+}
