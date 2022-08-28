@@ -1,4 +1,4 @@
-const BalanceButton = ({ children, className }) => {
+const Button = ({ children, className }) => {
   return (
     <button className={className} type="submit">
       {children}
@@ -6,4 +6,4 @@ const BalanceButton = ({ children, className }) => {
   );
 };
 
-export { BalanceButton };
+export { Button };

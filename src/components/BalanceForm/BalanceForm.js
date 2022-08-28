@@ -1,6 +1,6 @@
 import styles from "./BalanceForm.module.scss";
-import { BalanceButton } from "components/BalanceButton";
-import icon from "../../assets/symbol-icons.svg";
+import { Button } from "components/Button";
+
 // import { useState } from 'react';
 // import {converter} from "./converter"
 
@@ -29,11 +29,7 @@ const BalanceForm = () => {
 
       <div className={styles.form_input__box}>
         <input className={styles.form__input} autoComplete="off" name="input" />
-        <BalanceButton className={styles.form__button}>
-          <svg className={styles.form__icon}>
-            <use href={`${icon}#icon-calculator`} />
-          </svg>
-        </BalanceButton>
+        <Button className={styles.form__button}>Підтвердити</Button>
       </div>
     </form>
   );
