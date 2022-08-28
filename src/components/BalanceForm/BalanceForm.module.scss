@@ -14,6 +14,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    margin-left: auto;
   }
 }
 .form__title {
@@ -39,15 +40,37 @@
 }
 
 .form__input {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: right;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+
+  color: #000000;
   width: 140px;
   height: 44px;
-  padding-left: 39px;
+  padding: 12px 16px 12px 0px;
   background-color: #f5f6fb;
   border: 2px solid #ffffff;
   border-radius: 22px 0px 0px 22px;
+  text-align: right;
   @media screen and (min-width: 768px) {
     border-radius: 16px;
+
+    padding: 12px 20px 12px 0px;
+    text-align: right;
   }
+  @media screen and (min-width: 1024px) {
+    padding: 12px 20px 12px 0px;
+  }
+}
+
+.form__icon {
+  width: 20px;
+  height: 20px;
 }
 
 .form_input__box {
@@ -65,7 +88,7 @@
   text-transform: uppercase;
   color: rgba(82, 85, 95, 0.7);
   background-color: #f5f6fb;
-  padding: 15px 70px 12px 18px;
+  padding: 12px 22px 12px 18px;
   border: 2px solid #ffffff;
   border-radius: 0px 22px 22px 0px;
   @media screen and (min-width: 768px) {

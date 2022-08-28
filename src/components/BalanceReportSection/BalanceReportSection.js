@@ -11,11 +11,6 @@ const BalanceReportSection = () => {
       <Section className={styles.balance}>
         <Report />
         <BalanceForm />
-
-        {/* <ModalBalanceError
-          text1="Привіт! Для початку роботи внеси поточний баланс свого рахунку!"
-          text2="Ти не можеш витрачати гроші поки їх в тебе немає :)"
-        /> */}
       </Section>
     </Container>
   );
