@@ -1,5 +1,6 @@
 .form {
   display: flex;
+  margin-bottom: 11px;
 }
 .form__title {
   text-align: center;
