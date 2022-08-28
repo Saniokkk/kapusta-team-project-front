@@ -4,9 +4,10 @@
      @media screen and (min-width: 768px) {
             margin-bottom: 80px;
         }
+    @media screen and (min-width: 1024px) {
+            margin-top: 194px;
+        }
 }
-
-
 
 .title {
     margin: 0;
@@ -18,11 +19,9 @@
         font-size: 60px;
     }
     
-        @media screen and (min-width: 1024px) {
-            font-size: 100px;
-            margin-top: 250px;
-            margin-left: -40px;
-        }
+    @media screen and (min-width: 1024px) {
+        font-size: 100px;
+    }
 }
 
 .pre__title {
