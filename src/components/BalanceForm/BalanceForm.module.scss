@@ -1,17 +1,41 @@
 .form {
   display: flex;
+  flex-direction: column;
   margin-bottom: 11px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 0px;
+
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  @media screen and (min-width: 1024px) {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
 }
 .form__title {
-  text-align: center;
   margin-bottom: 8px;
   font-family: "Roboto";
   font-weight: 500;
   font-size: 12px;
   line-height: 14px;
   letter-spacing: 0.02em;
-
   color: rgba(82, 85, 95, 0.7);
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 0px;
+  }
+}
+
+.form_title__box {
+  display: flex;
+  justify-content: center;
+  @media screen and (min-width: 768px) {
+    margin-right: 21px;
+  }
 }
 
 .form__input {
@@ -21,11 +45,17 @@
   background-color: #f5f6fb;
   border: 2px solid #ffffff;
   border-radius: 22px 0px 0px 22px;
+  @media screen and (min-width: 768px) {
+    border-radius: 16px;
+  }
+}
+
+.form_input__box {
+  display: flex;
 }
 
 .form__button {
   display: flex;
-  flex-direction: flex-start;
   align-items: center;
   font-family: "Roboto";
   font-style: normal;
@@ -38,6 +68,12 @@
   padding: 15px 70px 12px 18px;
   border: 2px solid #ffffff;
   border-radius: 0px 22px 22px 0px;
+  @media screen and (min-width: 768px) {
+    margin-left: 15px;
+    border: 2px solid #ffffff;
+    border-radius: 16px;
+    padding: 12px 6px;
+  }
 }
 
 .form__button:hover {

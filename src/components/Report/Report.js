@@ -1,4 +1,4 @@
-import styles from "./Report.module.css";
+import styles from "./Report.module.scss";
 import icon from "../../assets/symbol-icons.svg";
 
 const Report = () => {
