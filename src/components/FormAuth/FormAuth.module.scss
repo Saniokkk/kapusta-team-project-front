@@ -1,67 +1,40 @@
-.auth {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.google__auth {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 32px;
-
-    &_title {
-        text-align: center;
-        font-size: 12px;
-        line-height: 1.16;
-        color: #52555F;
-        margin-bottom: 20px;
-    }
-
-    &_btn {
-        padding: 10px 20px;
-        border-radius: 26px;
-        border: none;
-        outline: none;
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 1.14;
-        letter-spacing: 0.02em;
-        background: #F6F7FB;
-    }
-}
-
-.form__wrapper {
-    display: flex;
-    flex-direction: column;
-
-    &_text {
-        font-size: 12px;
-        line-height: 1.16;
-        color: #52555F;
-        margin-bottom: 20px;
-    }
-}
-
 .form__auth {
     display: flex;
     flex-direction: column;
 
     &_label {
-        font-size: 12px;
-        line-height: 1.16;
+        font-size: 10px;
+        line-height: 1.2;
         margin-bottom: 12px;
+
+        @media screen and (min-width: 768px) {
+            font-size: 12px;
+            line-height: 1.16;
+        }
     }
 
     &_input {
-            max-width: 100%;
-            padding: 17px 19px;
-            background: #F6F7FB;
-            border-radius: 30px;
-            border: none;
-            outline: none;
-            margin-bottom: 32px;
+        max-width: 100%;
+        padding: 17px 19px;
+        background: #F6F7FB;
+        border-radius: 30px;
+        border: none;
+        outline: none;
+        margin-bottom: 20px;
+
+        &::placeholder {
+            color: #A6ABB9;
+        }
+
+        // &:last-of-type::placeholder {
+        //     font-size: 44px;
+        //     color: #000;
+        // }
+
+        @media screen and (min-width: 768px) {
+            font-size: 14px;
+            line-height: 1.14;
+        }
     }
 
     &_submit {
@@ -70,6 +43,13 @@
         border-radius: 16px;
         border: none;
         outline: none;
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 1.16;
+        text-transform: uppercase;
+        color: #FFFFFF;
+
+        filter: drop-shadow(1px 3px 5px rgba(255, 107, 8, 0.35));
     }
 
     &_signup {
@@ -78,6 +58,15 @@
         border-radius: 16px;
         border: none;
         outline: none;
+
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 1.16;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: #52555F;
+
+        filter: drop-shadow(1px 3px 5px rgba(82, 85, 95, 0.15));
     }
 }
 
@@ -86,24 +75,11 @@
 .list__button {
     display: flex;
     justify-content: space-around;
+    margin-top: 20px;
+
     list-style: none;
 
     &_item:not(:last-child) {
         margin-right: 8px;
     }
-}
-
-// .button_form {
-//     padding: 12px 33px;
-// }
-
-.auth {
-    position: absolute;
-    max-width: 280px;
-    padding: 40px 20px;
-    background: #FFFFFF;
-    /* shadow - mobile */
-    top: 255px;
-    box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
-    border-radius: 30px;
 }

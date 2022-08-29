@@ -1,0 +1,30 @@
+.modal {
+  display: flex;
+  flex-direction: column;
+
+  background: linear-gradient(117.84deg, #1d346a 2.84%, #031634 67.28%);
+  border-radius: 30px;
+  padding: 29px 25px 35px;
+}
+
+.triangle__box {
+  position: relative;
+}
+
+.text {
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.text__modal {
+  font-family: "Roboto";
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #ffffff;
+  text-align: left;
+}

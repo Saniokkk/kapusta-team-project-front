@@ -1,16 +1,32 @@
-.header__hero {
-    padding: 87px 0 137px 0;
-    background-color: #F5F6FB;
-    border-bottom-left-radius: 100px;
-    position: relative;
-    z-index: 0;
+.wrapper {
+  // border: 1px solid black;
+  margin: 0 auto;
+  padding: 86px 20px 105px;
+  max-width: 360px;
+
+  @media screen and (min-width: 768px) {
+    max-width: 426px;
+    padding: 86px 0 105px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1024px;
+    padding: 117px 91px 125px 80px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    display: flex;
+    justify-content: space-between;
+   max-width: 1280px;
+    padding: 117px 91px 125px 229px;
+  }
 }
 
-.pre__title {
-        font-weight: 700;
-        font-size: 13px;
-        line-height: 1.15;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        color: #52555F;
+.png {
+  position: absolute;
+  top: 84px;
+  z-index: -9;
+  width: 100%;
 }

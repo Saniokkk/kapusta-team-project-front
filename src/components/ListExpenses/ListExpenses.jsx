@@ -1,4 +1,5 @@
 import { CardExpenses } from "../CardExpenses";
+import spriteIcons from '../../assets/symbol-icons.svg';
 import styles from './ListExpenses.module.css';
 
 export const ListExpenses = () => {
@@ -16,9 +17,24 @@ export const ListExpenses = () => {
         { title: 'other', amount: 4350.00 },
     ]
     return (
-        <ul className={styles.list}>
-            {items.map((item, index) => <CardExpenses key={index} {...item} />
+        <div className={styles.expenses}>
+            <div className={styles.switching}>
+                <button className={styles.btnToLeft}>
+                    <svg className={styles.icon}>
+                        <use className={styles.svg} href={`${spriteIcons}#icon-arrowLeft`}></use>
+                    </svg>
+                </button>
+                <h2 className={styles.title}>EXPENSES</h2>
+                <button className={styles.btnToRight}>
+                    <svg className={styles.icon}>
+                        <use className={styles.svg} href={`${spriteIcons}#icon-arrowRight`}></use>
+                    </svg>
+                </button>
+            </div>
+            <ul className={styles.list}>
+                {items.map((item, index) => <CardExpenses key={index} {...item} />
             )}
-        </ul>
+            </ul>
+        </div>
     )
 }
