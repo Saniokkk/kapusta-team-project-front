@@ -1,5 +1,5 @@
 // import icon from "assets/symbol-icons.svg";
-import logo from "image/logo.svg";
+import logo from "assets/image/logo.svg";
 import styled from "./Logo.module.scss";
 
 export const Logo = () => {
