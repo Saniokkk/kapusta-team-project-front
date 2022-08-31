@@ -1,36 +1,86 @@
-import { createPortal } from "react-dom";
-import s from "./ModalLogout.module.css";
-import Sprite from "../../assets/symbol-icons.svg";
+import React, { useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 
-export default function ModalLogout({
-    title = 'You really want out?',
-    onClickYes,
-    onClickNo,
+
+import s from "./ModalLogout.module.css";
+import { gsap, Power1 } from "gsap";
+
+
+const modalRoot = document.querySelector("#modal-root");
+
+function ModalLogout({
+    handleClickLeft,
+    handleClickRight,
+    onClose,
+    modalTitle = "Ви дійсно бажаєте вийти?",
+    modalButtonLeft = "Так",
+    modalButtonRight = "Ні",
+    styleReg,
 }) {
+    useEffect(() => {
+        window.document.body.style.overflowY = "hidden";
+        window.addEventListener("keydown", handleKeyDown);
+        return () => {
+            window.removeEventListener("keydown", handleKeyDown);
+            window.document.body.style.overflowY = "visible";
+        };
+    });
+
+    const handleKeyDown = e => {
+        if (e.code === "Escape") {
+            onClose();
+        }
+    };
+
+    const handleOverlayClick = e => {
+        if (e.currentTarget === e.target) {
+            onClose();
+        }
+    };
+
+
+    let buttons = useRef(null);
+    useEffect(() => {
+        gsap.fromTo(
+            buttons,
+            0.7,
+            {
+                y: -150,
+            },
+            {
+                y: 15,
+                ease: Power1.easeInOut,
+            },
+        );
+    }, []);
 
     return createPortal(
-        <div className={s.backdrop}>
-            <div className={s.modal}>
-                <button className={s.outBtn} onClick={onClickNo} type="button">
-                    <svg className={s.outIcon} width="12" height="12">
-                        <use href={`${Sprite}#icon-close`}></use>
-                    </svg>
-                </button>
-                <p className={s.title}>{title}</p>
-                <div className={s.btnsBox}>
-                    <button
-                        className={s.confirmBtnYes}
-                        onClick={onClickYes}
-                        type="button"
-                    >
-                        Yes
-                    </button>
-                    <button className={s.confirmBtnNo} onClick={onClickNo} type="button">
-                        No
-                    </button>
+        <div className={s.backdrop} onClick={handleOverlayClick}>
+            <div className={`{s.modal} ${styleReg}`}>
+                <span className={s.closeBtn} onClick={onClose}>
+                    &#10006;
+                </span>
+                <div className={s.title}>
+                    <p>{modalTitle}</p>
                 </div>
+
+                <div className={s.buttons}>
+                    <div ref={el => (buttons = el)}>
+                        <button className={s.outBtn} onClick={handleClickLeft}>
+                            {modalButtonLeft}
+                        </button>
+                        <button className={s.outBtn} onClick={handleClickRight}>
+                            {modalButtonRight}
+                        </button>
+                    </div>
+                </div>
+
             </div>
         </div>,
-        document.querySelector('#modal-root')
+        modalRoot,
     );
+
+
 }
+
+export { ModalLogout };
