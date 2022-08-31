@@ -12,16 +12,16 @@
 .title {
     margin: 0;
     padding: 0;
-    font-size: 40px;
-    margin-bottom: 5px;
+    // font-size: 40px;
+    // margin-bottom: 5px;
 
-    @media screen and (min-width: 768px) {
-        font-size: 60px;
-    }
+    // @media screen and (min-width: 768px) {
+    //     font-size: 60px;
+    // }
     
-    @media screen and (min-width: 1024px) {
-        font-size: 100px;
-    }
+    // @media screen and (min-width: 1024px) {
+    //     font-size: 100px;
+    // }
 }
 
 .pre__title {
@@ -39,8 +39,21 @@
             line-height: 1.18;
             letter-spacing: 0.18em;
         }
+}
+
+.cabbage {
+    margin: 0;
+    padding: 0;
+    width: 138px;
+    height: 46px;
+
+    @media screen and (min-width: 768px) {
+            width: 306px;
+            height: 77px;
+        }
     
         @media screen and (min-width: 1024px) {
-            // height: 582px;
+            width: 377px;
+            height: 120px;
         }
 }
