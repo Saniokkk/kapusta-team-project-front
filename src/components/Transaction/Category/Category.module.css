@@ -1,0 +1,74 @@
+/* Dropdown Button */
+.dropbtn {
+  border: none;
+  cursor: pointer;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+  color: #c7ccdc;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown__content {
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown__content li {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown__content li:hover {
+  background-color: #ddd;
+}
+
+button {
+  margin: 0;
+}
+
+button.button {
+  height: auto;
+  border: 1px solid transparent;
+  margin: 0;
+  line-height: 1.8;
+  align-items: center;
+  min-width: 200px;
+  padding: 10px 0;
+  color: #c7ccdc;
+  background-color: white;
+  transition-property: background-color, transform;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  fill: #f1f1f1;
+}
+
+.icon {
+  margin-left: 10px;
+  transition-property: transform;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button:hover .icon {
+  transform: rotate(-180deg);
+}
