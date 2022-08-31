@@ -1,6 +1,6 @@
 import { CardExpenses } from "../CardExpenses";
-import spriteIcons from '../../assets/symbol-icons.svg';
-import styles from './ListExpenses.module.css';
+import spriteIcons from '../../assets/sprite-icons.svg';
+import styles from './ListExpenses.module.scss';
 
 export const ListExpenses = () => {
     const items = [
@@ -15,6 +15,8 @@ export const ListExpenses = () => {
         { title: 'hobby', amount: 5000.00 },
         { title: 'education', amount: 5000.00 },
         { title: 'other', amount: 4350.00 },
+        { title: 'salary', amount: 4350.00 },
+        { title: 'extraSalary', amount: 4350.00 },
     ]
     return (
         <div className={styles.expenses}>
@@ -32,7 +34,8 @@ export const ListExpenses = () => {
                 </button>
             </div>
             <ul className={styles.list}>
-                {items.map((item, index) => <CardExpenses key={index} {...item} />
+                {items.map((item, index) =>
+                    <CardExpenses key={item.title} {...item} />
             )}
             </ul>
         </div>
