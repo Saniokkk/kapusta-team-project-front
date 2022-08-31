@@ -1,5 +1,6 @@
 .backdrop {
     position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
     top: 0;
     left: 0;
     width: 100vw;
@@ -10,12 +11,11 @@
 }
 
 .modal {
-    position: relative;
     width: 380px;
-    padding: 50px 58px 60px;
-    box-shadow: var(--modal-shadow);
+    height: 194px;
+    background: #ffffff;
+    box-shadow: 10px 10px 30px rgba(82, 85, 95, 0.4);
     border-radius: 30px;
-    background-color: var(--modal-background-color);
 }
 
 @media screen and (max-width: 420px) {
@@ -25,18 +25,16 @@
 }
 
 .outBtn {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    background-color: transparent;
-    border: none;
+    display: block;
     cursor: pointer;
-
-    transition: 500ms;
+    text-align: right;
+    padding-right: 20px;
+    padding-top: 20px;
 }
 
 .outBtn:hover {
-    transform: scale(1.2);
+    color: #ff751d;
+    font-weight: bolder;
 }
 
 .title {
@@ -47,66 +45,74 @@
     line-height: 16px;
     text-align: center;
     letter-spacing: 0.02em;
-
-    color: var(--general-text-color);
 }
 
-.btnsBox {
-    display: flex;
-    justify-content: space-between;
+.buttons {
+    text-align: center;
 }
 
-.btn {
+.yes {
+    background-color: #ff751d;
+    margin-right: 15px;
+    padding: 12px 34px;
+    border-radius: 16px;
     width: 125px;
     height: 44px;
-
-    border-radius: 16px;
-    cursor: pointer;
-
-    font-weight: 700;
+    border: none;
+    font-family: Roboto;
+    font-weight: bold;
     font-size: 12px;
     line-height: 14px;
+    align-items: center;
     text-align: center;
     letter-spacing: 0.02em;
     text-transform: uppercase;
+    cursor: pointer;
+    color: #ffffff;
 }
 
-@media screen and (max-width: 420px) {
-    .btn {
-        width: 75px;
-    }
+.no {
+    background-color: transparent;
+    border: 2px solid #f5f6fb;
+    margin-right: 15px;
+    padding: 12px 34px;
+    border-radius: 16px;
+    width: 125px;
+    height: 44px;
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 14px;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    cursor: pointer;
 }
 
-.confirmBtnYes {
-    border: none;
-    background-image: linear-gradient(45deg,
-            #fad1b7 0%,
-            #ff751d 50%,
-            #fb6102 100%);
-    background-position: 100% 0;
-    background-size: 200% 200%;
-    transition: 500ms;
-
-    color: var(--general-accent-text-color);
+.commonStyles {
+    background-color: transparent;
+    border-radius: 16px;
+    border: 2px solid #f5f6fb;
+    width: 125px;
+    height: 44px;
+    cursor: pointer;
+    font-family: Roboto;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 14px;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #52555f;
 }
 
-.confirmBtnYes:hover {
-    background-position: 0 0;
+.commonStyles:hover {
+    background-color: #ff751d;
+    color: #ffffff;
 }
 
-.confirmBtnNo {
-    background-image: linear-gradient(45deg,
-            var(--auth-form-button-normal-color1) 0%,
-            var(--auth-form-button-normal-color2) 40%,
-            var(--auth-form-button-normal-color3) 100%);
-    background-position: 100% 0;
-    background-size: 200% 200%;
-    transition: 500ms;
-    border: none;
-
-    color: var(--general-header-color);
-}
-
-.confirmBtnNo:hover {
-    background-position: 0 0;
+.commonStyles:not(:last-child) {
+    margin-right: 15px;
 }
