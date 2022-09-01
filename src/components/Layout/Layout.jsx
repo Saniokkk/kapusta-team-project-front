@@ -3,6 +3,8 @@ import { Header } from "./Header/Header";
 import { Background } from "components/Background";
 import { MainTitle } from "components/MainTitle";
 import { FormWrapper } from "components/FormWrapper";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import styled from "./Layout.module.scss";
 
 export const Layout = () => {
@@ -15,6 +17,7 @@ export const Layout = () => {
         <FormWrapper />
       </div>
       <Outlet />
+      <ToastContainer />
     </>
   );
 };
