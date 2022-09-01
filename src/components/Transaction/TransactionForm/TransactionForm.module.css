@@ -5,6 +5,7 @@
 
 .form {
   display: inline-flex;
+  margin-right: 32px;
   border: 2px solid #f6f7fc;
   border-radius: 16px 16px 16px 0px;
 }
@@ -14,31 +15,42 @@
 }
 
 .input {
-  font-family: "Roboto";
-  font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 1.6;
   display: flex;
   align-items: center;
   letter-spacing: 0.02em;
+  color: #000000;
+  outline: none;
+}
+
+.input:focus {
+  border: 2px solid #f6f7fc;
+  border-color: #ff751d;
+}
+
+.input::placeholder {
   color: #c7ccdc;
 }
 
 .input_description {
   composes: input;
-  margin-left: 20px;
+  padding-left: 18px;
+  width: 290px;
   border: none;
   border-right: 2px solid #f6f7fc;
+  border-radius: 16px 0px 0px 0px;
   align-items: center;
 }
 
 .input_number {
   composes: input;
+  width: 119px;
   text-align: center;
-  margin-right: 15px;
   border: none;
   border-left: 2px solid #f6f7fc;
+  border-radius: 0px 16px 16px 0px;
 }
 
 .dropdown {
@@ -49,8 +61,6 @@
 }
 
 .dropbtn {
-  font-family: "Roboto";
-  font-style: normal;
   font-weight: 400;
   font-size: 12px;
   line-height: 1.6;
@@ -95,22 +105,28 @@
 }
 
 button.button {
-  margin-left: 32px;
+  width: 136px;
+  height: 44px;
 
-  font-family: "Roboto";
-  font-style: normal;
   font-weight: 700;
   font-size: 12px;
   line-height: 1.16;
-  align-items: center;
   text-align: center;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: #ffffff;
 
-  background: #ff751d;
   border-radius: 16px;
+}
 
-  padding: 0 36px;
-  border: 1px solid transparent;
+button.button:first-of-type {
+  margin-right: 16px;
+  color: #ffffff;
+  background: #ff751d;
+  border: none;
+}
+
+button.button:last-of-type {
+  background: #ffffff;
+  color: #52555f;
+  border: 2px solid #f6f7fc;
 }
