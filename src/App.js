@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import { BalanceReportSection } from "components/BalanceReportSection";
 import { ModalLogout } from "components/ModalLogout";
 import { DropDownList } from "components/DropDownList";
+import { Transaction } from "components/Transaction";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="logout" element={<ModalLogout />}></Route>
         {/* <Route path="list" element={<DropDownList />}></Route> */}
       </Routes>
+      <Transaction />
     </>
   );
 }
