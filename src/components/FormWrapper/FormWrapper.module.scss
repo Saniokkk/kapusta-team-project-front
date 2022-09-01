@@ -15,17 +15,5 @@
 .form__wrapper {
     display: flex;
     flex-direction: column;
-
-    &_text {
-        font-size: 10px;
-        line-height: 1.2;
-        color: #52555F;
-        margin-bottom: 20px;
-
-        @media screen and (min-width: 768px) {
-            font-size: 12px;
-            line-height: 1.16;
-        }
-    }
 }
 
