@@ -8,12 +8,11 @@
   &__meta {
     display: flex;
     align-items: center;
-   
 
     @media screen and (min-width: 768px) {
-            margin-right: 20px;
-            border-right: 1px solid #E0E5EB;
-        }
+      margin-right: 20px;
+      border-right: 1px solid #e0e5eb;
+    }
   }
 
   &__avatar {
@@ -26,10 +25,9 @@
     display: none;
 
     @media screen and (min-width: 768px) {
-        display: inline-block;
-        margin-right: 20px;
+      display: inline-block;
+      margin-right: 20px;
     }
-
   }
 
   &__logout {
@@ -44,15 +42,15 @@
     display: none;
 
     @media screen and (min-width: 768px) {
-            display: inline-block;
-        }
+      display: inline-block;
+    }
   }
 }
 
 .icon__logout {
-    display: block;
-    
-        @media screen and (min-width: 768px) {
-            display: none;
-        }
+  display: block;
+
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
 }

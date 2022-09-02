@@ -1,20 +1,20 @@
 // import { useNavigate } from 'react-router-dom';
-import { useFormik } from 'formik';
-import { Box, TextField, Typography, Button } from '@mui/material';
-import { buttonLR, labelFontStyle } from '../../theme';
+import { useFormik } from "formik";
+import { Box, TextField, Typography, Button } from "@mui/material";
+import { buttonLR, labelFontStyle } from "../../theme";
 // import { useAuth } from '../../helpers/authContext/authContext';
 
-const validateRegister = values => {
+const validateRegister = (values) => {
   const errors = {};
   if (!values.email) {
     errors.email = "Обов'зкове поле";
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Адреса має бути виду name@xxx.xxx  ';
+    errors.email = "Адреса має бути виду name@xxx.xxx  ";
   }
   if (!values.password) {
     errors.password = "Обов'зкове поле";
   } else if (values.password.length < 8) {
-    errors.password = 'Пароль містить мінімум 8 символів';
+    errors.password = "Пароль містить мінімум 8 символів";
   }
   return errors;
 };
@@ -24,8 +24,8 @@ export const LoginForm = ({ onLogin }) => {
   // const navigate = useNavigate();
 
   const initialValues = {
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   };
 
   const formik = useFormik({
@@ -42,22 +42,22 @@ export const LoginForm = ({ onLogin }) => {
     <form color="black" onSubmit={formik.handleSubmit}>
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          margin: { xs: ' 0 auto' },
-          alignItems: { xs: 'center', md: 'flex-start' },
+          display: "flex",
+          flexDirection: "column",
+          margin: { xs: " 0 auto" },
+          alignItems: { xs: "center", md: "flex-start" },
         }}
       >
-        <Box sx={{ marginBottom: '40px' }}>
+        <Box sx={{ marginBottom: "40px" }}>
           <Typography
             sx={{
-              fontFamily: 'Gotham Pro',
-              fontStyle: 'normal',
-              fontWeight: '700',
-              fontSize: '14px',
-              lineHeight: '13px',
-              letterSpacing: '0.04em',
-              color: '#FC842D',
+              fontFamily: "Gotham Pro",
+              fontStyle: "normal",
+              fontWeight: "700",
+              fontSize: "14px",
+              lineHeight: "13px",
+              letterSpacing: "0.04em",
+              color: "#FC842D",
             }}
           >
             ВХІД
@@ -65,19 +65,19 @@ export const LoginForm = ({ onLogin }) => {
         </Box>
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            width: { xs: '280px', md: '240px' },
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            width: { xs: "280px", md: "240px" },
+            alignItems: "center",
           }}
         >
-          <Box sx={{ height: '55px', marginBottom: '23px' }}>
+          <Box sx={{ height: "55px", marginBottom: "23px" }}>
             <TextField
               InputLabelProps={{ style: { ...labelFontStyle } }}
               inputProps={{
-                style: { color: '#111111', paddingBottom: '15px' },
+                style: { color: "#111111", paddingBottom: "15px" },
               }}
-              sx={{ width: { xs: '280px', md: '240px' } }}
+              sx={{ width: { xs: "280px", md: "240px" } }}
               variant="standard"
               id="email"
               name="email"
@@ -88,13 +88,13 @@ export const LoginForm = ({ onLogin }) => {
               helperText={formik.touched.email && formik.errors.email}
             />
           </Box>
-          <Box sx={{ height: '55px', marginBottom: '60px' }}>
+          <Box sx={{ height: "55px", marginBottom: "60px" }}>
             <TextField
               InputLabelProps={{ style: { ...labelFontStyle } }}
               inputProps={{
-                style: { color: '#111111', paddingBottom: '15px' },
+                style: { color: "#111111", paddingBottom: "15px" },
               }}
-              sx={{ width: { xs: '280px', md: '240px' } }}
+              sx={{ width: { xs: "280px", md: "240px" } }}
               variant="standard"
               id="password"
               name="password"
@@ -109,17 +109,17 @@ export const LoginForm = ({ onLogin }) => {
         </Box>
         <Box
           sx={{
-            display: 'flex',
-            flexDirection: { xs: 'column', sm: 'column', md: 'row' },
+            display: "flex",
+            flexDirection: { xs: "column", sm: "column", md: "row" },
           }}
         >
           <Button
             variant="contained"
-            sx={{ ...buttonLR, margin: { xs: '0 0 20px 0', md: '0 32px 0 0' } }}
+            sx={{ ...buttonLR, margin: { xs: "0 0 20px 0", md: "0 32px 0 0" } }}
             color="buttonLogin"
             type="submit"
           >
-            <Typography sx={{ ...labelFontStyle, color: '#FFFFFF' }}>
+            <Typography sx={{ ...labelFontStyle, color: "#FFFFFF" }}>
               Вхід
             </Typography>
           </Button>

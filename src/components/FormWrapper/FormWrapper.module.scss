@@ -1,19 +1,18 @@
 .auth {
-    display: flex;
-    flex-direction: column;
-    padding: 40px 20px;
-    background: #FFFFFF;
-    box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
-    border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 20px;
+  background: #ffffff;
+  box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
+  border-radius: 30px;
 
-    @media screen and (min-width: 768px) {
-            padding: 56px 84px;
-            max-width: 426px;
-        }
+  @media screen and (min-width: 768px) {
+    padding: 56px 84px;
+    max-width: 426px;
+  }
 }
 
 .form__wrapper {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
-

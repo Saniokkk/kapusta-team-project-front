@@ -3,15 +3,15 @@
   flex-direction: column;
 
   &_title {
-      font-size: 10px;
-      line-height: 1.2;
-      color: #52555F;
-  
-      @media screen and (min-width: 768px) {
-        font-size: 12px;
-        line-height: 1.16;
-      }
+    font-size: 10px;
+    line-height: 1.2;
+    color: #52555f;
+
+    @media screen and (min-width: 768px) {
+      font-size: 12px;
+      line-height: 1.16;
     }
+  }
 
   &_label {
     font-size: 10px;
@@ -76,17 +76,14 @@
     letter-spacing: 0.02em;
     text-transform: uppercase;
     color: #52555f;
-    
+
     transition: background 1250ms cubic-bezier(0.4, 0, 0.2, 1);
     filter: drop-shadow(1px 3px 5px rgba(82, 85, 95, 0.15));
 
-
     &:disabled {
-        background: #fbfbfb;
-      }
+      background: #fbfbfb;
+    }
   }
-
-    
 }
 
 .list__button {
@@ -110,10 +107,9 @@
 }
 
 .star {
-  color: #EB5757;
+  color: #eb5757;
   font-weight: 400;
   font-size: 12px;
   line-height: 1.16;
   letter-spacing: 0.04em;
 }
-
