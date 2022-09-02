@@ -5,7 +5,8 @@ import { Routes, Route } from "react-router-dom";
 import { BalanceReportSection } from "components/BalanceReportSection";
 import { ModalLogout } from "components/ModalLogout";
 import { DropDownList } from "components/DropDownList";
-import { Transaction } from "components/Transaction";
+// import { Transaction } from "components/Transaction";
+import { ReportSection } from "components/ReportSection";
 
 function App() {
   return (
@@ -15,8 +16,9 @@ function App() {
         <Route path="balance" element={<BalanceReportSection />}></Route>
         <Route path="logout" element={<ModalLogout />}></Route>
         <Route path="list" element={<DropDownList />}></Route>
+        <Route path="Report" element={<ReportSection />}></Route>
       </Routes>
-      <Transaction />
+      {/* <Transaction /> */}
     </>
   );
 }

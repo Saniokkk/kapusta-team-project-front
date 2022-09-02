@@ -1,0 +1,53 @@
+/* section */
+.report_section {
+  background-color: #f2f5fc;
+}
+@media screen and (min-width: 320px) {
+  .report_section {
+    padding-top: 45px;
+    padding-bottom: 65px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .report_section {
+    padding-top: 40px;
+    padding-bottom: 60px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .report_section {
+    padding-top: 40px;
+    padding-bottom: 83px;
+  }
+}
+
+/* container */
+.conteiner {
+  padding: 0 20px;
+  margin: 0 auto;
+  height: 100px;
+  background: #ffffff;
+  box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+  border-radius: 0px 30px 30px 30px;
+}
+
+/* responsive-container */
+@media screen and (min-width: 320px) {
+  .conteiner {
+    width: 320px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .conteiner {
+    width: 768px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .conteiner {
+    width: 1280px;
+  }
+}
