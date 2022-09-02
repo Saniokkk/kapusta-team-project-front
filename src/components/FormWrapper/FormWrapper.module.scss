@@ -1,31 +1,18 @@
 .auth {
-    display: flex;
-    flex-direction: column;
-    padding: 40px 20px;
-    background: #FFFFFF;
-    box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
-    border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 20px;
+  background: #ffffff;
+  box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
+  border-radius: 30px;
 
-    @media screen and (min-width: 768px) {
-            padding: 56px 84px;
-            max-width: 426px;
-        }
+  @media screen and (min-width: 768px) {
+    padding: 56px 84px;
+    max-width: 426px;
+  }
 }
 
 .form__wrapper {
-    display: flex;
-    flex-direction: column;
-
-    &_text {
-        font-size: 10px;
-        line-height: 1.2;
-        color: #52555F;
-        margin-bottom: 20px;
-
-        @media screen and (min-width: 768px) {
-            font-size: 12px;
-            line-height: 1.16;
-        }
-    }
+  display: flex;
+  flex-direction: column;
 }
-

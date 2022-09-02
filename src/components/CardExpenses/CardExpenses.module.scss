@@ -20,15 +20,12 @@
 .item::after {
   content: "";
   display: block;
-  width: 100%;
+  width: 280px;
   height: 1px;
   position: absolute;
-  right: 0;
+  right: -93px;
   bottom: -20px;
   background-color: black;
-  &:last-child {
-    width: 280px;
-  }
 }
 
 .icon {

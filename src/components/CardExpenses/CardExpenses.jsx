@@ -13,7 +13,7 @@ export const CardExpenses = (props) => {
                     <use className={styles.svg1} href={`${spriteIcons}#icon-${title}_bg`}></use>
                     <use className={styles.svg2} href={`${spriteIcons}#icon-${title}`}></use>
                 </svg>
-            <h3 className={styles.title}>{title}</h3>
+            <p className={styles.title}>{title}</p>
         </li>
     )
 }
