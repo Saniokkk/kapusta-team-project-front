@@ -27,11 +27,18 @@ const Category = ({ onSubmit, value }) => {
     setМenu(false);
   };
 
+  const isActiveClass = menu ? `${s.buttonActive}` : `${s.buttonCommon}`;
+
   return (
     <div className={s.dropdown}>
+      <div
+        className={menu ? s.backdrop : ""}
+        onClick={() => setМenu(false)}
+      ></div>
+
       <div className={s.dropbtn}>
         <button
-          className={s.button}
+          className={`${s.button} ${isActiveClass}`}
           type="button"
           onClick={() => (!menu ? setМenu(true) : setМenu(false))}
         >
