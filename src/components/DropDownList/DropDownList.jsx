@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
 
 import s from "./DropDownList.module.css";
-import { optionsIncome } from "data/categoryIncom.json";
-import { optionsExpense } from "data/categoryExpense.json";
+import  optionsIncome  from "data/categoryIncome.json";
+import  optionsExpense  from "data/categoryExpense.json";
 import contextProps from "context/context";
 
 function DropDownList({ category, setCategory }) {
