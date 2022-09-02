@@ -6,6 +6,7 @@ import { BalanceReportSection } from "components/BalanceReportSection";
 import { ModalLogout } from "components/ModalLogout";
 import { DropDownList } from "components/DropDownList";
 import { Transaction } from "components/Transaction";
+import { Summary } from "components/Summary";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="list" element={<DropDownList />}></Route>
       </Routes>
       <Transaction />
+      <Summary />
     </>
   );
 }
