@@ -1,0 +1,56 @@
+.user {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  line-height: 1.16;
+  color: #52555f;
+
+  &__meta {
+    display: flex;
+    align-items: center;
+
+    @media screen and (min-width: 768px) {
+      margin-right: 20px;
+      border-right: 1px solid #e0e5eb;
+    }
+  }
+
+  &__avatar {
+    width: 32px;
+    height: 32px;
+    margin-right: 16px;
+  }
+
+  &__name {
+    display: none;
+
+    @media screen and (min-width: 768px) {
+      display: inline-block;
+      margin-right: 20px;
+    }
+  }
+
+  &__logout {
+    color: inherit;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    text-decoration-line: underline;
+  }
+
+  &__btn_text {
+    display: none;
+
+    @media screen and (min-width: 768px) {
+      display: inline-block;
+    }
+  }
+}
+
+.icon__logout {
+  display: block;
+
+  @media screen and (min-width: 768px) {
+    display: none;
+  }
+}
