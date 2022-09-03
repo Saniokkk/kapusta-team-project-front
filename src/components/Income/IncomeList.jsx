@@ -1,28 +1,28 @@
-import icons from '../../assets/symbol-icons.svg';
-import { Header } from 'components/Layout/Header';
-import styles from './Income.module.css';
-import IncomeItem from './IncomeItem';
-import Chart from 'components/BarChart/BarChart';
-import MobileChart from 'components/BarChart/MobileChart';
+import icons from "../../assets/symbol-icons.svg";
+import { Header } from "components/Layout/Header";
+import styles from "./Income.module.css";
+import IncomeItem from "./IncomeItem";
+import Chart from "components/BarChart/BarChart";
+// import MobileChart from 'components/BarChart/MobileChart';
 
 const data = [
   {
     id: 1,
-    title: 'Заробітня плата',
+    title: "Заробітня плата",
     amount: 5000.0,
-    icon: 'icon-salary',
+    icon: "icon-salary",
   },
   {
     id: 2,
-    title: 'Додаткові доходи',
+    title: "Додаткові доходи",
     amount: 200.0,
-    icon: 'icon-extraSalary',
+    icon: "icon-extraSalary",
   },
   {
     id: 3,
-    title: 'Інше',
+    title: "Інше",
     amount: 800.0,
-    icon: 'icon-other',
+    icon: "icon-other",
   },
 ];
 
