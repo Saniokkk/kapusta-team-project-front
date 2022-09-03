@@ -9,18 +9,16 @@ export const FormAuth = () => {
   const validate = (values) => {
     const errors = {};
 
-    if (!values.userEmail) {
+    if (!values.email) {
       errors.email = "Обов'язкове поле для заповнення";
-    } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.userEmail)
-    ) {
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
       errors.email = "Невірна адреса електронної пошти";
     }
 
-    if (!values.userPassword) {
+    if (!values.password) {
       errors.password = "Обов'язкове поле для заповнення";
     } else if (
-      !/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,16}$/.test(values.userPassword)
+      !/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,16}$/.test(values.password)
     ) {
       errors.password =
         "пароль повинен містити принаймні одну цифру, одну велику та малу літеру та один спеціальний символ !@#$%^&*";
@@ -31,18 +29,18 @@ export const FormAuth = () => {
 
   const formik = useFormik({
     initialValues: {
-      userEmail: "",
-      userPassword: "",
+      email: "",
+      password: "",
     },
     validate,
     onSubmit: (values, { resetForm }) => {
-      const { userEmail, userPassword, button } = values;
+      const { email, password, button } = values;
       if (button === "register") {
         resetForm({ values: "" });
-        dispatch(authOperations.register({ userEmail, userPassword }));
+        dispatch(authOperations.register({ email, password }));
       } else if (button === "login") {
         resetForm({ values: "" });
-        dispatch(authOperations.logIn({ userEmail, userPassword }));
+        dispatch(authOperations.logIn({ email, password }));
       }
     },
   });
@@ -60,15 +58,15 @@ export const FormAuth = () => {
         <input
           className={styled.form__auth_input}
           type="email"
-          name="userEmail"
+          name="email"
           placeholder="your@mail.com"
           id="email"
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
-          value={formik.values.userEmail}
+          value={formik.values.email}
         />
 
-        {formik.touched.userEmail || formik.errors.email ? (
+        {formik.touched.email || formik.errors.email ? (
           <span className={styled.error}>{formik.errors.email}</span>
         ) : null}
 
@@ -79,21 +77,21 @@ export const FormAuth = () => {
         <input
           className={styled.form__auth_input}
           type="password"
-          name="userPassword"
+          name="password"
           id="password"
           placeholder="Пароль"
           onBlur={formik.handleBlur}
           onChange={formik.handleChange}
-          value={formik.values.userPassword}
+          value={formik.values.password}
         />
-        {formik.touched.userPassword || formik.errors.password ? (
+        {formik.touched.password || formik.errors.password ? (
           <span className={styled.error}>{formik.errors.password}</span>
         ) : null}
 
         <ul className={styled.list__button}>
           <li className={styled.list__button_item}>
             <button
-              disabled={!formik.values.userEmail || !formik.values.userPassword}
+              disabled={!formik.values.email || !formik.values.password}
               className={styled.form__auth_submit}
               type="submit"
               onClick={() => (formik.values.button = "login")}
@@ -103,7 +101,7 @@ export const FormAuth = () => {
           </li>
           <li className={styled.list__button_item}>
             <button
-              disabled={!formik.values.userEmail || !formik.values.userPassword}
+              disabled={!formik.values.email || !formik.values.password}
               className={styled.form__auth_signup}
               onClick={() => (formik.values.button = "register")}
               type="submit"
