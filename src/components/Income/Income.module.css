@@ -3,7 +3,7 @@
 :before {
   box-sizing: border-box;
 }
-/* Mobile */
+/* Mobile
 .incomeSection {
   width: 100%;
   position: relative;
@@ -20,9 +20,9 @@
   left: 0;
 
   /* bottom: 402px; */
-  border-radius: 0 0 0 120px;
+/* border-radius: 0 0 0 120px;
   z-index: -1;
-}
+} */
 
 .data {
   display: flex;
@@ -279,13 +279,13 @@
 /* ___________________________________________________ */
 
 @media screen and (min-width: 768px) {
-  .background {
+  /* .background {
     height: 526px;
   }
   .incomeSection {
     /* height: auto; */
-    padding: 40px 32px 32px 80px;
-  }
+  /* padding: 40px 32px 32px 80px; */
+  /* } */
 
   .data {
     margin-top: 116px;
@@ -384,14 +384,14 @@
 }
 /* desctop */
 @media screen and (min-width: 1024px) {
-  .incomeSection {
+  /* .incomeSection {
     padding-top: 40px;
     padding-bottom: 80px;
     padding: 40px 123px 80px 123px;
     background-image: url(../../assets/image/kapusta1280_1x.png);
     background-repeat: no-repeat;
     background-position: bottom center;
-  }
+  } */
 
   .data {
     flex-direction: row;
