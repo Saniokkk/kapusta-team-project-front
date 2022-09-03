@@ -3,15 +3,15 @@ import s from "./Category.module.css";
 import icon from "assets/symbol-icons.svg";
 
 const items = [
-  { id: 1, title: "Продукти" },
-  { id: 2, title: "Алкоголь" },
-  { id: 3, title: "Розваги" },
-  { id: 4, title: "Здоров'я" },
-  { id: 5, title: "Транспорт" },
+  { id: 1, title: "Транспорт" },
+  { id: 2, title: "Продукти" },
+  { id: 3, title: "Здоров'я" },
+  { id: 4, title: "Алкоголь" },
+  { id: 5, title: "Розваги" },
   { id: 6, title: "Дім" },
-  { id: 7, title: "Інструменти" },
-  { id: 8, title: "Рахунки" },
-  { id: 9, title: "Хобі" },
+  { id: 7, title: "Техніка" },
+  { id: 8, title: "Комуналка" },
+  { id: 9, title: "Спорт, хобі" },
   { id: 10, title: "Освіта" },
   { id: 11, title: "Інше" },
 ];
@@ -44,7 +44,7 @@ const Category = ({ onSubmit, value }) => {
         >
           {value}
 
-          <svg className={menu ? s.iconDown : ""} width="10" height="4">
+          <svg className={menu ? s.iconDown : ""} width="14" height="7">
             <use href={`${icon}#icon-categories`} />
           </svg>
         </button>

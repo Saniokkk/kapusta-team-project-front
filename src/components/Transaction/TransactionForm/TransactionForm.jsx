@@ -1,12 +1,16 @@
 import { useFormik } from "formik";
+import { useMediaQuery } from "@react-hook/media-query";
 import { useState } from "react";
 import Category from "components/Transaction/Category/Category";
 import icons from "assets/symbol-icons.svg";
-import styles from "./TransactionForm.module.css";
+import s from "./TransactionForm.module.scss";
 
 const TransactionForm = ({ onSubmit }) => {
-  const [category, setCategories] = useState("Категорії");
+  const [category, setCategories] = useState("Категорія продукту");
   const [price, setPrice] = useState(0);
+
+  const matches = useMediaQuery("only screen and (max-width: 767px)");
+  const placeholder = matches ? "0.00 UAH" : "0.00";
 
   const formik = useFormik({
     initialValues: {
@@ -16,7 +20,7 @@ const TransactionForm = ({ onSubmit }) => {
     },
     onSubmit: (values, { resetForm }) => {
       onSubmit(description, category, price);
-      setCategories("Категорії");
+      setCategories("Категорія продукту");
       resetForm();
     },
   });
@@ -34,22 +38,21 @@ const TransactionForm = ({ onSubmit }) => {
   };
 
   const reset = () => {
-    setCategories("Категорії");
+    setCategories("Категорія продукту");
     formik.resetForm();
   };
 
   return (
-    <div className={styles.formWrapper}>
-      <form onSubmit={formik.handleSubmit} className={styles.form} id="example">
-        <label className={styles.label}>
+    <div className={s.formWrapper}>
+      <form onSubmit={formik.handleSubmit} className={s.form} id="example">
+        <label className={s.label}>
           <input
-            className={styles.inputDesc}
+            className={s.inputDesc}
             type="text"
             name="description"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
-            placeholder="Опис"
+            placeholder="Опис продукту"
             value={description}
             onChange={formik.handleChange}
           />
@@ -57,32 +60,34 @@ const TransactionForm = ({ onSubmit }) => {
 
         <Category name="category" onSubmit={setCategories} value={category} />
 
-        <label className={styles.label}>
+        <label className={s.label}>
           <input
-            className={styles.inputSum}
+            className={s.inputSum}
             type="number"
             name="sum"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
-            placeholder="0.00"
+            placeholder={placeholder}
             value={sum}
             onChange={(e) => {
               formik.handleChange(e);
               negativeSum(e.target.value);
             }}
           />
-          <svg className={styles.icon} width="18" height="18">
+          <span className={s.borderTop}></span>
+          <svg className={s.icon} width="18" height="18">
             <use href={`${icons}#icon-calculator`} />
           </svg>
         </label>
       </form>
 
-      <button type="submit" className={styles.submitBtn} form="example">
-        ввести
-      </button>
-      <button className={styles.clearBtn} type="button" onClick={reset}>
-        очистити
-      </button>
+      <div lassName={s.buttons}>
+        <button type="submit" className={s.submitBtn} form="example">
+          ввести
+        </button>
+        <button className={s.clearBtn} type="button" onClick={reset}>
+          очистити
+        </button>
+      </div>
     </div>
   );
 };
