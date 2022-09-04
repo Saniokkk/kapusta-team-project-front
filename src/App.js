@@ -16,7 +16,7 @@ function App() {
         <Route path="balance" element={<BalanceReportSection />}></Route>
         <Route path="logout" element={<ModalLogout />}></Route>
         <Route path="list" element={<DropDownList />}></Route>
-        <Route path="Report" element={<ReportSection />}></Route>
+        <Route path="report" element={<ReportSection />}></Route>
       </Routes>
       {/* <Transaction /> */}
     </>

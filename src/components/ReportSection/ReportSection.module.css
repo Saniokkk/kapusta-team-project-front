@@ -1,23 +1,24 @@
 /* section */
-.report_section {
-  background-color: #f2f5fc;
+.reportSection {
+  background-color: #f5f6fb;
 }
+
 @media screen and (min-width: 320px) {
-  .report_section {
-    padding-top: 45px;
+  .reportSection {
+    padding-top: 40px;
     padding-bottom: 65px;
   }
 }
 
-@media screen and (min-width: 768px) {
-  .report_section {
+@media screen and (min-width: 744px) {
+  .reportSection {
     padding-top: 40px;
-    padding-bottom: 60px;
+    padding-bottom: 378px;
   }
 }
 
-@media screen and (min-width: 1280px) {
-  .report_section {
+@media screen and (min-width: 1138px) {
+  .reportSection {
     padding-top: 40px;
     padding-bottom: 83px;
   }
@@ -27,10 +28,7 @@
 .conteiner {
   padding: 0 20px;
   margin: 0 auto;
-  height: 100px;
-  background: #ffffff;
-  box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
-  border-radius: 0px 30px 30px 30px;
+  /* min-height: 100px; */
 }
 
 /* responsive-container */
@@ -40,14 +38,342 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 744px) {
   .conteiner {
-    width: 768px;
+    width: 744px;
+    position: relative;
   }
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: 1138px) {
   .conteiner {
-    width: 1280px;
+    width: 1138px;
+    position: static;
+  }
+}
+
+/* balance */
+.balance {
+  background-color: rgb(77, 182, 77);
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (min-width: 744px) {
+  .balance {
+    justify-content: space-between;
+    margin-bottom: 60px;
+  }
+}
+
+@media screen and (min-width: 1138px) {
+  .balance {
+    justify-content: flex-end;
+    margin-bottom: 8px;
+  }
+}
+
+.balance .balanceAdd {
+  width: 333px;
+  height: 44px;
+  background-color: rosybrown;
+}
+
+@media screen and (min-width: 744px) {
+  .balance .balanceAdd {
+    justify-content: space-between;
+    margin: 0;
+  }
+}
+
+@media screen and (min-width: 1138px) {
+  .balance .balanceAdd {
+    margin-right: 228px;
+  }
+}
+
+.balance .transitionReport {
+  width: 154px;
+  height: 24px;
+  background-color: rgb(120, 61, 61);
+}
+
+/* transactionSwitch */
+.transactionSwitch {
+  display: flex;
+}
+
+.transactionSwitch button.btn {
+  color: #000000;
+  background-color: #fafbfd;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.16;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-align: center;
+  height: 40px;
+  width: 138px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px 20px 0 0;
+  border: 1px solid transparent;
+}
+
+.transactionSwitch button.btn:hover,
+.transactionSwitch button.btn:focus {
+  background-color: #fefefe;
+  color: #ff751d;
+}
+
+/* activity */
+.activity {
+  background: #ffffff;
+  box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+  border-radius: 0px 30px 30px 30px;
+}
+
+@media screen and (min-width: 744px) {
+  .activity {
+    padding: 24px 40px 42px;
+  }
+}
+
+@media screen and (min-width: 1138px) {
+  .activity {
+    padding: 32px 32px 61px;
+  }
+}
+
+/* activity transaction */
+@media screen and (min-width: 744px) {
+  .activity .transaction {
+    margin-bottom: 48px;
+  }
+}
+
+@media screen and (min-width: 1138px) {
+  .activity .transaction {
+    display: flex;
+    margin-bottom: 60px;
+    align-items: center;
+  }
+}
+
+.activity .transaction .transactionDateForm,
+.activity .transaction .transactionformbtnIc {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (min-width: 744px) {
+  .activity .transaction .transactionDateForm {
+    margin-bottom: 32px;
+  }
+}
+
+@media screen and (min-width: 1138px) {
+  .activity .transaction .transactionDateForm {
+    margin-bottom: 0;
+  }
+}
+
+.activity .transaction .transactionDate {
+  background-color: rgb(15, 48, 117);
+}
+
+@media screen and (min-width: 744px) {
+  .activity .transaction .transactionDate {
+    width: 102px;
+    height: 40px;
+  }
+}
+
+@media screen and (min-width: 1138px) {
+  .activity .transaction .transactionDate {
+    width: 104px;
+    height: 40px;
+  }
+}
+
+.activity .transaction .transactionform {
+  background-color: rgb(56, 76, 155);
+}
+
+@media screen and (min-width: 744px) {
+  .activity .transaction .transactionform {
+    width: 480px;
+    height: 44px;
+    margin-left: 42px;
+  }
+}
+
+@media screen and (min-width: 1138px) {
+  .activity .transaction .transactionform {
+    margin: 0 32px;
+    width: 578px;
+    height: 44px;
+  }
+}
+
+@media screen and (min-width: 744px) {
+  .activity .transaction .transactionformbtnIc {
+    justify-content: center;
+  }
+}
+
+@media screen and (min-width: 1138px) {
+  .activity .transaction .transactionformbtnIc {
+    justify-content: flex-end;
+  }
+}
+
+.activity .transaction .transactionformbtn {
+  background-color: rgb(246, 236, 45);
+  height: 44px;
+}
+
+@media screen and (min-width: 744px) {
+  .activity .transaction .transactionformbtn {
+    width: 125px;
+  }
+  .activity .transaction .transactionformbtn:nth-child(2) {
+    margin-left: 15px;
+  }
+}
+
+@media screen and (min-width: 1138px) {
+  .activity .transaction .transactionformbtn {
+    width: 136px;
+  }
+  .activity .transaction .transactionformbtn:nth-child(2) {
+    margin-left: 16px;
+  }
+}
+
+/* activity statement */
+/* @media screen and (min-width: 744px) {
+  .activity .transaction .transactionformbtnIc {
+  }
+} */
+
+@media screen and (min-width: 1138px) {
+  .activity .statement {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
+
+/* activity statement table header */
+.transactionTable .tableHeader {
+  background-color: #f5f6fb;
+  border-radius: 20px 20px 0 0;
+  padding: 0 118.49px 0 28.17px;
+  display: flex;
+  align-items: center;
+  height: 38px;
+}
+
+.tableHeader .tableHeaderline {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.16;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  display: flex;
+  color: #000000;
+}
+
+.tableHeader .tableHeaderline:nth-child(1) {
+  width: 87.64px;
+}
+
+.tableHeader .tableHeaderline:nth-child(2) {
+  width: 129.38px;
+  margin-left: 20.87px;
+}
+
+.tableHeader .tableHeaderline:nth-child(3) {
+  width: 179.46px;
+  margin-left: 55.94px;
+  justify-content: center;
+}
+
+.tableHeader .tableHeaderline:nth-child(4) {
+  width: 108.51px;
+  margin-left: 17.54px;
+  justify-content: center;
+}
+
+/* activity statement table List */
+.tableList {
+  height: 342px;
+  overflow: auto;
+}
+
+.tableList::-webkit-scrollbar {
+  width: 6px;
+  /* ширина всей полосы прокрутки */
+}
+
+.tableList::-webkit-scrollbar-track {
+  background: #f5f6fb;
+  /* цвет зоны отслеживания */
+}
+
+.tableList::-webkit-scrollbar-thumb {
+  background-color: #ff751d;
+  /* цвет бегунка */
+  border-radius: 2px;
+  /* округлось бегунка */
+}
+
+.tableList ul {
+  display: flex;
+  flex-direction: column;
+}
+
+.tableList ul li {
+  display: flex;
+  height: 38px;
+  border: 2px solid #f5f6fb;
+  border-right: none;
+}
+
+.tableList ul li:not(:first-child) {
+  border-top: none;
+}
+
+/* activity statement summary */
+.activity .statement .summary {
+  background-color: #f5f6fb;
+  border-radius: 20px;
+  width: 213px;
+  height: 266px;
+  border: 1px solid #585a62;
+}
+
+@media screen and (min-width: 744px) {
+  .activity .statement .summary {
+    width: 230px;
+    height: 278px;
+    bottom: -318px;
+    left: 20px;
+    position: absolute;
+  }
+}
+
+@media screen and (min-width: 1138px) {
+  .activity .statement .summary {
+    position: static;
+    width: 213px;
+    height: 266px;
   }
 }
