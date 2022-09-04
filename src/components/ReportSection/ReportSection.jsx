@@ -5,8 +5,8 @@ const ReportSection = () => {
     <section className={styles.reportSection}>
       <div className={styles.conteiner}>
         <div className={styles.balance}>
-          <div className={styles.balanceAdd}></div>
-          <div className={styles.transitionReport}></div>
+          <div className={styles.balanceAdd}>Баланс</div>
+          <div className={styles.transitionReport}>Перейти к отчетам</div>
         </div>
 
         <div className={styles.transactionSwitch}>
@@ -20,10 +20,8 @@ const ReportSection = () => {
 
         <div className={styles.activity}>
           <div className={styles.transaction}>
-            <div className={styles.transactionDateForm}>
-              <div className={styles.transactionDate}>D</div>
-              <form className={styles.transactionform}>F</form>
-            </div>
+            <div className={styles.transactionDate}>Date</div>
+            <div className={styles.transactionform}>Form</div>
 
             <div className={styles.transactionformbtnIc}>
               <div className={styles.transactionformbtn}>I</div>
@@ -45,8 +43,8 @@ const ReportSection = () => {
                   <li className={styles.tableListline}></li>
                   <li className={styles.tableListline}></li>
                   <li className={styles.tableListline}></li>
-                  <li className={styles.tableListline}></li>
-                  <li className={styles.tableListline}></li>
+                </ul>
+                <ul>
                   <li className={styles.tableListline}></li>
                   <li className={styles.tableListline}></li>
                   <li className={styles.tableListline}></li>
@@ -62,7 +60,7 @@ const ReportSection = () => {
                 </ul>
               </div>
             </div>
-            <div className={styles.summary}></div>
+            <div className={styles.summary}>Сводка</div>
           </div>
         </div>
       </div>
