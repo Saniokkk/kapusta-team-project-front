@@ -66,7 +66,7 @@ export const FormAuth = () => {
           value={formik.values.email}
         />
 
-        {formik.touched.email || formik.errors.email ? (
+        {formik.errors.email ? (
           <span className={styled.error}>{formik.errors.email}</span>
         ) : null}
 
@@ -84,14 +84,14 @@ export const FormAuth = () => {
           onChange={formik.handleChange}
           value={formik.values.password}
         />
-        {formik.touched.password || formik.errors.password ? (
+        {formik.errors.password ? (
           <span className={styled.error}>{formik.errors.password}</span>
         ) : null}
 
         <ul className={styled.list__button}>
           <li className={styled.list__button_item}>
             <button
-              disabled={!formik.values.email || !formik.values.password}
+              // disabled={!formik.values.email || !formik.values.password}
               className={styled.form__auth_submit}
               type="submit"
               onClick={() => (formik.values.button = "login")}
@@ -101,7 +101,7 @@ export const FormAuth = () => {
           </li>
           <li className={styled.list__button_item}>
             <button
-              disabled={!formik.values.email || !formik.values.password}
+              // disabled={!formik.values.email || !formik.values.password}
               className={styled.form__auth_signup}
               onClick={() => (formik.values.button = "register")}
               type="submit"

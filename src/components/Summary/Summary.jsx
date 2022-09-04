@@ -1,4 +1,4 @@
-import styles from "./Summary.module.scss";
+import s from "./Summary.module.scss";
 
 export function Summary() {
   const data = {
@@ -91,9 +91,9 @@ export function Summary() {
   }
 
   return (
-    <div className={styles.wrapper}>
-      <h2 className={styles.title}>Підсумок</h2>
-      <ul className={styles.list}>
+    <div className={s.wrapper}>
+      <h2 className={s.title}>Підсумок</h2>
+      <ul className={s.list}>
         {expenseTransactions.map(({ date }) => (
           <li>
             <span>{toMonthName(convertDate(date))}</span>
