@@ -14,12 +14,12 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Layout />}></Route>
-        <Route path="balance" element={<BalanceReportSection />}></Route>
         <Route path="logout" element={<ModalLogout />}></Route>
         <Route path="list" element={<DropDownList />}></Route>
         <Route path="income" element={<IncomeList />}></Route>
       </Routes>
       <Transaction />
+      <BalanceReportSection />
       <Summary />
     </>
   );

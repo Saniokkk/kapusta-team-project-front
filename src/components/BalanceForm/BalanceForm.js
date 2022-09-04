@@ -1,35 +1,56 @@
 import styles from "./BalanceForm.module.scss";
-import { Button } from "components/Button";
+import NumberFormat from "react-number-format";
+// import { useSelector, } from "react-redux";
+// import { getBalance } from "redux/balance/balance-operation";
+import { useDispatch } from "react-redux";
+import { updateBalance } from "redux/balance/balance-operation";
 
-// import { useState } from 'react';
-// import {converter} from "./converter"
+import { useState } from "react";
 
 const BalanceForm = () => {
-  // const [amount,setAmount] = useState("")
-  // const [formatted,setFormatted] = useState()
+  const [balance, setBalance] = useState(0);
+  const dispatch = useDispatch();
 
-  // const  handleSubmit = (e) => {
-  //   e.preventDefault()
-  //   const value = converter(Number(amount), "UAH","fr")
-  //   setAmount(value)
-  //   }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(updateBalance(balance));
+  };
 
-  //   const  handleChange = (e) => {
-  //     console.log(e.target.value)
+  const handleChange = (e) => {
+    const { value } = e.target;
 
-  //   setAmount(e.target.value)
-
-  //   }
+    const valueInput = parseFloat(value.split(" ").join(""));
+    console.log("value input:", valueInput, "type:", typeof valueInput);
+    setBalance(valueInput);
+  };
 
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.form_title__box}>
         <h3 className={styles.form__title}>Баланс:</h3>
       </div>
 
       <div className={styles.form_input__box}>
-        <input className={styles.form__input} autoComplete="off" name="input" />
-        <Button className={styles.form__button}>Підтвердити</Button>
+        <NumberFormat
+          className={styles.form__input}
+          autoComplete="off"
+          name="input"
+          thousandSeparator={" "}
+          suffix={" UAH"}
+          value={balance}
+          onChange={handleChange}
+          allowLeadingZeros={true}
+          isNumericString={true}
+          fixedDecimalScale={true}
+          decimalScale={2}
+        />
+        <button
+          className={styles.form__button}
+          type="submit"
+          onSubmit={handleSubmit}
+        >
+          Підтвердити
+        </button>
       </div>
     </form>
   );
