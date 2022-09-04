@@ -81,32 +81,33 @@ const logOut = createAsyncThunk("users/logout", async (credentials) => {
 
 //After refresh page
 
-// const fetchCurrentUser = createAsyncThunk(
-//   "auth/refresh",
-//   async (_, thunkAPI) => {
-//     const state = thunkAPI.getState();
-//     const persistedToken = state.auth.token;
+const fetchCurrentUser = createAsyncThunk(
+  "users/current",
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
 
-//     if (!persistedToken) {
-//       return thunkAPI.rejectWithValue();
-//     }
+    console.log(persistedToken);
+    if (!persistedToken) {
+      return thunkAPI.rejectWithValue();
+    }
 
-//     token.set(persistedToken);
-//     try {
-//       const { data } = await axios.get("users/current");
-//       return data;
-//     } catch {
-//       token.unset();
-//       toast.warn("Authorization timed out! Please authenticate again!");
-//     }
-//   }
-// );
+    token.set(persistedToken);
+    try {
+      const { data } = await axios.post("users/current");
+      return data;
+    } catch {
+      token.unset();
+      toast.warn("Authorization timed out! Please authenticate again!");
+    }
+  }
+);
 
 const operations = {
   register,
   logIn,
   logOut,
-  // fetchCurrentUser,
+  fetchCurrentUser,
 };
 
 export default operations;
