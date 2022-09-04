@@ -9,7 +9,14 @@ import { Transaction } from "components/Transaction";
 import { ReportSection } from "components/ReportSection";
 import { Summary } from "components/Summary";
 import IncomeList from "components/Income/IncomeList";
+// import { Switch, Redirect } from "react-router-dom";
+// import { useEffect, lazy, Suspense } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import operations from "./redux/auth/auth-operations";
+// import authSelectors from "./redux/auth/auth-selector";
+import "react-toastify/dist/ReactToastify.css";
 
+// import PublicRoute from
 function App() {
   return (
     <>
