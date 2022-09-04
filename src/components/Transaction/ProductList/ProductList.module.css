@@ -1,9 +1,155 @@
-.item {
-  width: 400px;
+/* TABLE */
+
+table {
+  width: 780px;
+  text-align: left;
+}
+
+/* common styles */
+
+th,
+td,
+tr,
+thead,
+tbody {
+  display: block;
+}
+
+td,
+th {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  height: 100%;
+  float: left;
+  font-size: 12px;
+  line-height: 1.17;
 }
+
+tr {
+  height: 40px;
+  background-color: #f5f6fb;
+}
+
+/* thead */
+
+thead {
+  background-color: #f5f6fb;
+  color: #fdfdfd;
+
+  border: 2px solid #f5f6fb;
+  border-radius: 16px 16px 0px 0px;
+}
+
+/* thead tr */
+
+thead tr {
+  border-radius: 16px 16px 0px 0px;
+}
+
+/* th */
+
+th {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #000000;
+}
+
+th:nth-child(1) {
+  padding-left: 28px;
+  width: 17.9%;
+}
+
+th:nth-child(2) {
+  padding-left: 6px;
+  width: 31.9%;
+}
+
+th:nth-child(1),
+th:nth-child(2) {
+  text-align: left;
+}
+
+th:nth-child(3) {
+  justify-content: center;
+  width: 24.9%;
+}
+
+th:nth-child(4) {
+  justify-content: center;
+  width: 14.9%;
+}
+
+th:nth-child(3),
+th:nth-child(4) {
+  text-align: center;
+}
+
+th:nth-child(5) {
+  justify-content: center;
+  width: 9.9%;
+}
+
+th:nth-child(6) {
+  width: 0.5%;
+}
+
+/* tbody */
+
+tbody {
+  height: 360px;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  border-left: 2px solid;
+  border-bottom: 2px solid;
+  border-color: #f5f6fb;
+}
+
+/* tbody tr */
+
+tbody tr {
+  background-color: #fff;
+}
+
+tbody tr:not(:last-child) {
+  border-bottom: 2px solid #f5f6fb;
+}
+
+/* td */
+
+td {
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+td:nth-child(1) {
+  padding-left: 20px;
+  width: 18%;
+}
+
+td:nth-child(2) {
+  width: 32%;
+}
+
+td:nth-child(3) {
+  justify-content: center;
+  width: 25%;
+}
+
+td:nth-child(4) {
+  justify-content: center;
+  width: 15%;
+  font-weight: 700;
+  color: #e7192e;
+}
+
+td:nth-child(5) {
+  justify-content: center;
+  width: 10%;
+}
+
+/* BUTTON */
 
 button {
   margin: 0;
@@ -22,25 +168,13 @@ button {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-div {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 1.16;
-  letter-spacing: 0.04em;
-  color: #52555f;
-}
-
-.sum {
-  font-weight: 700;
-  color: #e7192e;
-}
-
-.icon {
-  margin: auto;
-}
-
 .button:hover,
 .button:focus {
   background-color: #f5f6fb;
+}
+
+/* ICON */
+
+.icon {
+  margin: auto;
 }

@@ -4,27 +4,148 @@ import s from "./ProductList.module.css";
 
 const ProductList = ({ visible, deleteContact }) => {
   return (
-    <ul>
-      {visible.map(({ id, description, categories, sum }) => {
-        return (
-          <li key={id} className={s.item}>
-            <div className={s.description}>{description}</div>
-            <div className={s.categories}>{categories}</div>
-            <div className={s.sum}>{sum}</div>
-
-            <button
-              className={s.button}
-              type="button"
-              onClick={() => deleteContact(id)}
-            >
-              <svg className={s.icon} width="18" height="18">
-                <use href={`${icon}#icon-delete`} />
-              </svg>
-            </button>
-          </li>
-        );
-      })}
-    </ul>
+    <>
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Sum</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {visible.map(({ id, description, categories, sum }) => {
+            return (
+              <tr key={id}>
+                <td>22.03.2022</td>
+                <td>{description}</td>
+                <td>{categories}</td>
+                <td>{sum}</td>
+                <td>
+                  <button
+                    className={s.button}
+                    type="button"
+                    onClick={() => deleteContact(id)}
+                  >
+                    <svg className={s.icon} width="18" height="18">
+                      <use href={`${icon}#icon-delete`} />
+                    </svg>
+                  </button>
+                </td>
+              </tr>
+            );
+          })}
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </>
   );
 };
 
