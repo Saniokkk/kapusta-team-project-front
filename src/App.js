@@ -14,6 +14,7 @@ import IncomeList from "components/Income/IncomeList";
 // import { useDispatch, useSelector } from "react-redux";
 // import operations from "./redux/auth/auth-operations";
 // import authSelectors from "./redux/auth/auth-selector";
+import { Home } from "pages/Home";
 import "react-toastify/dist/ReactToastify.css";
 
 // import PublicRoute from
@@ -21,12 +22,14 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Layout />}></Route>
-        <Route path="balance" element={<BalanceReportSection />}></Route>
-        <Route path="logout" element={<ModalLogout />}></Route>
-        <Route path="list" element={<DropDownList />}></Route>
-        <Route path="report" element={<ReportSection />}></Route>
-        <Route path="income" element={<IncomeList />}></Route>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="balance" element={<BalanceReportSection />}></Route>
+          <Route path="logout" element={<ModalLogout />}></Route>
+          <Route path="list" element={<DropDownList />}></Route>
+          <Route path="report" element={<ReportSection />}></Route>
+          <Route path="income" element={<IncomeList />}></Route>
+        </Route>
       </Routes>
       <Transaction />
       <Summary />
