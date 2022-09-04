@@ -1,10 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-
 import s from "./ModalLogout.module.css";
 import { gsap, Power1 } from "gsap";
-
-const modalRoot = document.querySelector("#modal-root");
 
 const ModalLogout = ({
   handleClickLeft,
@@ -13,7 +10,6 @@ const ModalLogout = ({
   modalTitle = "Ви дійсно бажаєте вийти?",
   modalButtonLeft = "Так",
   modalButtonRight = "Ні",
-  styleReg,
 }) => {
   useEffect(() => {
     window.document.body.style.overflowY = "hidden";
@@ -23,8 +19,6 @@ const ModalLogout = ({
       window.document.body.style.overflowY = "visible";
     };
   });
-
-  console.log("hahahah");
 
   const handleKeyDown = (e) => {
     if (e.code === "Escape") {
@@ -55,7 +49,7 @@ const ModalLogout = ({
 
   return createPortal(
     <div className={s.backdrop} onClick={handleOverlayClick}>
-      <div className={`{s.modal} ${styleReg}`}>
+      <div className={s.modal}>
         <span className={s.closeBtn} onClick={onClose}>
           &#10006;
         </span>
@@ -75,7 +69,7 @@ const ModalLogout = ({
         </div>
       </div>
     </div>,
-    modalRoot
+    document.getElementById("modal-root")
   );
 };
 

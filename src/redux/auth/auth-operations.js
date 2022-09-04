@@ -41,11 +41,10 @@ const register = createAsyncThunk("/users/register", async (credentials) => {
 //LogIn User
 
 const logIn = createAsyncThunk("/users/login", async (credentials) => {
-  console.log(credentials);
   try {
     const { data } = await axios.post("/users/login", credentials);
     token.set(data.token);
-    toast.success(`Welcome ${credentials.userEmail}`, {
+    toast.success(`Welcome ${data.user.email.split("@")[0]}`, {
       position: toast.POSITION.TOP_RIGHT,
       theme: "dark",
     });
