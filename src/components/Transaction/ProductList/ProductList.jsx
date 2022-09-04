@@ -1,6 +1,6 @@
 import React from "react";
 import icon from "assets/symbol-icons.svg";
-import s from "./ProductList.module.css";
+import s from "./ProductList.module.scss";
 
 const ProductList = ({ visible, deleteContact }) => {
   return (
@@ -8,10 +8,10 @@ const ProductList = ({ visible, deleteContact }) => {
       <table>
         <thead>
           <tr>
-            <th>Date</th>
-            <th>Description</th>
-            <th>Category</th>
-            <th>Sum</th>
+            <th>Дата</th>
+            <th>Опис</th>
+            <th>Категорія</th>
+            <th>Сума</th>
             <th></th>
             <th></th>
           </tr>
