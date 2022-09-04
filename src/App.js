@@ -6,6 +6,7 @@ import { BalanceReportSection } from "components/BalanceReportSection";
 import { ModalLogout } from "components/ModalLogout";
 import { DropDownList } from "components/DropDownList";
 import { Transaction } from "components/Transaction";
+import { ReportSection } from "components/ReportSection";
 import { Summary } from "components/Summary";
 import IncomeList from "components/Income/IncomeList";
 // import { Switch, Redirect } from "react-router-dom";
@@ -24,6 +25,7 @@ function App() {
         <Route path="balance" element={<BalanceReportSection />}></Route>
         <Route path="logout" element={<ModalLogout />}></Route>
         <Route path="list" element={<DropDownList />}></Route>
+        <Route path="report" element={<ReportSection />}></Route>
         <Route path="income" element={<IncomeList />}></Route>
       </Routes>
       <Transaction />
