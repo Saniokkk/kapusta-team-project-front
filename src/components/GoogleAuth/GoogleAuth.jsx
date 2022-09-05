@@ -1,5 +1,6 @@
 import icon from "assets/sprite-icons.svg";
 import styled from "./GoogleAuth.module.scss";
+import { motion } from "framer-motion";
 
 export const GoogleAuth = () => {
   return (
@@ -7,12 +8,17 @@ export const GoogleAuth = () => {
       <p className={styled.google__auth_title}>
         Ви можете авторизуватись за допомогою Google Account:
       </p>
-      <button className={styled.google__auth_btn} type="button">
+      <motion.button
+        className={styled.google__auth_btn}
+        type="button"
+        whileHover={{ scale: 1.1 }}
+        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+      >
         <svg className={styled.google__auth_btn_icon} width={17} height={18}>
           <use href={`${icon}#icon-google`} />
         </svg>
         Google
-      </button>
+      </motion.button>
     </div>
   );
 };

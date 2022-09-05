@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import s from "./ModalLogout.module.css";
+import s from "./ModalLogout.module.scss";
+import icon from "assets/sprite-icons.svg";
 import { gsap, Power1 } from "gsap";
+import { motion } from "framer-motion";
 
 const ModalLogout = ({
   handleClickLeft,
@@ -38,7 +40,7 @@ const ModalLogout = ({
       buttons,
       0.7,
       {
-        y: -150,
+        y: 0,
       },
       {
         y: 15,
@@ -49,25 +51,40 @@ const ModalLogout = ({
 
   return createPortal(
     <div className={s.backdrop} onClick={handleOverlayClick}>
-      <div className={s.modal}>
-        <span className={s.closeBtn} onClick={onClose}>
-          &#10006;
-        </span>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+        className={s.modal}
+      >
+        <svg className={s.closeBtn} onClick={onClose} width={17} height={18}>
+          <use href={`${icon}#icon-close`} />
+        </svg>
         <div className={s.title}>
           <p>{modalTitle}</p>
         </div>
 
         <div className={s.buttons}>
           <div className={s.divbtn} ref={(el) => (buttons = el)}>
-            <button className={s.outBtnn} onClick={handleClickLeft}>
+            <motion.button
+              className={s.outBtnn}
+              onClick={handleClickLeft}
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
               {modalButtonLeft}
-            </button>
-            <button className={s.outBtn} onClick={handleClickRight}>
+            </motion.button>
+            <motion.button
+              className={s.outBtn}
+              onClick={handleClickRight}
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
               {modalButtonRight}
-            </button>
+            </motion.button>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>,
     document.getElementById("modal-root")
   );
