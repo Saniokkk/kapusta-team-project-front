@@ -5,18 +5,12 @@ import { motion } from "framer-motion";
 import styled from "./FormAuth.module.scss";
 import { useState } from "react";
 import { ModalLogout } from "components/ModalLogout";
+import icon from "assets/sprite-icons.svg";
 
 export const FormAuth = () => {
   const [stateRegister, setStateRegister] = useState(false);
+  const [statePass, setStatePass] = useState(false);
   const dispatch = useDispatch();
-
-  // const emailModal = async ({ email, password }) => {
-  //   const result = await authOperations.register({ email, password });
-
-  //   if (result.payload.user) {
-  //     setStateRegister(!stateRegister);
-  //   }
-  // };
 
   const validate = (values) => {
     const errors = {};
@@ -50,8 +44,6 @@ export const FormAuth = () => {
       if (button === "register") {
         resetForm({ values: "" });
         dispatch(authOperations.register({ email, password }));
-
-        // emailModal({ email, password });
       } else if (button === "login") {
         resetForm({ values: "" });
         dispatch(authOperations.logIn({ email, password }));
@@ -79,29 +71,51 @@ export const FormAuth = () => {
           onChange={formik.handleChange}
           value={formik.values.email}
         />
-
         {formik.errors.email ? (
           <span className={styled.error}>{formik.errors.email}</span>
         ) : null}
-
         <label htmlFor="password" className={styled.form__auth_label}>
           {formik.errors.password && <span className={styled.star}>*</span>}
           Пароль:
         </label>
-        <input
-          className={styled.form__auth_input}
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Пароль"
-          onBlur={formik.handleBlur}
-          onChange={formik.handleChange}
-          value={formik.values.password}
-        />
+        <span className={styled.containerInputPass}>
+          <input
+            className={styled.form__auth_input}
+            type={statePass ? "text" : "password"}
+            name="password"
+            id="password"
+            placeholder="Пароль"
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+            value={formik.values.password}
+          />
+          {statePass ? (
+            <svg
+              id="eye"
+              className={styled.eye}
+              width={20}
+              height={20}
+              onMouseDown={() => setStatePass(!statePass)}
+              onMouseUp={() => setStatePass(!statePass)}
+            >
+              <use href={`${icon}#icon-eye`} />
+            </svg>
+          ) : (
+            <svg
+              id="eye"
+              className={styled.eye}
+              width={20}
+              height={20}
+              onMouseDown={() => setStatePass(!statePass)}
+              onMouseUp={() => setStatePass(!statePass)}
+            >
+              <use href={`${icon}#icon-eye-blocked`} />
+            </svg>
+          )}
+        </span>
         {formik.errors.password ? (
           <span className={styled.error}>{formik.errors.password}</span>
         ) : null}
-
         <ul className={styled.list__button}>
           <li className={styled.list__button_item}>
             <motion.button
