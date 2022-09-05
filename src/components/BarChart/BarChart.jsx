@@ -13,18 +13,18 @@ import {
   // CartesianAxis,
   Text,
   // Brush,
-} from "recharts";
+} from 'recharts';
 const data = [
   {
-    name: "Заробітня плата",
+    name: 'Заробітня плата',
     amount: 5000,
   },
   {
-    name: "Додаткові доходи",
+    name: 'Додаткові доходи',
     amount: 200,
   },
   {
-    name: "Інше",
+    name: 'Інше',
     amount: 2000,
   },
 ];
@@ -77,7 +77,7 @@ const data = [
 
 // ];
 
-// const sortedData = data.sort((a, b) => b.amount - a.amount);
+const sortedData = data.sort((a, b) => b.amount - a.amount);
 
 // let formatter = new Intl.NumberFormat('ua-UA', {
 //   style: 'currency',
@@ -97,14 +97,14 @@ const renderCustomizedLabel = (props) => {
         x={x + width / 2}
         y={y - radius}
         fontSize={12}
-        fontFamily="Roboto"
+        fontFamily='Roboto'
         fontWeight={400}
-        letterSpacing={"0.02em"}
-        fill="#52555F"
-        textAnchor="middle"
-        dominantBaseline="middle"
+        letterSpacing={'0.02em'}
+        fill='#52555F'
+        textAnchor='middle'
+        dominantBaseline='middle'
       >
-        {value.toString() + " грн"}
+        {value.toString() + ' грн'}
       </text>
     </g>
   );
@@ -113,12 +113,12 @@ const renderCustomizedLabel = (props) => {
 const Chart = () => {
   return (
     <>
-      <ResponsiveContainer width="99%" height={400}>
+      <ResponsiveContainer width='99%' height={400}>
         <BarChart
           // width={605}
           width={200}
           height={400}
-          data={data}
+          data={sortedData}
           margin={{
             top: 5,
             right: 120,
@@ -130,21 +130,21 @@ const Chart = () => {
 
           // layout='vertical'
         >
-          <CartesianGrid stroke="#f5f5f5" vertical={false} />
+          <CartesianGrid stroke='#f5f5f5' vertical={false} />
           <XAxis
-            dataKey="name"
+            dataKey='name'
             axisLine={false}
             tickLine={false}
             minTickGap={5}
             fontSize={12}
             fontWeight={400}
-            fontFamily={"Roboto"}
-            letterSpacing={"0.02em"}
-            domain={["dataMin", "dataMax"]}
+            fontFamily={'Roboto'}
+            letterSpacing={'0.02em'}
+            domain={['dataMin', 'dataMax']}
           />
           <YAxis
-            dataKey="amount"
-            type="number"
+            dataKey='amount'
+            type='number'
             // domain={}
             // domain={[-1, 1]}
             // orientation='right'
@@ -156,23 +156,23 @@ const Chart = () => {
             axisLine={false}
             tickLine={false}
             hide={true}
-            label={{ position: "top" }}
+            label={{ position: 'top' }}
             allowDataOverflow={true}
             // type='category'
           />
           <Text scaleToFit={true} width={30} />
           {/* <Brush dataKey='name' height={30} stroke='#8884d8' /> */}
           <Bar
-            dataKey="amount"
+            dataKey='amount'
             // fill={'#FFDAC0'}
             radius={[10, 10, 0, 0]}
             barSize={38}
             // label={{ position: 'top' }}
             // style={{ stroke: '#000' }}
           >
-            <LabelList dataKey="amount" content={renderCustomizedLabel} />
+            <LabelList dataKey='amount' content={renderCustomizedLabel} />
             {data.map((entry, index) => (
-              <Cell fill={index % 3 === 0 ? "#FF751D" : "#FFDAC0"} />
+              <Cell fill={index % 3 === 0 ? '#FF751D' : '#FFDAC0'} />
             ))}
           </Bar>
           {/* <LabelList dataKey='amount' content={renderCustomizedLabel} /> */}
