@@ -3,6 +3,7 @@ import styles from "./ReportSection.module.css";
 const ReportSection = () => {
   return (
     <section className={styles.reportSection}>
+      <div className={styles.reportBackgroundSection}></div>
       <div className={styles.conteiner}>
         <div className={styles.balance}>
           <div className={styles.balanceAdd}>Баланс</div>
