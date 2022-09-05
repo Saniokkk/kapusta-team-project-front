@@ -1,35 +1,30 @@
-import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  goBackOneMonth,
+  goForwardOneMonth,
+} from "redux/extraInfo/extraInfo-slice";
+import { calendarSelectors } from "redux/extraInfo";
 
 import s from "./CurrentMonth.module.css";
 
-import months from "../../data/month.json";
+import months from "data/month.json";
 import spriteIcons from "../../assets/symbol-icons.svg";
 
 const CurrentMonth = () => {
-  let date = new Date();
-  let selectedMonth = date.getMonth() + 1;
-  let selectedYear = date.getFullYear();
-  const [currentMonth, setMonth] = useState(selectedMonth);
-  const [currentYear, setYear] = useState(selectedYear);
-  const onHandleClickRight = () => {
-    if (currentMonth < 12) {
-      setMonth((prev) => (prev += 1));
-    } else {
-      setMonth(1);
-      setYear((prev) => (prev += 1));
-    }
-  };
+  const dispatch = useDispatch();
+
+  const month = useSelector(calendarSelectors.getMonth);
+  const year = useSelector(calendarSelectors.getYear);
+
+  const correctMonth = months.find((el) => Number(el.id) === Number(month));
+
   const onHandleClickLeft = () => {
-    if (currentMonth <= 1) {
-      setMonth(12);
-      setYear((prev) => (prev -= 1));
-    } else {
-      setMonth((prev) => (prev -= 1));
-    }
+    dispatch(goBackOneMonth());
   };
 
-  const monthToString = String(currentMonth);
-  const selectMonth = months.filter((el) => el.id === monthToString);
+  const onHandleClickRight = () => {
+    dispatch(goForwardOneMonth());
+  };
   return (
     <div className={s.reportMonth}>
       <p className={s.title}>Поточний період:</p>
@@ -43,7 +38,7 @@ const CurrentMonth = () => {
         {
           <span
             className={s.reportMonthTitle}
-          >{`${selectMonth[0].name} ${currentYear}`}</span>
+          >{`${correctMonth.name} ${year}`}</span>
         }
         <button className={s.btnToRight} onClick={onHandleClickRight}>
           <svg className={s.icon}>
