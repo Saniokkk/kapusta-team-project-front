@@ -1,13 +1,12 @@
 /* section */
 .reportSection {
-  background-color: #f5f6fb;
+  position: relative;
 }
 
-@media screen and (min-width: 320px) {
+@media screen and (max-width: 767px) {
   .reportSection {
     padding-top: 40px;
     padding-bottom: 65px;
-    background-color: #ffffff;
   }
 }
 
@@ -15,6 +14,9 @@
   .reportSection {
     padding-top: 40px;
     padding-bottom: 378px;
+    background-image: url(../../assets/image/cabbage_1x.png);
+    background-repeat: no-repeat;
+    background-position: right 88px bottom 59px;
   }
 }
 
@@ -22,6 +24,33 @@
   .reportSection {
     padding-top: 40px;
     padding-bottom: 83px;
+    background-image: url(../../assets/image/cabbages_bgr.png),
+      url(../../assets/image/cabbages_bgr.png);
+    background-repeat: no-repeat;
+    background-position: left 10px bottom -38px, left 1255.5px bottom -38px;
+  }
+}
+
+/* section Background*/
+.reportBackgroundSection {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 296px;
+  background-color: #f5f6fb;
+  border-bottom-left-radius: 100px;
+}
+
+@media screen and (min-width: 768px) {
+  .reportBackgroundSection {
+    height: 526px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .reportBackgroundSection {
+    background-color: #f2f5fc;
   }
 }
 
@@ -31,7 +60,7 @@
 }
 
 /* responsive-container */
-@media screen and (min-width: 320px) {
+@media screen and (max-width: 767px) {
   .conteiner {
     width: 320px;
     padding: 0px 20px;
@@ -51,7 +80,7 @@
   .conteiner {
     width: 1280px;
     padding: 0px 91px;
-    position: static;
+    /* position: static; */
   }
 }
 
@@ -178,15 +207,6 @@
 }
 
 /* activity */
-@media screen and (min-width: 768px) {
-  .activity {
-    background: #ffffff;
-    box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
-    border-radius: 0px 30px 30px 30px;
-    padding: 24px 40px 42px;
-  }
-}
-
 @media screen and (min-width: 768px) {
   .activity {
     background: #ffffff;
