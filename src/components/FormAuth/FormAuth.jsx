@@ -1,10 +1,22 @@
 import { useFormik } from "formik";
 import authOperations from "redux/auth/auth-operations";
 import { useDispatch } from "react-redux";
+import { motion } from "framer-motion";
 import styled from "./FormAuth.module.scss";
+import { useState } from "react";
+import { ModalLogout } from "components/ModalLogout";
 
 export const FormAuth = () => {
+  const [stateRegister, setStateRegister] = useState(false);
   const dispatch = useDispatch();
+
+  // const emailModal = async ({ email, password }) => {
+  //   const result = await authOperations.register({ email, password });
+
+  //   if (result.payload.user) {
+  //     setStateRegister(!stateRegister);
+  //   }
+  // };
 
   const validate = (values) => {
     const errors = {};
@@ -38,6 +50,8 @@ export const FormAuth = () => {
       if (button === "register") {
         resetForm({ values: "" });
         dispatch(authOperations.register({ email, password }));
+
+        // emailModal({ email, password });
       } else if (button === "login") {
         resetForm({ values: "" });
         dispatch(authOperations.logIn({ email, password }));
@@ -90,27 +104,35 @@ export const FormAuth = () => {
 
         <ul className={styled.list__button}>
           <li className={styled.list__button_item}>
-            <button
-              // disabled={!formik.values.email || !formik.values.password}
+            <motion.button
               className={styled.form__auth_submit}
               type="submit"
               onClick={() => (formik.values.button = "login")}
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
               Увійти
-            </button>
+            </motion.button>
           </li>
           <li className={styled.list__button_item}>
-            <button
-              // disabled={!formik.values.email || !formik.values.password}
+            <motion.button
               className={styled.form__auth_signup}
               onClick={() => (formik.values.button = "register")}
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
               type="submit"
             >
               Реєстрація
-            </button>
+            </motion.button>
           </li>
         </ul>
       </form>
+      {stateRegister && (
+        <ModalLogout
+          modalTitle="на вашу пошту було відправлено листа з підтвердженням регистрації"
+          onClose={() => setStateRegister(!stateRegister)}
+        />
+      )}
     </>
   );
 };

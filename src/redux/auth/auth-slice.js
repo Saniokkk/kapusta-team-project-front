@@ -14,6 +14,7 @@ const authSlice = createSlice({
     [authOperations.register.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
+      console.log(action.payload.token);
       state.isLoggedIn = true;
     },
     [authOperations.logIn.fulfilled](state, action) {
@@ -28,6 +29,7 @@ const authSlice = createSlice({
     },
     [authOperations.fetchCurrentUser.fulfilled](state, action) {
       state.user = action.payload;
+      state.token = action.payload.token;
       state.isLoggedIn = true;
     },
   },

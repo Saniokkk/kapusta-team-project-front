@@ -15,14 +15,16 @@ const token = {
 
 ///Register User
 
-const register = createAsyncThunk("/users/register", async (credentials) => {
+const register = createAsyncThunk("/auth/register", async (credentials) => {
   try {
-    const { data } = await axios.post("/users/register", credentials);
+    const { data } = await axios.post("/auth/register", credentials);
+    console.log(data);
+    console.log(data.token);
     token.set(data.token);
     return data;
   } catch (error) {
     const codeError = error.response.status;
-    if (codeError === 400) {
+    if (codeError === 409) {
       toast.error("You are already registered, please try to login", {
         position: toast.POSITION.TOP_RIGHT,
         theme: "dark",
@@ -35,19 +37,20 @@ const register = createAsyncThunk("/users/register", async (credentials) => {
     } else {
       toast.error("Something went wrong!");
     }
+    return codeError;
   }
 });
 
 //LogIn User
 
-const logIn = createAsyncThunk("/users/login", async (credentials) => {
+const logIn = createAsyncThunk("/auth/login", async (credentials) => {
   try {
-    const { data } = await axios.post("/users/login", credentials);
+    const { data } = await axios.post("/auth/login", credentials);
     token.set(data.token);
-    toast.success(`Welcome ${data.user.email.split("@")[0]}`, {
-      position: toast.POSITION.TOP_RIGHT,
-      theme: "dark",
-    });
+    // toast.success(`Welcome ${data.user.email.split("@")[0]}`, {
+    //   position: toast.POSITION.TOP_RIGHT,
+    //   theme: "dark",
+    // });
     return data;
   } catch (error) {
     const codeError = error.response.status;
@@ -62,9 +65,9 @@ const logIn = createAsyncThunk("/users/login", async (credentials) => {
 
 //LogOut User
 
-const logOut = createAsyncThunk("users/logout", async (credentials) => {
+const logOut = createAsyncThunk("auth/logout", async (credentials) => {
   try {
-    await axios.post("/users/logout", credentials);
+    await axios.post("/auth/logout", credentials);
     token.unset();
   } catch (error) {
     const codeError = error.response.status;
@@ -82,11 +85,10 @@ const logOut = createAsyncThunk("users/logout", async (credentials) => {
 //After refresh page
 
 const fetchCurrentUser = createAsyncThunk(
-  "users/current",
+  "user/current",
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
-
     console.log(persistedToken);
     if (!persistedToken) {
       return thunkAPI.rejectWithValue();
@@ -94,7 +96,7 @@ const fetchCurrentUser = createAsyncThunk(
 
     token.set(persistedToken);
     try {
-      const { data } = await axios.post("users/current");
+      const { data } = await axios.get("user/current");
       return data;
     } catch {
       token.unset();

@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import authSelectors from "redux/auth/auth-selector";
-// import avatar from "assets/image/avatar.png";
+import avatar from "assets/image/avatar.png";
 import authOperations from "redux/auth/auth-operations";
 import { useDispatch } from "react-redux";
 import icon from "assets/sprite-icons.svg";
@@ -11,7 +11,6 @@ import { motion } from "framer-motion";
 
 export const UserMenu = () => {
   const [modalState, setModalState] = useState(false);
-  const userAvatar = useSelector(authSelectors.getUserAvatar);
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
   const userName = useSelector(authSelectors.getUsername);
 
@@ -27,7 +26,7 @@ export const UserMenu = () => {
           className={styled.user}
         >
           <div className={styled.userMeta}>
-            <img className={styled.userAvatar} src={userAvatar} alt="Аватар" />
+            <img className={styled.userAvatar} src={avatar} alt="Аватар" />
             <p className={styled.userName}>{userName.split("@")[0]}</p>
           </div>
           <button
@@ -44,6 +43,7 @@ export const UserMenu = () => {
             <ModalLogout
               onClose={() => setModalState(!modalState)}
               handleClickLeft={() => dispatch(authOperations.logOut())}
+              handleClickRight={() => setModalState(!modalState)}
             />
           )}
         </motion.div>
