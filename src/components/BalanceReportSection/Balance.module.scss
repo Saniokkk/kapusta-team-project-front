@@ -1,6 +1,6 @@
 .balance {
   background-color: #f5f6fb;
-  padding: 40px 20px 120px;
+  // padding: 40px 20px 120px;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -9,7 +9,7 @@
     flex-direction: row-reverse;
     justify-content: space-between;
   }
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 1280px) {
     flex-direction: row-reverse;
     justify-content: center;
   }

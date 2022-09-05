@@ -1,16 +1,20 @@
 import BackgroundBottom from 'components/BackgroundBottom/BackgroundBottom';
-import { BalanceReportSection } from 'components/BalanceReportSection';
+import { BalanceForm } from 'components/BalanceForm';
+// import { BalanceReportSection } from 'components/BalanceReportSection';
 import ButtonToHome from 'components/ButtonToHome';
+import CurrentMonth from 'components/CurrentMonth/CurrentMonth';
 import { ListExpenses } from 'components/ListExpenses/ListExpenses';
-import { Summary } from 'components/Summary';
+import styles from './ReportPage.module.css';
 
 const ExpensesReportPage = () => {
   return (
     <BackgroundBottom>
-      <div></div>
-      <ButtonToHome />
-      <BalanceReportSection />
-      <Summary />
+      <div className={styles.reportWrapper}>
+        <ButtonToHome />
+        {/* <BalanceReportSection /> */}
+        <BalanceForm />
+        <CurrentMonth />
+      </div>
       <ListExpenses />
     </BackgroundBottom>
   );
