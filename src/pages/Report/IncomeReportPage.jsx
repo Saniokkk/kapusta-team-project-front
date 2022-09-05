@@ -1,6 +1,6 @@
 import BackgroundBottom from 'components/BackgroundBottom/BackgroundBottom';
 import { BalanceForm } from 'components/BalanceForm';
-import { BalanceReportSection } from 'components/BalanceReportSection';
+
 import ButtonToHome from 'components/ButtonToHome';
 import CurrentMonth from 'components/CurrentMonth/CurrentMonth';
 import IncomeList from 'components/Income/IncomeList';
