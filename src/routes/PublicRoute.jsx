@@ -1,10 +1,10 @@
-import { Navigate } from 'react-router-dom';
-import authSelectors from '../redux/auth/auth-selector';
-import { useSelector } from 'react-redux';
+import { Navigate } from "react-router-dom";
+import authSelectors from "../redux/auth/auth-selector";
+import { useSelector } from "react-redux";
 
 const PublicRoute = ({
   children,
-  redirectTo = '/',
+  redirectTo = "/",
   restricted = false,
   ...routeProps
 }) => {
