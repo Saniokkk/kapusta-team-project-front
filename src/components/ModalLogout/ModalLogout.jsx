@@ -59,7 +59,7 @@ const ModalLogout = ({
 
         <div className={s.buttons}>
           <div className={s.divbtn} ref={(el) => (buttons = el)}>
-            <button className={s.outBtn} onClick={handleClickLeft}>
+            <button className={s.outBtnn} onClick={handleClickLeft}>
               {modalButtonLeft}
             </button>
             <button className={s.outBtn} onClick={handleClickRight}>

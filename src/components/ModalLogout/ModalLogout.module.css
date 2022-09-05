@@ -1,16 +1,17 @@
 .backdrop {
-    position: fixed;
-    background-color: rgba(0, 0, 0, 0.5);
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .modal {
+  position: relative;
   width: 380px;
   height: 194px;
   background: #ffffff;
@@ -25,18 +26,63 @@
 }
 
 .divbtn {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 265px;
+  display: flex;
+  margin: auto;
+  align-items: center;
+  justify-content: space-between;
+  width: 265px;
+}
+
+.closeBtn {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  padding: 0;
+  margin: 0;
+  background-color: inherit;
+  stroke: #52555f;
 }
 
 .outBtn {
-  display: block;
+  font-size: 12px;
+  line-height: 1.16;
+  letter-spacing: 0.02em;
+  width: 125px;
+  height: 44px;
+  padding: 12px 15px;
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 16px;
+  border: 0px;
+  box-shadow: 1px 2px 5px rgba(170, 178, 197, 0.4);
+  /* display: block;
   cursor: pointer;
   text-align: right;
   padding-right: 20px;
-  padding-top: 20px;
+  padding-top: 20px; */
+}
+
+.outBtnn {
+  font-size: 12px;
+  line-height: 1.16;
+  letter-spacing: 0.02em;
+  width: 125px;
+  height: 44px;
+  padding: 12px 15px;
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 16px;
+  border: 0px;
+  box-shadow: 1px 2px 5px rgba(170, 178, 197, 0.4);
+  background-color: #ff751d;
+  color: #ffffff;
+  /* display: block;
+  cursor: pointer;
+  text-align: right;
+  padding-right: 20px;
+  padding-top: 20px; */
 }
 
 .outBtn:hover {
@@ -45,13 +91,14 @@
 }
 
 .title {
-  margin-bottom: 20px;
+  text-align: center;
+  margin-top: 50px;
 
   font-weight: 500;
   font-size: 14px;
-  line-height: 16px;
-  text-align: center;
+  line-height: 1.14;
   letter-spacing: 0.02em;
+  color: black;
 }
 
 .buttons {

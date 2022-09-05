@@ -7,17 +7,18 @@
   .reportSection {
     padding-top: 40px;
     padding-bottom: 65px;
+    background-color: #ffffff;
   }
 }
 
-@media screen and (min-width: 744px) {
+@media screen and (min-width: 768px) {
   .reportSection {
     padding-top: 40px;
     padding-bottom: 378px;
   }
 }
 
-@media screen and (min-width: 1138px) {
+@media screen and (min-width: 1280px) {
   .reportSection {
     padding-top: 40px;
     padding-bottom: 83px;
@@ -26,47 +27,57 @@
 
 /* container */
 .conteiner {
-  padding: 0 20px;
   margin: 0 auto;
-  /* min-height: 100px; */
 }
 
 /* responsive-container */
 @media screen and (min-width: 320px) {
   .conteiner {
     width: 320px;
-  }
-}
-
-@media screen and (min-width: 744px) {
-  .conteiner {
-    width: 744px;
+    padding: 0px 20px;
     position: relative;
   }
 }
 
-@media screen and (min-width: 1138px) {
+@media screen and (min-width: 768px) {
   .conteiner {
-    width: 1138px;
+    width: 768px;
+    padding: 0px 32px;
+    position: relative;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .conteiner {
+    width: 1280px;
+    padding: 0px 91px;
     position: static;
   }
 }
 
 /* balance */
 .balance {
-  background-color: rgb(77, 182, 77);
+  background-color: rgb(160, 174, 246);
   display: flex;
   align-items: center;
 }
 
-@media screen and (min-width: 744px) {
+@media screen and (max-width: 767px) {
+  .balance {
+    flex-direction: column-reverse;
+    height: 136px;
+    margin-bottom: 140px;
+  }
+}
+
+@media screen and (min-width: 768px) {
   .balance {
     justify-content: space-between;
     margin-bottom: 60px;
   }
 }
 
-@media screen and (min-width: 1138px) {
+@media screen and (min-width: 1280px) {
   .balance {
     justify-content: flex-end;
     margin-bottom: 8px;
@@ -79,14 +90,21 @@
   background-color: rosybrown;
 }
 
-@media screen and (min-width: 744px) {
+@media screen and (max-width: 767px) {
+  .balance .balanceAdd {
+    width: 280px;
+    height: 72px;
+  }
+}
+
+@media screen and (min-width: 768px) {
   .balance .balanceAdd {
     justify-content: space-between;
     margin: 0;
   }
 }
 
-@media screen and (min-width: 1138px) {
+@media screen and (min-width: 1280px) {
   .balance .balanceAdd {
     margin-right: 228px;
   }
@@ -98,9 +116,24 @@
   background-color: rgb(120, 61, 61);
 }
 
+@media screen and (max-width: 767px) {
+  .balance .transitionReport {
+    width: 150px;
+    height: 14px;
+    margin-bottom: 43px;
+  }
+}
+
 /* transactionSwitch */
 .transactionSwitch {
   display: flex;
+}
+
+@media screen and (max-width: 767px) {
+  .transactionSwitch {
+    position: fixed;
+    bottom: 0px;
+  }
 }
 
 .transactionSwitch button.btn {
@@ -130,55 +163,60 @@
   color: #ff751d;
 }
 
-/* activity */
-.activity {
-  background: #ffffff;
-  box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
-  border-radius: 0px 30px 30px 30px;
+@media screen and (max-width: 767px) {
+  .transactionSwitch button.btn {
+    background-color: #ffffff;
+    border-radius: 0;
+    height: 53px;
+  }
+
+  .transactionSwitch button.btn:hover,
+  .transactionSwitch button.btn:focus {
+    background-color: #ff751d;
+    color: #ffffff;
+  }
 }
 
-@media screen and (min-width: 744px) {
+/* activity */
+@media screen and (min-width: 768px) {
   .activity {
+    background: #ffffff;
+    box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+    border-radius: 0px 30px 30px 30px;
     padding: 24px 40px 42px;
   }
 }
 
-@media screen and (min-width: 1138px) {
+@media screen and (min-width: 768px) {
+  .activity {
+    background: #ffffff;
+    box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+    border-radius: 0px 30px 30px 30px;
+    padding: 24px 40px 42px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
   .activity {
     padding: 32px 32px 61px;
   }
 }
 
 /* activity transaction */
-@media screen and (min-width: 744px) {
+@media screen and (min-width: 768px) {
   .activity .transaction {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 48px;
   }
 }
 
-@media screen and (min-width: 1138px) {
+@media screen and (min-width: 1280px) {
   .activity .transaction {
     display: flex;
     margin-bottom: 60px;
-    align-items: center;
-  }
-}
-
-.activity .transaction .transactionDateForm,
-.activity .transaction .transactionformbtnIc {
-  display: flex;
-  align-items: center;
-}
-
-@media screen and (min-width: 744px) {
-  .activity .transaction .transactionDateForm {
-    margin-bottom: 32px;
-  }
-}
-
-@media screen and (min-width: 1138px) {
-  .activity .transaction .transactionDateForm {
-    margin-bottom: 0;
   }
 }
 
@@ -186,14 +224,25 @@
   background-color: rgb(15, 48, 117);
 }
 
-@media screen and (min-width: 744px) {
+@media screen and (max-width: 767px) {
+  .activity .transaction .transactionDate {
+    position: absolute;
+    top: 186px;
+    width: 102px;
+    height: 40px;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+}
+
+@media screen and (min-width: 768px) {
   .activity .transaction .transactionDate {
     width: 102px;
     height: 40px;
   }
 }
 
-@media screen and (min-width: 1138px) {
+@media screen and (min-width: 1280px) {
   .activity .transaction .transactionDate {
     width: 104px;
     height: 40px;
@@ -204,7 +253,13 @@
   background-color: rgb(56, 76, 155);
 }
 
-@media screen and (min-width: 744px) {
+@media screen and (max-width: 767px) {
+  .activity .transaction .transactionform {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
   .activity .transaction .transactionform {
     width: 480px;
     height: 44px;
@@ -212,7 +267,7 @@
   }
 }
 
-@media screen and (min-width: 1138px) {
+@media screen and (min-width: 1280px) {
   .activity .transaction .transactionform {
     margin: 0 32px;
     width: 578px;
@@ -220,15 +275,28 @@
   }
 }
 
-@media screen and (min-width: 744px) {
+.activity .transaction .transactionformbtnIc {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 767px) {
   .activity .transaction .transactionformbtnIc {
-    justify-content: center;
+    display: none;
   }
 }
 
-@media screen and (min-width: 1138px) {
+@media screen and (min-width: 768px) {
+  .activity .transaction .transactionformbtnIc {
+    justify-content: center;
+    margin-top: 32px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
   .activity .transaction .transactionformbtnIc {
     justify-content: flex-end;
+    margin-top: 0px;
   }
 }
 
@@ -237,7 +305,7 @@
   height: 44px;
 }
 
-@media screen and (min-width: 744px) {
+@media screen and (min-width: 768px) {
   .activity .transaction .transactionformbtn {
     width: 125px;
   }
@@ -246,7 +314,7 @@
   }
 }
 
-@media screen and (min-width: 1138px) {
+@media screen and (min-width: 1280px) {
   .activity .transaction .transactionformbtn {
     width: 136px;
   }
@@ -256,12 +324,8 @@
 }
 
 /* activity statement */
-/* @media screen and (min-width: 744px) {
-  .activity .transaction .transactionformbtnIc {
-  }
-} */
 
-@media screen and (min-width: 1138px) {
+@media screen and (min-width: 1280px) {
   .activity .statement {
     display: flex;
     justify-content: space-between;
@@ -277,6 +341,12 @@
   display: flex;
   align-items: center;
   height: 38px;
+}
+
+@media screen and (max-width: 767px) {
+  .transactionTable .tableHeader {
+    display: none;
+  }
 }
 
 .tableHeader .tableHeaderline {
@@ -313,26 +383,28 @@
 }
 
 /* activity statement table List */
-.tableList {
-  height: 342px;
-  overflow: auto;
-}
+@media screen and (min-width: 768px) {
+  .tableList {
+    height: 342px;
+    overflow: auto;
+  }
 
-.tableList::-webkit-scrollbar {
-  width: 6px;
-  /* ширина всей полосы прокрутки */
-}
+  .tableList::-webkit-scrollbar {
+    width: 6px;
+    /* ширина всей полосы прокрутки */
+  }
 
-.tableList::-webkit-scrollbar-track {
-  background: #f5f6fb;
-  /* цвет зоны отслеживания */
-}
+  .tableList::-webkit-scrollbar-track {
+    background: #f5f6fb;
+    /* цвет зоны отслеживания */
+  }
 
-.tableList::-webkit-scrollbar-thumb {
-  background-color: #ff751d;
-  /* цвет бегунка */
-  border-radius: 2px;
-  /* округлось бегунка */
+  .tableList::-webkit-scrollbar-thumb {
+    background-color: #ff751d;
+    /* цвет бегунка */
+    border-radius: 2px;
+    /* округлось бегунка */
+  }
 }
 
 .tableList ul {
@@ -340,15 +412,29 @@
   flex-direction: column;
 }
 
-.tableList ul li {
-  display: flex;
-  height: 38px;
-  border: 2px solid #f5f6fb;
-  border-right: none;
+@media screen and (max-width: 767px) {
+  /* скрываем заглушку */
+  .tableList ul:nth-child(2) {
+    display: none;
+  }
+  .tableList ul li {
+    display: flex;
+    height: 46px;
+    border-bottom: 1px solid #f5f6fb;
+  }
 }
 
-.tableList ul li:not(:first-child) {
-  border-top: none;
+@media screen and (min-width: 768px) {
+  .tableList ul li {
+    display: flex;
+    height: 38px;
+    border: 2px solid #f5f6fb;
+    border-right: none;
+  }
+  .tableList ul:nth-child(2) li:nth-child(1),
+  .tableList ul li:not(:first-child) {
+    border-top: none;
+  }
 }
 
 /* activity statement summary */
@@ -360,17 +446,23 @@
   border: 1px solid #585a62;
 }
 
-@media screen and (min-width: 744px) {
+@media screen and (max-width: 767px) {
+  .activity .statement .summary {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
   .activity .statement .summary {
     width: 230px;
     height: 278px;
     bottom: -318px;
-    left: 20px;
+    left: 32px;
     position: absolute;
   }
 }
 
-@media screen and (min-width: 1138px) {
+@media screen and (min-width: 1280px) {
   .activity .statement .summary {
     position: static;
     width: 213px;

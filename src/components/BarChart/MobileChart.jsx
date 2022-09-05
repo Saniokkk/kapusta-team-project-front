@@ -4,14 +4,11 @@ import {
   Cell,
   XAxis,
   YAxis,
-  CartesianGrid,
+  // CartesianGrid,
   LabelList,
-  Tooltip,
-  Legend,
   ResponsiveContainer,
-  CartesianAxis,
   Text,
-  Label,
+  // Label,
   // Brush,
 } from 'recharts';
 
@@ -103,7 +100,7 @@ const sortedData = data.sort((a, b) => b.amount - a.amount);
 // });
 
 const renderCustomizedLabel = (props) => {
-  const { x, y, width, height, value } = props;
+  const { x, y, width, value } = props;
   const radius = 10;
 
   return (
@@ -134,7 +131,7 @@ const MobileChart = () => {
         <BarChart
           width={280}
           height={580}
-          data={data}
+          data={sortedData}
           layout='vertical'
           margin={{
             top: 5,
