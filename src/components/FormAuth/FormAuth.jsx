@@ -10,13 +10,13 @@ export const FormAuth = () => {
   const [stateRegister, setStateRegister] = useState(false);
   const dispatch = useDispatch();
 
-  const emailModal = async ({ email, password }) => {
-    const result = await authOperations.register({ email, password });
+  // const emailModal = async ({ email, password }) => {
+  //   const result = await authOperations.register({ email, password });
 
-    if (result.payload.user) {
-      setStateRegister(!stateRegister);
-    }
-  };
+  //   if (result.payload.user) {
+  //     setStateRegister(!stateRegister);
+  //   }
+  // };
 
   const validate = (values) => {
     const errors = {};
