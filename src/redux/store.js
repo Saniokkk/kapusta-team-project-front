@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 // import { contactsApi } from "redux/contacts/contactsApi";
 // import { contactsSlice } from "redux/contacts/contactsSlice";
 import authReducer from "./auth/auth-slice";
+import balanceReducer from "./balance/balance-reducer";
 import storage from "redux-persist/lib/storage";
 import extraInfoReducer from "./extraInfo/extraInfo-slice";
 import {
@@ -24,6 +25,7 @@ const authPersistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
+    balance: balanceReducer,
     extraInfo: extraInfoReducer,
     // contacts: contactsSlice.reducer,
     // [contactsApi.reducerPath]: contactsApi.reducer,
