@@ -2,6 +2,7 @@ import "./App.css";
 import { Layout } from "components/Layout/Layout";
 import { Routes, Route, Navigate } from "react-router-dom";
 // import { ReportSection } from 'pages/ReportSection';
+import { ReportSection } from "components/ReportSection";
 // import { Switch, Redirect } from "react-router-dom";
 // import { useEffect, lazy, Suspense } from "react";
 // import { useDispatch, useSelector } from "react-redux";
@@ -29,6 +30,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
+          <Route path="report" element={<ReportSection />}></Route>
           <Route
             index
             element={
