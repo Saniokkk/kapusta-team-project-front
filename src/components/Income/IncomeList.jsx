@@ -1,14 +1,11 @@
 import Chart from 'components/BarChart/BarChart';
 import MobileChart from 'components/BarChart/MobileChart';
+import { ProfitStats } from 'components/ProfitStats/ProfitStats';
 import useWindowDimensions from 'hooks/useWindowDimensions';
-import icons from '../../assets/symbol-icons.svg';
+import spriteIcons from '../../assets/symbol-icons.svg';
 
 import styles from './Income.module.css';
 import IncomeItem from './IncomeItem';
-// import Chart from 'components/BarChart/BarChart';
-
-// import { Background } from 'components/Background';
-// import MobileChart from 'components/BarChart/MobileChart';
 
 const data = [
   {
@@ -40,34 +37,14 @@ const IncomeList = () => {
 
   return (
     <>
-      {/* <Header /> */}
-      {/* <Background> */}
-      {/* <BackgroundBottom> */}
-      {/* <div className={styles.incomeSection}> */}
-      {/* заглушка */}
-      {/* <div className={styles.calendar}>Листопад 2019</div>
-          <div className={styles.balanceWrapper}>
-            <p className={styles.balanceText}>Баланс:</p>
-            <div className={styles.balance}>46 500 UAH</div>
-          </div> */}
-      {/* заглушка */}
-      <div className={styles.data}>
-        <p className={styles.operationsData}>
-          Витрати:
-          <span className={styles.expenseData}>- 18 000.00 грн</span>
-        </p>
-        <div className={styles.line}></div>
-        <p className={styles.operationsData}>
-          Дохід: <span className={styles.income}>+ {totalIncome} грн</span>
-        </p>
-      </div>
+      <ProfitStats total={totalIncome} />
       <div className={styles.iconBox}>
         <div className={styles.titleBox}>
           <button className={styles.btnToLeft}>
             <svg className={styles.icon}>
               <use
                 className={styles.svg}
-                href={`${icons}#icon-arrowLeft`}
+                href={`${spriteIcons}#icon-arrowLeft`}
               ></use>
             </svg>
           </button>
@@ -76,7 +53,7 @@ const IncomeList = () => {
             <svg className={styles.icon}>
               <use
                 className={styles.svg}
-                href={`${icons}#icon-arrowRight`}
+                href={`${spriteIcons}#icon-arrowRight`}
               ></use>
             </svg>
           </button>

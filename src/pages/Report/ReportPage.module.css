@@ -1,4 +1,34 @@
 .reportWrapper {
   display: flex;
+  flex-direction: column;
+  width: 280px;
   justify-content: space-between;
+  margin: 0 auto;
+  margin-top: 16px;
+  margin-bottom: 32px;
+}
+.reportFlexbox {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  /* margin: 0 auto; */
+  margin-top: 16px;
+  align-items: center;
+}
+@media screen and (min-width: 768px) {
+  .reportWrapper {
+    flex-direction: row;
+    width: 704px;
+    margin-top: 0;
+  }
+  .reportFlexbox {
+    flex-direction: row;
+    margin-top: 0;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .reportWrapper {
+    width: 1034px;
+  }
 }
