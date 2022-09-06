@@ -1,5 +1,5 @@
-import "./App.css";
-import { Layout } from "components/Layout/Layout";
+import { Suspense, lazy } from "react";
+import { Loader } from "components/Loader";
 import { Routes, Route, Navigate } from "react-router-dom";
 // import { ReportSection } from 'pages/ReportSection';
 import { ReportSection } from "components/ReportSection";
@@ -15,9 +15,8 @@ import { ProtectedRoute } from "routes/ProtectedRoute";
 // import ProductList from 'components/Transaction/ProductList/ProductList';
 // import TransactionForm from 'components/Transaction/TransactionForm/TransactionForm';
 // import { Transaction } from 'components/Transaction';
-import { TransactionsPage } from "pages/TransactionsPage";
+// import { TransactionsPage } from "pages/TransactionsPage/TransactionsPage";
 
-import { Home } from "pages/Home";
 // import IncomeReportPage from "pages/Report/IncomeReportPage";
 // import ExpensesReportPage from "pages/Report/ExpensesReportPage";
 import authSelectors from "redux/auth/auth-selector";
@@ -26,11 +25,33 @@ import ExpensesReportPage from "pages/Report/ExpensesReportPage";
 import IncomeReportPage from "pages/Report/IncomeReportPage";
 import { BalanceReportSection } from "components/BalanceReportSection";
 
+import PublicRoute from "routes/PublicRoute";
+
+import "./App.css";
+
+const GoogleLoader = lazy(() =>
+  import(
+    "./components/GoogleLoader/GoogleLoader" /* webpackChunkName: "GoogleLoader" */
+  )
+);
+
+const Layout = lazy(() =>
+  import("./components/Layout/Layout" /* webpackChunkName: "Layout" */)
+);
+
+const Home = lazy(() =>
+  import("./pages/Home/Home" /* webpackChunkName: "Home" */)
+);
+
+const TransactionsPage = lazy(() =>
+  import("./pages/TransactionsPage" /* webpackChunkName: "TransactionsPage" */)
+);
+
 function App() {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
   return (
-    <>
+    <Suspense fallback={<Loader />}>
       <BalanceReportSection />
       <Routes>
         <Route path="/" element={<Layout />}>
@@ -54,6 +75,15 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+          <Route
+            path="/google"
+            element={
+              <PublicRoute>
+                <GoogleLoader />
+              </PublicRoute>
+            }
+          ></Route>
           {/* // <Route
           //   path="income"
           //   element={
@@ -85,8 +115,7 @@ function App() {
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-    </>
+    </Suspense>
   );
 }
-
 export default App;

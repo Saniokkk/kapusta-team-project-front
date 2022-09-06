@@ -93,7 +93,7 @@ const fetchCurrentUser = createAsyncThunk(
       return data;
     } catch {
       token.unset();
-      toast.warn("Authorization timed out! Please authenticate again!");
+      // toast.warn("Authorization timed out! Please authenticate again!");
     }
   }
 );

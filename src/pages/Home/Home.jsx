@@ -3,7 +3,7 @@ import { MainTitle } from "components/MainTitle";
 import { FormWrapper } from "components/FormWrapper";
 import styled from "./Home.module.scss";
 
-export const Home = () => {
+const Home = () => {
   return (
     <>
       <Background />
@@ -16,3 +16,5 @@ export const Home = () => {
     </>
   );
 };
+
+export default Home;
