@@ -24,6 +24,14 @@ import authSelectors from "redux/auth/auth-selector";
 import { useSelector } from "react-redux";
 import ExpensesReportPage from "pages/Report/ExpensesReportPage";
 import IncomeReportPage from "pages/Report/IncomeReportPage";
+import { lazy } from "react";
+import PublicRoute from "routes/PublicRoute";
+
+const GoogleLoader = lazy(() =>
+  import(
+    "./components/GoogleLoader/GoogleLoader"
+  ),
+);
 
 function App() {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
@@ -52,6 +60,16 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+          <Route
+            path="/google"
+            element={
+              <PublicRoute>
+                <GoogleLoader />
+              </PublicRoute>
+            }>
+
+          </Route>
           {/* // <Route
           //   path="income"
           //   element={

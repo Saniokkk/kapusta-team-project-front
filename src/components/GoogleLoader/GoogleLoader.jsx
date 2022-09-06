@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import authSelectors from "../../redux/auth/auth-selector";
-import { operations } from "../../redux/auth/auth-operations";
-import { authSlice } from "../../redux/auth/auth-slice";
+import operations from "../../redux/auth/auth-operations";
+import authSlice from "../../redux/auth/auth-slice";
 import { Container } from "../Container";
 
 function useQuery() {
@@ -17,7 +17,7 @@ const GoogleLoader = () => {
     const dispatch = useDispatch();
     const storedToken = useSelector(authSelectors.getToken);
     const [token, setToken] = useState(null);
-    const history = useHistory();
+    const history = Navigate();
 
     useEffect(() => {
         setToken(query.get('token'));
