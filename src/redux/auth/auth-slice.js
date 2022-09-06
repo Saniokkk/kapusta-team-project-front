@@ -27,9 +27,7 @@ const authSlice = createSlice({
       state.isLoggedIn = false;
     },
     [authOperations.fetchCurrentUser.fulfilled](state, action) {
-      state.user = action.payload;
-      state.token = action.payload.token;
-      state.isLoggedIn = true;
+      state.auth.user.totalBalance = action.payload.user;
     },
   },
 });

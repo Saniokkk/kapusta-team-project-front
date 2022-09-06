@@ -24,12 +24,14 @@ import authSelectors from "redux/auth/auth-selector";
 import { useSelector } from "react-redux";
 import ExpensesReportPage from "pages/Report/ExpensesReportPage";
 import IncomeReportPage from "pages/Report/IncomeReportPage";
+import { BalanceReportSection } from "components/BalanceReportSection";
 
 function App() {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
   return (
     <>
+      <BalanceReportSection />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="report" element={<ReportSection />}></Route>

@@ -79,7 +79,7 @@ const logOut = createAsyncThunk("auth/logout", async (credentials) => {
 //After refresh page
 
 const fetchCurrentUser = createAsyncThunk(
-  "user/current",
+  "/user/current",
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
@@ -98,11 +98,35 @@ const fetchCurrentUser = createAsyncThunk(
   }
 );
 
+// S1w5!sf
+
+const updateCurrentUser = createAsyncThunk(
+  "balance/updateBalance",
+  async (totalBalance, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+    if (!persistedToken) {
+      return thunkAPI.rejectWithValue();
+    }
+    console.log("state", state);
+    token.set(persistedToken);
+    try {
+      const { data } = await axios.patch("/balance/update", totalBalance);
+      console.log("data", data.newBalance);
+      return data.newBalance;
+    } catch (error) {
+      token.unset();
+      console.log(error.message);
+    }
+  }
+);
+
 const operations = {
   register,
   logIn,
   logOut,
   fetchCurrentUser,
+  updateCurrentUser,
 };
 
 export default operations;
