@@ -1,9 +1,12 @@
 import styles from "./ReportSection.module.css";
 import { useState, useEffect } from "react";
+import { useMediaQuery } from "@react-hook/media-query";
 import TransactionForm from "components/Transaction/TransactionForm/TransactionForm";
 import ProductList from "components/Transaction/ProductList/ProductList";
 import { nanoid } from "nanoid";
 import { Summary } from "components/Summary";
+import Datepicker from "../DatePicker/Datepicker";
+import { Report } from "../Report";
 
 const ReportSection = () => {
   const [products, setProducts] = useState(() => {
@@ -37,6 +40,9 @@ const ReportSection = () => {
       ]
     );
   });
+
+  const isMobile = useMediaQuery("only screen and (max-width: 767px)");
+  const isTablet = useMediaQuery("only screen and (min-width: 768px)");
 
   const addproduct = (description, categories, sum) => {
     const product = {
@@ -72,7 +78,9 @@ const ReportSection = () => {
       <div className={styles.conteiner}>
         <div className={styles.balance}>
           <div className={styles.balanceAdd}>Баланс</div>
-          <div className={styles.transitionReport}>Перейти к отчетам</div>
+          <div className={styles.transitionReport}>
+            <Report />
+          </div>
         </div>
 
         <div className={styles.transactionSwitch}>
@@ -85,15 +93,24 @@ const ReportSection = () => {
         </div>
 
         <div className={styles.activity}>
-          <div className={styles.transaction}>
-            {/* <div className={styles.transactionDate}>Date</div> */}
-            <TransactionForm onSubmit={addproduct} />
-          </div>
+          {isMobile && (
+            <div className={styles.transactionDate}>
+              <Datepicker />
+            </div>
+          )}
+          {isTablet && (
+            <div className={styles.transaction}>
+              <TransactionForm onSubmit={addproduct} />
+            </div>
+          )}
 
           <div className={styles.statement}>
-            <ProductList visible={getlist()} deleteContact={deleteContact} />
-            <Summary />
-            {/* <div className={styles.summary}>Сводка</div> */}
+            {/* <ProductList visible={getlist()} deleteContact={deleteContact} /> */}
+            {isTablet && (
+              <div className={styles.summary}>
+                <Summary />
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -86,7 +86,6 @@
 
 /* balance */
 .balance {
-  background-color: var(--report-bg-balans);
   display: flex;
   align-items: center;
 }
@@ -94,7 +93,6 @@
 @media screen and (max-width: 767px) {
   .balance {
     flex-direction: column-reverse;
-    height: 136px;
     margin-bottom: 140px;
   }
 }
@@ -139,18 +137,16 @@
   }
 }
 
-.balance .transitionReport {
-  width: 154px;
-  height: 24px;
-  background-color: var(--report-transition-report);
-}
-
 @media screen and (max-width: 767px) {
   .balance .transitionReport {
-    width: 150px;
-    height: 14px;
     margin-bottom: 43px;
   }
+}
+
+/*из компонента Report*/
+.balance .transitionReport .report__button {
+  margin: 0;
+  padding: 0;
 }
 
 /* transactionSwitch */
@@ -240,22 +236,17 @@
   }
 }
 
-.activity .transaction .transactionDate {
-  background-color: var(--report-transition-activity);
-}
-
+/*Data*/
 @media screen and (max-width: 767px) {
-  .activity .transaction .transactionDate {
+  .activity .transactionDate {
     position: absolute;
     top: 186px;
-    width: 102px;
-    height: 40px;
     left: 50%;
     transform: translate(-50%, 0);
   }
 }
 
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
   .activity .transaction .transactionDate {
     width: 102px;
     height: 40px;
@@ -267,19 +258,16 @@
     width: 104px;
     height: 40px;
   }
-}
+} */
 
-.activity .transaction .transactionform {
-  background-color: var(--report-form-activity);
-}
-
-@media screen and (max-width: 767px) {
+/* form */
+/* @media screen and (max-width: 767px) {
   .activity .transaction .transactionform {
     display: none;
   }
-}
+} */
 
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
   .activity .transaction .transactionform {
     width: 480px;
     height: 44px;
@@ -293,7 +281,7 @@
     width: 578px;
     height: 44px;
   }
-}
+} */
 
 .activity .transaction .transactionformbtnIc {
   display: flex;
@@ -458,24 +446,9 @@
 }
 
 /* activity statement summary */
-.activity .statement .summary {
-  background-color: var(--grey-bg-home-color);
-  border-radius: 20px;
-  width: 213px;
-  height: 266px;
-  border: 1px solid var(--report-summaty-border);
-}
-
-@media screen and (max-width: 767px) {
-  .activity .statement .summary {
-    display: none;
-  }
-}
 
 @media screen and (min-width: 768px) {
   .activity .statement .summary {
-    width: 230px;
-    height: 278px;
     bottom: -318px;
     left: 32px;
     position: absolute;
@@ -485,7 +458,5 @@
 @media screen and (min-width: 1280px) {
   .activity .statement .summary {
     position: static;
-    width: 213px;
-    height: 266px;
   }
 }
