@@ -4,7 +4,7 @@ import NumberFormat from "react-number-format";
 // import { useSelector, } from "react-redux";
 // import { getBalance } from "redux/balance/balance-operation";
 import { useDispatch } from "react-redux";
-import { updateBalance } from "redux/balance/balance-operation";
+import authOperations from "redux/auth/auth-operations";
 
 import { useState } from "react";
 import { BalanceBtn } from "./BalanceButton";
@@ -13,10 +13,12 @@ import useWindowDimensions from "hooks/useWindowDimensions";
 const BalanceForm = () => {
   const [balance, setBalance] = useState(0);
   const dispatch = useDispatch();
+  // const totalBalance = useSelector(selectors.getUserBalance)
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(updateBalance(balance));
+
+    dispatch(authOperations.updateCurrentUser({ totalBalance: balance }));
   };
 
   const handleChange = (e) => {
