@@ -112,7 +112,6 @@ const updateCurrentUser = createAsyncThunk(
     token.set(persistedToken);
     try {
       const { data } = await axios.patch("/balance/update", totalBalance);
-      console.log("data", data.newBalance);
       return data.newBalance;
     } catch (error) {
       token.unset();
