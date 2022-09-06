@@ -22,19 +22,17 @@ input::-webkit-inner-spin-button {
 }
 
 /* SCROLLBAR */
+
 ::-webkit-scrollbar-track {
   background: #f5f6fb;
 }
 
 ::-webkit-scrollbar {
+  height: 6px;
   width: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #ff751d;
   border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
 }

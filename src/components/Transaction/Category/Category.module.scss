@@ -1,0 +1,150 @@
+/* WRAPPERS */
+
+.wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.dropDownWrapper {
+  position: relative;
+  border: none;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  color: #c7ccdc;
+  z-index: 3;
+
+  @media screen and (max-width: 767px) {
+    margin-bottom: 32px;
+  }
+}
+
+/* DROPDOWN CONTENT */
+
+.dropdownContent {
+  position: absolute;
+  top: 46px;
+  left: 0;
+  background-color: #ffffff;
+  min-width: 182px;
+  border: 2px solid #f5f6fb;
+  box-shadow: 0px 3px 4px rgba(170, 178, 197, 0.4);
+  z-index: 3;
+}
+
+.dropdownContent li {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  color: #c7ccdc;
+}
+
+.dropdownContent li:hover {
+  background-color: #f5f6fb;
+}
+
+/* DROPDOWN BUTTON */
+
+.dropDown {
+  height: 44px;
+  margin: 0;
+  line-height: 1.8;
+  width: 280px;
+  padding-left: 18px;
+  padding-right: 18px;
+  color: #c7ccdc;
+  background-color: #f5f6fb;
+  transition-property: background-color, transform;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  fill: #f1f1f1;
+
+  @media screen and (min-width: 768px) {
+    width: 186px;
+    background-color: #ffffff;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 169px;
+  }
+}
+
+.buttonCommon,
+.buttonActive {
+  @media screen and (max-width: 767px) {
+    width: 280px;
+    border: none;
+    border-left: 2px solid;
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+    border-color: #ffffff;
+    border-radius: 0px 0px 16px 0px;
+  }
+}
+
+.buttonCommon {
+  @media screen and (min-width: 768px) {
+    border: 2px solid #f5f6fb;
+  }
+}
+
+.buttonActive {
+  @media screen and (max-width: 767px) {
+    position: relative;
+    border-left: 2px solid;
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+    border-color: #ff751d;
+  }
+
+  @media screen and (min-width: 768px) {
+    border: 2px solid #ff751d;
+  }
+
+  &.buttonActive::after {
+    @media screen and (max-width: 767px) {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      width: 280px;
+      height: 2px;
+      background-color: #ff751d;
+    }
+  }
+}
+
+/* DROPDOWN ICON */
+
+.dropDown svg {
+  margin-left: 10px;
+  transition-property: transform;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.iconDown {
+  transform: rotate(-180deg);
+}
+
+/* BACKDROP */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2;
+  cursor: auto;
+}
