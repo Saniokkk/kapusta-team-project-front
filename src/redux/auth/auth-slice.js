@@ -3,7 +3,7 @@ import authOperations from "./auth-operations";
 
 const initialState = {
   user: { email: "", avatarURL: null, totalBalance: null },
-  token: null,
+  token: "",
   isLoggedIn: false,
 };
 
@@ -14,7 +14,6 @@ const authSlice = createSlice({
     [authOperations.register.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
-      console.log(action.payload.token);
       state.isLoggedIn = true;
     },
     [authOperations.logIn.fulfilled](state, action) {

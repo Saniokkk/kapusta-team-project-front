@@ -18,8 +18,6 @@ const token = {
 const register = createAsyncThunk("/auth/register", async (credentials) => {
   try {
     const { data } = await axios.post("/auth/register", credentials);
-    console.log(data);
-    console.log(data.token);
     token.set(data.token);
     return data;
   } catch (error) {
@@ -47,10 +45,6 @@ const logIn = createAsyncThunk("/auth/login", async (credentials) => {
   try {
     const { data } = await axios.post("/auth/login", credentials);
     token.set(data.token);
-    // toast.success(`Welcome ${data.user.email.split("@")[0]}`, {
-    //   position: toast.POSITION.TOP_RIGHT,
-    //   theme: "dark",
-    // });
     return data;
   } catch (error) {
     const codeError = error.response.status;
@@ -89,7 +83,6 @@ const fetchCurrentUser = createAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
-    console.log(persistedToken);
     if (!persistedToken) {
       return thunkAPI.rejectWithValue();
     }
@@ -100,7 +93,7 @@ const fetchCurrentUser = createAsyncThunk(
       return data;
     } catch {
       token.unset();
-      toast.warn("Authorization timed out! Please authenticate again!");
+      // toast.warn("Authorization timed out! Please authenticate again!");
     }
   }
 );
