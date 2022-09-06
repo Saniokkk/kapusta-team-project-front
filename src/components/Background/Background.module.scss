@@ -7,7 +7,7 @@
 
 .background {
   min-height: 342px;
-  background: #f5f6fb;
+  background: var(--grey-bg-auth-color);
   background-size: cover;
   border-bottom-left-radius: 100px;
 
