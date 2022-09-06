@@ -21,16 +21,6 @@
   }
 }
 
-// .dropbtn {
-//   border: none;
-//   cursor: pointer;
-//   font-weight: 400;
-//   font-size: 12px;
-//   line-height: 1.6;
-//   letter-spacing: 0.02em;
-//   color: var(--description-color);
-// }
-
 /* DROPDOWN CONTENT */
 
 .dropdownContent {
@@ -57,6 +47,7 @@
 }
 
 .dropdownContent li:hover {
+  color: var(--primary-text-color);
   background-color: var(--grey-bg-home-color);
 }
 
