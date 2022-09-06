@@ -1,6 +1,6 @@
 .backdrop {
   position: fixed;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--modal-logaut-backdrop);
   top: 0;
   left: 0;
   z-index: 100;
@@ -15,8 +15,8 @@
   position: relative;
   width: 380px;
   height: 194px;
-  background: #ffffff;
-  box-shadow: 10px 10px 30px rgba(82, 85, 95, 0.4);
+  background: var(--white-color);
+  box-shadow: 10px 10px 30px var(--modal-logaut-shadow);
   border-radius: 30px;
 }
 
@@ -41,10 +41,11 @@
   padding: 0;
   margin: 0;
   cursor: pointer;
-  stroke:#52555f;
+  stroke: var(--primary-text-color);
 
-  &:hover, &:focus {
-    stroke: #ff751d;
+  &:hover,
+  &:focus {
+    stroke: var(--accent-color);
   }
 }
 
@@ -60,7 +61,7 @@
   text-transform: uppercase;
   border-radius: 16px;
   border: 0px;
-  box-shadow: 1px 2px 5px rgba(170, 178, 197, 0.4);
+  box-shadow: 1px 2px 5px var(--form-wrapper-shadow);
   /* display: block;
   cursor: pointer;
   text-align: right;
@@ -80,9 +81,9 @@
   text-transform: uppercase;
   border-radius: 16px;
   border: 0px;
-  box-shadow: 1px 2px 5px rgba(170, 178, 197, 0.4);
-  background-color: #ff751d;
-  color: #ffffff;
+  box-shadow: 1px 2px 5px var(--form-wrapper-shadow);
+  background-color: var(--accent-color);
+  color: var(--white-color);
   /* display: block;
   cursor: pointer;
   text-align: right;
@@ -91,7 +92,7 @@
 }
 
 .outBtn:hover {
-  color: #ff751d;
+  color: var(--accent-color);
   font-weight: bolder;
 }
 
@@ -103,7 +104,7 @@
   font-size: 14px;
   line-height: 1.14;
   letter-spacing: 0.02em;
-  color: black;
+  color: var(--black-text-color);
 }
 
 .buttons {
@@ -111,7 +112,7 @@
 }
 
 .yes {
-  background-color: #ff751d;
+  background-color: var(--accent-color);
   margin-right: 15px;
   padding: 12px 34px;
   border-radius: 16px;
@@ -127,12 +128,12 @@
   letter-spacing: 0.02em;
   text-transform: uppercase;
   cursor: pointer;
-  color: #ffffff;
+  color: var(--white-color);
 }
 
 .no {
   background-color: transparent;
-  border: 2px solid #f5f6fb;
+  border: 2px solid var(--grey-bg-home-color);
   margin-right: 15px;
   padding: 12px 34px;
   border-radius: 16px;
@@ -152,7 +153,7 @@
 .commonStyles {
   background-color: transparent;
   border-radius: 16px;
-  border: 2px solid #f5f6fb;
+  border: 2px solid var(--grey-bg-home-color);
   width: 125px;
   height: 44px;
   cursor: pointer;
@@ -164,12 +165,12 @@
   text-align: center;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  color: #52555f;
+  color: var(--primary-text-color);
 }
 
 .commonStyles:hover {
-  background-color: #ff751d;
-  color: #ffffff;
+  background-color: var(--accent-color);
+  color: var(--white-color);
 }
 
 .commonStyles:not(:last-child) {

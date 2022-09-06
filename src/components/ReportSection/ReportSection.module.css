@@ -38,7 +38,7 @@
   right: 0;
   top: 0;
   height: 296px;
-  background-color: #f5f6fb;
+  background-color: var(--grey-bg-home-color);
   border-bottom-left-radius: 100px;
 }
 
@@ -50,7 +50,7 @@
 
 @media screen and (min-width: 1280px) {
   .reportBackgroundSection {
-    background-color: #f2f5fc;
+    background-color: var(--report-bg-color);
   }
 }
 
@@ -86,7 +86,7 @@
 
 /* balance */
 .balance {
-  background-color: rgb(160, 174, 246);
+  background-color: var(--report-bg-balans);
   display: flex;
   align-items: center;
 }
@@ -116,7 +116,7 @@
 .balance .balanceAdd {
   width: 333px;
   height: 44px;
-  background-color: rosybrown;
+  background-color: var(--report-balans-add);
 }
 
 @media screen and (max-width: 767px) {
@@ -142,7 +142,7 @@
 .balance .transitionReport {
   width: 154px;
   height: 24px;
-  background-color: rgb(120, 61, 61);
+  background-color: var(--report-transition-report);
 }
 
 @media screen and (max-width: 767px) {
@@ -166,8 +166,8 @@
 }
 
 .transactionSwitch button.btn {
-  color: #000000;
-  background-color: #fafbfd;
+  color: var(--black-text-color);
+  background-color: var(--grey-bg-auth-color);
   font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: 700;
@@ -188,29 +188,29 @@
 
 .transactionSwitch button.btn:hover,
 .transactionSwitch button.btn:focus {
-  background-color: #fefefe;
-  color: #ff751d;
+  background-color: var(--report-transition-switch);
+  color: var(--accent-color);
 }
 
 @media screen and (max-width: 767px) {
   .transactionSwitch button.btn {
-    background-color: #ffffff;
+    background-color: var(--white-color);
     border-radius: 0;
     height: 53px;
   }
 
   .transactionSwitch button.btn:hover,
   .transactionSwitch button.btn:focus {
-    background-color: #ff751d;
-    color: #ffffff;
+    background-color: var(--accent-color);
+    color: var(--white-color);
   }
 }
 
 /* activity */
 @media screen and (min-width: 768px) {
   .activity {
-    background: #ffffff;
-    box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+    background: var(--white-color);
+    box-shadow: 0px 10px 60px var(--google-btn-shadow);
     border-radius: 0px 30px 30px 30px;
     padding: 24px 40px 42px;
   }
@@ -241,7 +241,7 @@
 }
 
 .activity .transaction .transactionDate {
-  background-color: rgb(15, 48, 117);
+  background-color: var(--report-transition-activity);
 }
 
 @media screen and (max-width: 767px) {
@@ -270,7 +270,7 @@
 }
 
 .activity .transaction .transactionform {
-  background-color: rgb(56, 76, 155);
+  background-color: var(--report-form-activity);
 }
 
 @media screen and (max-width: 767px) {
@@ -321,7 +321,7 @@
 }
 
 .activity .transaction .transactionformbtn {
-  background-color: rgb(246, 236, 45);
+  background-color: var(--report-form-btn);
   height: 44px;
 }
 
@@ -355,7 +355,7 @@
 
 /* activity statement table header */
 .transactionTable .tableHeader {
-  background-color: #f5f6fb;
+  background-color: var(--grey-bg-home-color);
   border-radius: 20px 20px 0 0;
   padding: 0 118.49px 0 28.17px;
   display: flex;
@@ -378,7 +378,7 @@
   letter-spacing: 0.02em;
   text-transform: uppercase;
   display: flex;
-  color: #000000;
+  color: var(--black-text-color);
 }
 
 .tableHeader .tableHeaderline:nth-child(1) {
@@ -415,12 +415,12 @@
   }
 
   .tableList::-webkit-scrollbar-track {
-    background: #f5f6fb;
+    background: var(--grey-bg-home-color);
     /* цвет зоны отслеживания */
   }
 
   .tableList::-webkit-scrollbar-thumb {
-    background-color: #ff751d;
+    background-color: var(--accent-color);
     /* цвет бегунка */
     border-radius: 2px;
     /* округлось бегунка */
@@ -440,7 +440,7 @@
   .tableList ul li {
     display: flex;
     height: 46px;
-    border-bottom: 1px solid #f5f6fb;
+    border-bottom: 1px solid var(--grey-bg-home-color);
   }
 }
 
@@ -448,7 +448,7 @@
   .tableList ul li {
     display: flex;
     height: 38px;
-    border: 2px solid #f5f6fb;
+    border: 2px solid var(--grey-bg-home-color);
     border-right: none;
   }
   .tableList ul:nth-child(2) li:nth-child(1),
@@ -459,11 +459,11 @@
 
 /* activity statement summary */
 .activity .statement .summary {
-  background-color: #f5f6fb;
+  background-color: var(--grey-bg-home-color);
   border-radius: 20px;
   width: 213px;
   height: 266px;
-  border: 1px solid #585a62;
+  border: 1px solid var(--report-summaty-border);
 }
 
 @media screen and (max-width: 767px) {

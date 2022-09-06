@@ -9,7 +9,7 @@
   letter-spacing: 0.04em;
   text-transform: uppercase;
   margin: 20px 0;
-  color: #52555f;
+  color: var(--primary-text-color);
 
   height: 106px;
   width: 93px;
@@ -25,7 +25,7 @@
   position: absolute;
   right: -93px;
   bottom: -20px;
-  background-color: black;
+  background-color: var(--black-text-color);
 }
 
 .icon {
@@ -36,23 +36,23 @@
   height: 60px;
   &:hover .svg1,
   &:focus .svg1 {
-    fill: #ffdac0;
+    fill: var(--secondary-accent-color);
   }
 
   &:hover .svg2,
   &:focus .svg2 {
-    fill: orange;
+    fill: var(--icons-item-bg);
   }
 }
 
 .svg1 {
-  fill: #f5f6fb;
+  fill: var(--grey-bg-home-color);
 }
 
 .svg2 {
   display: block;
   height: 30px;
-  fill: #071f41;
+  fill: var(--dark-blue-color);
   position: absolute;
   top: 20px;
   left: 30px;
