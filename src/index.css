@@ -74,11 +74,13 @@ input::-webkit-inner-spin-button {
 }
 
 /* SCROLLBAR */
+
 ::-webkit-scrollbar-track {
   background: var(--grey-bg-home-color);
 }
 
 ::-webkit-scrollbar {
+  height: 6px;
   width: 6px;
 }
 

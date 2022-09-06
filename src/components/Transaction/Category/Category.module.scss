@@ -1,3 +1,5 @@
+/* WRAPPERS */
+
 /* Dropdown Button */
 .dropbtn {
   border: none;
@@ -9,14 +11,30 @@
   color: var(--description-color);
 }
 
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
+.wrapper {
   position: relative;
   display: inline-block;
 }
 
-/* Dropdown Content (Hidden by Default) */
-.dropdown__content {
+.dropDownWrapper {
+  position: relative;
+  border: none;
+  cursor: pointer;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  color: #c7ccdc;
+  z-index: 3;
+
+  @media screen and (max-width: 767px) {
+    margin-bottom: 32px;
+  }
+}
+
+/* DROPDOWN CONTENT */
+
+.dropdownContent {
   position: absolute;
   top: 46px;
   left: 0;
@@ -27,13 +45,17 @@
   z-index: 3;
 }
 
-/* Links inside the dropdown */
 .dropdown__content li {
   color: var(--black-text-color);
   padding: 12px 16px;
   text-decoration: none;
   display: block;
   cursor: pointer;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  color: #c7ccdc;
 }
 
 /* Change color of dropdown links on hover */
@@ -41,19 +63,17 @@
   background-color: var(--grey-bg-home-color);
 }
 
-.dropbtn {
-  position: relative;
-  z-index: 3;
-}
+/* DROPDOWN BUTTON */
 
-button {
-  margin: 0;
-}
-
-button.button {
+.dropDown {
   height: 44px;
   margin: 0;
   line-height: 1.8;
+  width: 280px;
+  padding-left: 18px;
+  padding-right: 18px;
+  color: #c7ccdc;
+  background-color: #f5f6fb;
   min-width: 169px;
   padding: 10px 0;
   color: var(--description-color);
@@ -64,18 +84,68 @@ button.button {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media screen and (min-width: 768px) {
+    width: 186px;
+    background-color: #ffffff;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 169px;
+  }
+
   fill: var(--category-btn-fill);
 }
 
-/* .buttonCommon {
-  border: 2px solid #f6f7fc;
-} */
-
+.buttonCommon,
 .buttonActive {
-  border: 2px solid var(--accent-color);
+  @media screen and (max-width: 767px) {
+    width: 280px;
+    border: none;
+    border-left: 2px solid;
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+    border-color: #ffffff;
+    border-radius: 0px 0px 16px 0px;
+  }
 }
 
-.button svg {
+.buttonCommon {
+  @media screen and (min-width: 768px) {
+    border: 2px solid #f5f6fb;
+  }
+}
+
+.buttonActive {
+  @media screen and (max-width: 767px) {
+    position: relative;
+    border-left: 2px solid;
+    border-right: 2px solid;
+    border-bottom: 2px solid;
+    border-color: var(--accent-color);
+  }
+
+  @media screen and (min-width: 768px) {
+    border: 2px solid var(--accent-color);
+  }
+
+  &.buttonActive::after {
+    @media screen and (max-width: 767px) {
+      content: "";
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      width: 280px;
+      height: 2px;
+      background-color: var(--accent-color);
+    }
+  }
+  //border: 2px solid var(--accent-color);
+}
+
+/* DROPDOWN ICON */
+
+.dropDown svg {
   margin-left: 10px;
   transition-property: transform;
   transition-duration: 300ms;
@@ -85,6 +155,8 @@ button.button {
 .iconDown {
   transform: rotate(-180deg);
 }
+
+/* BACKDROP */
 
 .backdrop {
   position: fixed;

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import TransactionForm from "components/Transaction/TransactionForm/TransactionForm";
 import ProductList from "components/Transaction/ProductList/ProductList";
 import { nanoid } from "nanoid";
+import { Summary } from "components/Summary";
 
 const ReportSection = () => {
   const [products, setProducts] = useState(() => {
@@ -85,13 +86,14 @@ const ReportSection = () => {
 
         <div className={styles.activity}>
           <div className={styles.transaction}>
-            <div className={styles.transactionDate}>Date</div>
+            {/* <div className={styles.transactionDate}>Date</div> */}
             <TransactionForm onSubmit={addproduct} />
           </div>
 
           <div className={styles.statement}>
             <ProductList visible={getlist()} deleteContact={deleteContact} />
-            <div className={styles.summary}>Сводка</div>
+            <Summary />
+            {/* <div className={styles.summary}>Сводка</div> */}
           </div>
         </div>
       </div>
