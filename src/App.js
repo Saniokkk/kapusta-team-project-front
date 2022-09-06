@@ -23,7 +23,15 @@ import authSelectors from "redux/auth/auth-selector";
 import { useSelector } from "react-redux";
 import ExpensesReportPage from "pages/Report/ExpensesReportPage";
 import IncomeReportPage from "pages/Report/IncomeReportPage";
+
+import PublicRoute from "routes/PublicRoute";
+
 import "./App.css";
+
+const GoogleLoader = lazy(() =>
+  import(
+    "./components/GoogleLoader/GoogleLoader" /* webpackChunkName: "GoogleLoader" */
+  ));
 
 const Layout = lazy(() =>
   import("./components/Layout/Layout" /* webpackChunkName: "Layout" */)
@@ -64,6 +72,16 @@ function App() {
               </ProtectedRoute>
             }
           />
+
+          <Route
+            path="/google"
+            element={
+              <PublicRoute>
+                <GoogleLoader />
+              </PublicRoute>
+            }>
+
+          </Route>
           {/* // <Route
           //   path="income"
           //   element={
