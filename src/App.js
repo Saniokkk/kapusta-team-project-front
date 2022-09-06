@@ -24,15 +24,14 @@ import { useSelector } from "react-redux";
 import ExpensesReportPage from "pages/Report/ExpensesReportPage";
 import IncomeReportPage from "pages/Report/IncomeReportPage";
 
-import { lazy } from "react";
 import PublicRoute from "routes/PublicRoute";
 
 import "./App.css";
 
 const GoogleLoader = lazy(() =>
   import(
-    "./components/GoogleLoader/GoogleLoader"
-  ),
+    "./components/GoogleLoader/GoogleLoader" /* webpackChunkName: "GoogleLoader" */
+  ));
 
 const Layout = lazy(() =>
   import("./components/Layout/Layout" /* webpackChunkName: "Layout" */)
