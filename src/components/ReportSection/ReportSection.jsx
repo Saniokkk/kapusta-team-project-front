@@ -145,4 +145,4 @@ const ReportSection = () => {
   );
 };
 
-export { ReportSection };
+export default ReportSection;

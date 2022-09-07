@@ -18,19 +18,19 @@ const token = {
 const register = createAsyncThunk("/auth/register", async (credentials) => {
   try {
     const { data } = await axios.post("/auth/register", credentials);
-    token.set(data.token);
+    token.set(data.user.token);
     return data;
   } catch (error) {
     const codeError = error.response.status;
     if (codeError === 409) {
       toast.error("You are already registered, please try to login", {
         position: toast.POSITION.TOP_RIGHT,
-        theme: "dark",
+        theme: "light",
       });
     } else if (codeError === 500) {
       toast.error("Oops... Server error! Please try later!", {
         position: toast.POSITION.TOP_RIGHT,
-        theme: "dark",
+        theme: "light",
       });
     } else {
       toast.error("Something went wrong!");
@@ -44,34 +44,18 @@ const register = createAsyncThunk("/auth/register", async (credentials) => {
 const logIn = createAsyncThunk("/auth/login", async (credentials) => {
   try {
     const { data } = await axios.post("/auth/login", credentials);
-    token.set(data.token);
+    token.set(data.user.token);
     return data;
   } catch (error) {
     const codeError = error.response.status;
-    if (codeError === 400) {
+    if (codeError === 401) {
       toast.error("Invalid address and/or password specified.", {
         position: toast.POSITION.TOP_RIGHT,
-        theme: "dark",
+        theme: "light",
       });
     }
   }
 });
-// const logInGoogle = createAsyncThunk("/auth/google", async () => {
-//   try {
-//     const data = await axios.get("/auth/google");
-//     // token.set(data.token);
-//     console.log(data);
-//     // return data;
-//   } catch (error) {
-//     const codeError = error.response.status;
-//     if (codeError === 400) {
-//       toast.error("Invalid address and/or password specified.", {
-//         position: toast.POSITION.TOP_RIGHT,
-//         theme: "dark",
-//       });
-//     }
-//   }
-// });
 
 //LogOut User
 
@@ -84,7 +68,7 @@ const logOut = createAsyncThunk("auth/logout", async (credentials) => {
     if (codeError === 500) {
       toast.error("Oops... something happened to the server", {
         position: toast.POSITION.TOP_RIGHT,
-        theme: "dark",
+        theme: "light",
       });
     } else {
       toast.error("Something went wrong!");
@@ -95,41 +79,27 @@ const logOut = createAsyncThunk("auth/logout", async (credentials) => {
 //After refresh page
 
 const fetchCurrentUser = createAsyncThunk(
-  "/user/current",
+  "user/current",
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
-    if (!persistedToken) {
+    const persistToken = state.auth.token;
+    console.log(persistToken);
+    if (persistToken === null) {
       return thunkAPI.rejectWithValue();
     }
-
-    token.set(persistedToken);
+    token.set(persistToken);
     try {
-      const { data } = await axios.get("user/current");
+      const { data } = await axios.get("/user/current");
       return data;
-    } catch {
-      token.unset();
-      // toast.warn("Authorization timed out! Please authenticate again!");
+    } catch (error) {
+      return thunkAPI.rejectWithValue(console.log(error));
     }
   }
 );
-// const fetchCurrentUser = createAsyncThunk('auth/current', async (_, thunkAPI) => {
-//   const state = thunkAPI.getState();
-//   const persistToken = state.auth.token;
-
-//   if (persistToken === null) {
-//     return thunkAPI.rejectWithValue();
-//   }
-//   token.set(persistToken);
-//   try {
-//     const response = await axios.get('/auth/current');
-//     return response;
-//   } catch (error) {
-//     return thunkAPI.rejectWithValue(console.log(error));
-//   }
-// });
 
 // S1w5!sf
+
+//UpdateUserBalance
 
 const updateCurrentUser = createAsyncThunk(
   "balance/updateBalance",
@@ -139,7 +109,6 @@ const updateCurrentUser = createAsyncThunk(
     if (!persistedToken) {
       return thunkAPI.rejectWithValue();
     }
-    console.log("state", state);
     token.set(persistedToken);
     try {
       const { data } = await axios.patch("/balance/update", totalBalance);
