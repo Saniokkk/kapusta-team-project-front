@@ -1,3 +1,19 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+ul li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
 /* section */
 .reportSection {
   position: relative;
@@ -112,21 +128,31 @@
 }
 
 .balance .balanceAdd {
+  display: flex;
   width: 333px;
   height: 44px;
-  background-color: var(--report-balans-add);
 }
 
 @media screen and (max-width: 767px) {
   .balance .balanceAdd {
+    position: relative;
     width: 280px;
     height: 72px;
+  }
+  .balance .balanceForm {
+    position: absolute;
+    bottom: 0;
+    left: 7px;
+  }
+  .balance .balancebtn {
+    position: absolute;
+    bottom: 1px;
+    right: 7px;
   }
 }
 
 @media screen and (min-width: 768px) {
   .balance .balanceAdd {
-    justify-content: space-between;
     margin: 0;
   }
 }
@@ -415,24 +441,112 @@
   }
 }
 
-.tableList ul {
+.activity .transactionList {
   display: flex;
   flex-direction: column;
 }
 
 @media screen and (max-width: 767px) {
-  /* скрываем заглушку */
-  .tableList ul:nth-child(2) {
-    display: none;
-  }
-  .tableList ul li {
+  .activity .transactionList .transactionListItem {
     display: flex;
     height: 46px;
     border-bottom: 1px solid var(--grey-bg-home-color);
   }
+  .activity .transactionList .transactionListItem ul {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 8px;
+  }
+  .transactionListItem .description {
+    height: 20px;
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1.16;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.04em;
+    color: #52555f;
+    margin-bottom: 3px;
+  }
+  .transactionListItem .date {
+    width: 44px;
+    height: 7px;
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 1.12;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-right: 20px;
+    color: #52555f;
+  }
+  .transactionListItem .categories {
+    display: flex;
+    margin-right: 12px;
+    width: 82px;
+    height: 7px;
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 1.12;
+    letter-spacing: 0.04em;
+    color: #52555f;
+  }
+  .transactionListItem .sum {
+    display: flex;
+    align-items: center;
+    width: 84px;
+    height: 20px;
+
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1.16;
+    display: flex;
+    align-items: center;
+    text-align: right;
+    letter-spacing: 0.04em;
+    margin-bottom: 5px;
+    color: #e7192e;
+  }
 }
 
-@media screen and (min-width: 768px) {
+/* BUTTON */
+
+button {
+  margin: 0;
+}
+
+.button {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background-color: var(--product-bg-list);
+  fill: var(--product-list-btn);
+  transition-property: background-color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button:hover,
+.button:focus {
+  background-color: var(--grey-bg-home-color);
+}
+
+/* ICON */
+
+.icon {
+  margin: auto;
+}
+
+/* @media screen and (min-width: 768px) {
   .tableList ul li {
     display: flex;
     height: 38px;
@@ -443,7 +557,7 @@
   .tableList ul li:not(:first-child) {
     border-top: none;
   }
-}
+} */
 
 /* activity statement summary */
 
