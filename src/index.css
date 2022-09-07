@@ -3,7 +3,7 @@
   --black-text-color: #000000;
   --primary-text-color: #52555f;
   --email-text-color: #a6abb9;
-  --warning-text-color: ##ff0000;
+  --warning-text-color: #ff0000;
   --description-color: #c7ccdc;
   --dark-blue-color: #071f41;
 
@@ -40,7 +40,7 @@
   --report-form-btn: #f6ec2d;
   --report-summaty-border: #585a62;
   --product-list-btn: #afb1b8;
-  --bg-thumb-hover: #555;
+  --bg-thumb-hover: #ff9900;
 
   --modal-logaut-backdrop: rgba(0, 0, 0, 0.5);
   --form-wrapper-shadow: rgba(170, 178, 197, 0.4);
@@ -74,11 +74,13 @@ input::-webkit-inner-spin-button {
 }
 
 /* SCROLLBAR */
+
 ::-webkit-scrollbar-track {
   background: var(--grey-bg-home-color);
 }
 
 ::-webkit-scrollbar {
+  height: 6px;
   width: 6px;
 }
 
