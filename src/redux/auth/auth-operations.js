@@ -56,6 +56,23 @@ const logIn = createAsyncThunk("/auth/login", async (credentials) => {
     }
   }
 });
+// const logInGoogle = createAsyncThunk("/auth/google", async () => {
+//   try {
+//     const data = await axios.get("/auth/google");
+//     // token.set(data.token);
+//     console.log(data);
+//     // return data;
+//   } catch (error) {
+//     const codeError = error.response.status;
+//     if (codeError === 400) {
+//       toast.error("Invalid address and/or password specified.", {
+//         position: toast.POSITION.TOP_RIGHT,
+//         theme: "dark",
+//       });
+//     }
+//   }
+// });
+
 
 //LogOut User
 
@@ -97,6 +114,21 @@ const fetchCurrentUser = createAsyncThunk(
     }
   }
 );
+// const fetchCurrentUser = createAsyncThunk('auth/current', async (_, thunkAPI) => {
+//   const state = thunkAPI.getState();
+//   const persistToken = state.auth.token;
+
+//   if (persistToken === null) {
+//     return thunkAPI.rejectWithValue();
+//   }
+//   token.set(persistToken);
+//   try {
+//     const response = await axios.get('/auth/current');
+//     return response;
+//   } catch (error) {
+//     return thunkAPI.rejectWithValue(console.log(error));
+//   }
+// });
 
 // S1w5!sf
 
@@ -125,7 +157,11 @@ const operations = {
   logIn,
   logOut,
   fetchCurrentUser,
+
+
+
   updateCurrentUser,
+
 };
 
 export default operations;
