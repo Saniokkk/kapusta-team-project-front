@@ -6,7 +6,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { ProtectedRoute } from "routes/ProtectedRoute";
 import authSelectors from "redux/auth/auth-selector";
 import { useSelector } from "react-redux";
-
 import "./App.css";
 
 const GoogleLoader = lazy(() =>
@@ -53,9 +52,9 @@ function App() {
               </ProtectedRoute>
             }
           ></Route>
-          <Route path="api/auth/google-redirect" element={<GoogleLoader />} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
+        <Route path="api/auth/google-redirect" element={<GoogleLoader />} />
       </Routes>
     </Suspense>
   );
