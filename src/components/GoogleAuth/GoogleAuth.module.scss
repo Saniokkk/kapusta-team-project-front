@@ -1,10 +1,10 @@
-.google__auth {
+.googleAuth {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 32px;
 
-  &_title {
+  &Title {
     margin-bottom: 20px;
 
     text-align: center;
@@ -21,11 +21,12 @@
     }
   }
 
-  &_btn {
+  &Btn {
     display: flex;
     align-items: center;
     padding: 10px 19px;
-
+    text-decoration: none;
+    color: inherit;
     border-radius: 26px;
     border: none;
     outline: none;
@@ -36,7 +37,7 @@
     background: var(--grey-bg-auth-color);
     filter: drop-shadow(1px 2px 3px var(--google-btn-shadow));
 
-    &_icon {
+    &Icon {
       width: 17px;
       height: 18px;
       margin-right: 10px;
