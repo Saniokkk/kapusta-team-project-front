@@ -79,14 +79,22 @@ function App() {
 
           {/* <Route
             path="/google-redirect"
+=======
+          <Route path="/google-redirect" element={<GoogleLoader />} />
+
+          {/* <Route
+            path="/google"
+>>>>>>> Stashed changes
             element={
               <PublicRoute>
                 <GoogleLoader />
               </PublicRoute>
+<<<<<<< Updated upstream
 
             }>
 
           </Route> */}
+
 
           {/* // <Route
           //   path="income"
