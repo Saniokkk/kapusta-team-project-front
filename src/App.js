@@ -75,12 +75,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="api/auth/google-redirect"
-            element={
-              <GoogleLoader />
-            }
-          />
+          <Route path="api/auth/google-redirect" element={<GoogleLoader />} />
 
           {/* <Route
             path="/google-redirect"
@@ -92,9 +87,6 @@ function App() {
             }>
 
           </Route> */}
-
-            }
-          ></Route>
 
           {/* // <Route
           //   path="income"
