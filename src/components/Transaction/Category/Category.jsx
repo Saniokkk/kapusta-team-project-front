@@ -1,5 +1,5 @@
 import { useState } from "react";
-import s from "./Category.module.css";
+import s from "./Category.module.scss";
 import icon from "assets/symbol-icons.svg";
 
 const items = [
@@ -30,15 +30,15 @@ const Category = ({ onSubmit, value }) => {
   const isActiveClass = menu ? `${s.buttonActive}` : `${s.buttonCommon}`;
 
   return (
-    <div className={s.dropdown}>
+    <div className={s.wrapper}>
       <div
         className={menu ? s.backdrop : ""}
         onClick={() => setМenu(false)}
       ></div>
 
-      <div className={s.dropbtn}>
+      <div className={s.dropDownWrapper}>
         <button
-          className={`${s.button} ${isActiveClass}`}
+          className={`${s.dropDown} ${isActiveClass}`}
           type="button"
           onClick={() => (!menu ? setМenu(true) : setМenu(false))}
         >
@@ -51,7 +51,7 @@ const Category = ({ onSubmit, value }) => {
       </div>
 
       {menu && (
-        <ul className={s.dropdown__content}>
+        <ul className={s.dropdownContent}>
           {items.map(({ title }, index) => {
             return (
               <li key={index} data-action={title} onClick={handleChange}>

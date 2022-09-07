@@ -23,6 +23,7 @@ import authSelectors from "redux/auth/auth-selector";
 import { useSelector } from "react-redux";
 import ExpensesReportPage from "pages/Report/ExpensesReportPage";
 import IncomeReportPage from "pages/Report/IncomeReportPage";
+import { BalanceReportSection } from "components/BalanceReportSection";
 
 // import PublicRoute from "routes/PublicRoute";
 
@@ -31,7 +32,8 @@ import "./App.css";
 const GoogleLoader = lazy(() =>
   import(
     "./components/GoogleLoader/GoogleLoader" /* webpackChunkName: "GoogleLoader" */
-  ));
+  )
+);
 
 const Layout = lazy(() =>
   import("./components/Layout/Layout" /* webpackChunkName: "Layout" */)
@@ -50,6 +52,7 @@ function App() {
 
   return (
     <Suspense fallback={<Loader />}>
+      <BalanceReportSection />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route path="report" element={<ReportSection />}></Route>
@@ -85,9 +88,14 @@ function App() {
               <PublicRoute>
                 <GoogleLoader />
               </PublicRoute>
+
             }>
 
           </Route> */}
+
+            }
+          ></Route>
+
           {/* // <Route
           //   path="income"
           //   element={
@@ -122,5 +130,4 @@ function App() {
     </Suspense>
   );
 }
-
 export default App;

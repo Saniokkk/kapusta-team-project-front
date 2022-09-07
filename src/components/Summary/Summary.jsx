@@ -5,7 +5,7 @@ export function Summary() {
     data: {
       incomeTransactions: [
         {
-          _id: "630e4163fef5a6fb1aa8b74d",
+          _id: "1",
           date: "2022-06-27T00:00:00.000Z",
           owner: "630a4ce122d8de88190363c9",
           description: "1",
@@ -18,7 +18,7 @@ export function Summary() {
       ],
       expenseTransactions: [
         {
-          _id: "630e36a3c9827686e79c4594",
+          _id: "2",
           date: "2022-06-27T00:00:00.000Z",
           owner: "630a4ce122d8de88190363c9",
           description: "1111",
@@ -29,7 +29,7 @@ export function Summary() {
           updatedAt: "2022-08-30T16:11:15.591Z",
         },
         {
-          _id: "630e36a3c9827686e79c4594",
+          _id: "3",
           date: "2022-07-27T00:00:00.000Z",
           owner: "630a4ce122d8de88190363c9",
           description: "1111",
@@ -40,7 +40,7 @@ export function Summary() {
           updatedAt: "2022-08-30T16:11:15.591Z",
         },
         {
-          _id: "630e36a3c9827686e79c4594",
+          _id: "4",
           date: "2022-08-27T00:00:00.000Z",
           owner: "630a4ce122d8de88190363c9",
           description: "1111",
@@ -51,7 +51,7 @@ export function Summary() {
           updatedAt: "2022-08-30T16:11:15.591Z",
         },
         {
-          _id: "630e36a3c9827686e79c4594",
+          _id: "5",
           date: "2022-09-27T00:00:00.000Z",
           owner: "630a4ce122d8de88190363c9",
           description: "1111",
@@ -92,10 +92,10 @@ export function Summary() {
 
   return (
     <div className={s.wrapper}>
-      <h2 className={s.title}>Підсумок</h2>
+      <h2 className={s.title}>Зведення</h2>
       <ul className={s.list}>
-        {expenseTransactions.map(({ date }) => (
-          <li>
+        {expenseTransactions.map(({ _id, date }) => (
+          <li key={_id}>
             <span>{toMonthName(convertDate(date))}</span>
             <span>{totalExpense}</span>
           </li>

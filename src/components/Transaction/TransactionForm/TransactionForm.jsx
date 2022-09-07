@@ -1,16 +1,27 @@
 import { useFormik } from "formik";
 import { useMediaQuery } from "@react-hook/media-query";
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import { calendarSelectors } from "../../../redux/extraInfo";
+import { addTransaction } from "services/transactionsApi";
+import Datepicker from "components/DatePicker/Datepicker";
 import Category from "components/Transaction/Category/Category";
 import icons from "assets/symbol-icons.svg";
 import s from "./TransactionForm.module.scss";
 
 const TransactionForm = ({ onSubmit }) => {
   const [category, setCategories] = useState("Категорія продукту");
-  const [price, setPrice] = useState(0);
+  //const [price, setPrice] = useState(0);
 
-  const matches = useMediaQuery("only screen and (max-width: 767px)");
-  const placeholder = matches ? "0.00 UAH" : "0.00";
+  const pickedDate = useSelector(calendarSelectors.getDate);
+  const dayWithZero = ("0" + pickedDate.day).slice(-2);
+  const monthWithZero = ("0" + pickedDate.month).slice(-2);
+  const convertedDate = `${dayWithZero}.${monthWithZero}.${pickedDate.year}`;
+  //console.log(convertedDate);
+
+  const isMobile = useMediaQuery("only screen and (max-width: 767px)");
+  const isTablet = useMediaQuery("only screen and (min-width: 768px)");
+  const placeholder = isMobile ? "0.00 UAH" : "0.00";
 
   const formik = useFormik({
     initialValues: {
@@ -19,7 +30,15 @@ const TransactionForm = ({ onSubmit }) => {
       sum: "",
     },
     onSubmit: (values, { resetForm }) => {
-      onSubmit(description, category, price);
+      const transaction = {
+        date: convertedDate,
+        description,
+        category: category,
+        sum,
+        type: "expense",
+      };
+      //onSubmit(description, category, price);
+      addTransaction(transaction);
       setCategories("Категорія продукту");
       resetForm();
     },
@@ -31,10 +50,10 @@ const TransactionForm = ({ onSubmit }) => {
   const negativeSum = (price) => {
     const index = `${price}.00`.indexOf(".");
     const number = `${price}.00`.slice(0, index + 3);
+    const posNumber = Number.parseFloat(`${number}`).toFixed(2);
+    const negNumber = `- ${posNumber} грн.`;
 
-    const positiveNumber = Number.parseFloat(`${number}`).toFixed(2);
-
-    return setPrice(`- ${positiveNumber} грн.`);
+    return negNumber;
   };
 
   const reset = () => {
@@ -45,6 +64,7 @@ const TransactionForm = ({ onSubmit }) => {
   return (
     <div className={s.formWrapper}>
       <form onSubmit={formik.handleSubmit} className={s.form} id="example">
+        {isTablet ? <Datepicker /> : <></>}
         <label className={s.label}>
           <input
             className={s.inputDesc}
@@ -74,13 +94,13 @@ const TransactionForm = ({ onSubmit }) => {
             }}
           />
           <span className={s.borderTop}></span>
-          <svg className={s.icon} width="18" height="18">
+          <svg className={s.icon} width="20" height="20">
             <use href={`${icons}#icon-calculator`} />
           </svg>
         </label>
       </form>
 
-      <div lassName={s.buttons}>
+      <div className={s.buttons}>
         <button type="submit" className={s.submitBtn} form="example">
           ввести
         </button>
