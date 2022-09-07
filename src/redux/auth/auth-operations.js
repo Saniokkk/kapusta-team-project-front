@@ -73,7 +73,6 @@ const logIn = createAsyncThunk("/auth/login", async (credentials) => {
 //   }
 // });
 
-
 //LogOut User
 
 const logOut = createAsyncThunk("auth/logout", async (credentials) => {
@@ -157,11 +156,7 @@ const operations = {
   logIn,
   logOut,
   fetchCurrentUser,
-
-
-
   updateCurrentUser,
-
 };
 
 export default operations;
