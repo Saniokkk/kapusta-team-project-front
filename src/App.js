@@ -53,9 +53,9 @@ function App() {
               </ProtectedRoute>
             }
           ></Route>
-          <Route path="api/auth/google-redirect" element={<GoogleLoader />} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
+        <Route path="api/auth/google-redirect" element={<GoogleLoader />} />
       </Routes>
     </Suspense>
   );
