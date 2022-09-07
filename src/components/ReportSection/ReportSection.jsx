@@ -11,12 +11,15 @@ import { useSelector } from "react-redux";
 import icon from "assets/symbol-icons.svg";
 import { BalanceForm } from "components/BalanceForm";
 import { BalanceBtn } from "../BalanceForm/BalanceButton";
+import { NavLink } from "react-router-dom";
 
 const ReportSection = () => {
   const [products, setProducts] = useState(() => {
     //при первой загрузки получаем данные из локального хранилища либо записываем готовый массив контактов(обьектов)
     return JSON.parse(window.localStorage.getItem("product")) ?? [];
   });
+  const [transactionOptions, setTransactionOptions] = useState("expenses");
+  console.log(transactionOptions);
 
   const isMobile = useMediaQuery("only screen and (max-width: 767px)");
   const isTablet = useMediaQuery("only screen and (min-width: 768px)");
@@ -65,16 +68,33 @@ const ReportSection = () => {
               {isdesktop && <BalanceBtn />}
             </div>
           </div>
+
           <div className={styles.transitionReport}>
-            <Report />
+            {transactionOptions === "expenses" ? (
+              <NavLink to="/" exact className={styles.link}>
+                <Report />
+              </NavLink>
+            ) : (
+              <NavLink to="/report" exact className={styles.link}>
+                <Report />
+              </NavLink>
+            )}
           </div>
         </div>
 
         <div className={styles.transactionSwitch}>
-          <button type="button" className={styles.btn}>
+          <button
+            type="button"
+            className={styles.btn}
+            onClick={() => setTransactionOptions("expenses")}
+          >
             витрати
           </button>
-          <button type="button" className={styles.btn}>
+          <button
+            type="button"
+            className={styles.btn}
+            onClick={() => setTransactionOptions("income")}
+          >
             доходи
           </button>
         </div>
