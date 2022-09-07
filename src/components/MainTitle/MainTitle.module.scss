@@ -1,4 +1,4 @@
-.container__title {
+.containerTitle {
   margin-bottom: 50px;
 
   @media screen and (min-width: 768px) {
@@ -12,19 +12,9 @@
 .title {
   margin: 0;
   padding: 0;
-  // font-size: 40px;
-  // margin-bottom: 5px;
-
-  // @media screen and (min-width: 768px) {
-  //     font-size: 60px;
-  // }
-
-  // @media screen and (min-width: 1024px) {
-  //     font-size: 100px;
-  // }
 }
 
-.pre__title {
+.preTitle {
   font-weight: 700;
   font-size: 13px;
   line-height: 1.15;
