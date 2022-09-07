@@ -39,7 +39,7 @@ export const GoogleAuth = () => {
   const dispatch = useDispatch();
   return (
     <div className={styled.google__auth}>
-      <a href="http://localhost:5000/api/auth/google">Жми мене</a>
+      <a href="https://kapusta42back-end.herokuapp.com/api/auth/google">Жми мене</a>
       <p className={styled.google__auth_title}>
         Ви можете авторизуватись за допомогою Google Account:
       </p>
