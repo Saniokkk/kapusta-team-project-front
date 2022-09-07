@@ -1,6 +1,6 @@
 import { Suspense, lazy } from "react";
 import { Loader } from "components/Loader";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 // import { ReportSection } from 'pages/ReportSection';
 import { ReportSection } from "components/ReportSection";
 // import { Switch, Redirect } from "react-router-dom";
@@ -24,7 +24,7 @@ import { useSelector } from "react-redux";
 import ExpensesReportPage from "pages/Report/ExpensesReportPage";
 import IncomeReportPage from "pages/Report/IncomeReportPage";
 
-import PublicRoute from "routes/PublicRoute";
+// import PublicRoute from "routes/PublicRoute";
 
 import "./App.css";
 
@@ -72,16 +72,22 @@ function App() {
               </ProtectedRoute>
             }
           />
-
           <Route
-            path="/google"
+            path="api/auth/google-redirect"
+            element={
+              <GoogleLoader />
+            }
+          />
+
+          {/* <Route
+            path="/google-redirect"
             element={
               <PublicRoute>
                 <GoogleLoader />
               </PublicRoute>
             }>
 
-          </Route>
+          </Route> */}
           {/* // <Route
           //   path="income"
           //   element={
@@ -111,7 +117,7 @@ function App() {
             }
           ></Route>
         </Route>
-        <Route path="*" element={<Navigate to="/" />} />
+        {/* <Route path="*" element={<Navigate to="/" />} /> */}
       </Routes>
     </Suspense>
   );
