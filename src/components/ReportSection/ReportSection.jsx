@@ -61,9 +61,9 @@ const ReportSection = () => {
             <div className={styles.balanceForm}>
               <BalanceForm />
             </div>
-            <div className={styles.balancebtn}>
+            {/* <div className={styles.balancebtn}>
               {isdesktop && <BalanceBtn />}
-            </div>
+            </div> */}
           </div>
           <div className={styles.transitionReport}>
             <Report />

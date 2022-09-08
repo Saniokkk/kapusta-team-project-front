@@ -1,8 +1,10 @@
 import styles from './BalanceForm.module.scss';
-export const BalanceBtn = ({ onSubmit}) => {
+ const BalanceBtn = ({ onSubmit}) => {
   return (
-    <button className={styles.form__button} type="submit" onSubmit={onSubmit}  >
+    <button className={styles.form__button} type="submit" onSubmit={onSubmit} name="button">
       Підтвердити
     </button>
   );
 };
+
+export {BalanceBtn}

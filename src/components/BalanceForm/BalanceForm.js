@@ -16,7 +16,7 @@ const BalanceForm = () => {
 
   const dispatch = useDispatch();
   const totalBalance = useSelector(selectors.getUserBalance);
-
+  // const disabledButton = useRef(false)
   useEffect(() => {
     if (totalBalance) {
       setBalance(totalBalance);
@@ -31,7 +31,10 @@ const BalanceForm = () => {
     }
     if (totalBalance > 0) {
       const form = e.target;
-      form.elements.input.disabled = "disable";
+      form.elements.input.disabled = "disabled";
+      const button = form.elements.button;
+      button.disabled = "disabled";
+      // disabledButton.current = true
       console.log(e.target.elements);
       return;
     }
@@ -69,14 +72,22 @@ const BalanceForm = () => {
             fixedDecimalScale={true}
             decimalScale={2}
           />
+          {/* {disabledButton.current === true && <NumberFormat
+            className={styles.form__input}
+            autoComplete="off"
+            name="input"
+            thousandSeparator={" "}
+            suffix={" UAH"}
+            value={balance}
+            onChange={handleChange}
+            allowLeadingZeros={true}
+            isNumericString={true}
+            fixedDecimalScale={true}
+            decimalScale={2}
+            disabled
+          />} */}
 
           {viewPort.width > 1279 && <BalanceBtn onSubmit={handleSubmit} />}
-          {/* <button
-          className={styles.form__button}
-          type='submit'
-          onSubmit={handleSubmit}>
-          Підтвердити
-        </button> */}
         </div>
       </form>
       {balance === 0 && <ModalBalanceError />}
