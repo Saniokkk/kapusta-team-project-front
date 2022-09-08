@@ -7,11 +7,12 @@ import { nanoid } from "nanoid";
 import { Summary } from "components/Summary";
 import Datepicker from "../DatePicker/Datepicker";
 import { Report } from "../Report";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import icon from "assets/symbol-icons.svg";
 import { BalanceForm } from "components/BalanceForm";
 import { BalanceBtn } from "../BalanceForm/BalanceButton";
 import { NavLink } from "react-router-dom";
+import { addCurrentType } from "redux/extraInfo/extraInfo-slice";
 
 const ReportSection = () => {
   const [products, setProducts] = useState(() => {
@@ -19,7 +20,8 @@ const ReportSection = () => {
     return JSON.parse(window.localStorage.getItem("product")) ?? [];
   });
   const [transactionOptions, setTransactionOptions] = useState("expenses");
-  console.log(transactionOptions);
+  const dispatch = useDispatch();
+  dispatch(addCurrentType(transactionOptions));
 
   const isMobile = useMediaQuery("only screen and (max-width: 767px)");
   const isTablet = useMediaQuery("only screen and (min-width: 768px)");
@@ -85,15 +87,26 @@ const ReportSection = () => {
         <div className={styles.transactionSwitch}>
           <button
             type="button"
-            className={styles.btn}
-            onClick={() => setTransactionOptions("expenses")}
+            className={`${styles.btn} ${
+              transactionOptions === "expenses" && styles.activeBtn
+            }`}
+            onClick={() => {
+              setTransactionOptions("expenses");
+              dispatch(addCurrentType(transactionOptions));
+            }}
           >
             витрати
           </button>
+
           <button
             type="button"
-            className={styles.btn}
-            onClick={() => setTransactionOptions("income")}
+            className={`${styles.btn} ${
+              transactionOptions === "income" && styles.activeBtn
+            }`}
+            onClick={() => {
+              setTransactionOptions("income");
+              dispatch(addCurrentType(transactionOptions));
+            }}
           >
             доходи
           </button>

@@ -215,7 +215,8 @@ ul li {
 }
 
 .transactionSwitch button.btn:hover,
-.transactionSwitch button.btn:focus {
+.transactionSwitch button.btn:focus,
+.transactionSwitch button.activeBtn {
   background-color: var(--report-transition-switch);
   color: var(--accent-color);
 }
@@ -228,7 +229,8 @@ ul li {
   }
 
   .transactionSwitch button.btn:hover,
-  .transactionSwitch button.btn:focus {
+  .transactionSwitch button.btn:focus,
+  .transactionSwitch button.activeBtn {
     background-color: var(--accent-color);
     color: var(--white-color);
   }
