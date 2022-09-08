@@ -163,10 +163,16 @@ ul li {
   }
 }
 
+/* transitionReport */
 @media screen and (max-width: 767px) {
   .balance .transitionReport {
     margin-bottom: 43px;
   }
+}
+
+.transitionReport .link {
+  text-decoration: none;
+  color: #e7192e;
 }
 
 /*из компонента Report*/
@@ -209,7 +215,8 @@ ul li {
 }
 
 .transactionSwitch button.btn:hover,
-.transactionSwitch button.btn:focus {
+.transactionSwitch button.btn:focus,
+.transactionSwitch button.activeBtn {
   background-color: var(--report-transition-switch);
   color: var(--accent-color);
 }
@@ -222,7 +229,8 @@ ul li {
   }
 
   .transactionSwitch button.btn:hover,
-  .transactionSwitch button.btn:focus {
+  .transactionSwitch button.btn:focus,
+  .transactionSwitch button.activeBtn {
     background-color: var(--accent-color);
     color: var(--white-color);
   }

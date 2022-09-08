@@ -7,9 +7,14 @@ import { nanoid } from "nanoid";
 import { Summary } from "components/Summary";
 import Datepicker from "../DatePicker/Datepicker";
 import { Report } from "../Report";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import icon from "assets/symbol-icons.svg";
 import { BalanceForm } from "components/BalanceForm";
+
+// import { BalanceBtn } from "../BalanceForm/BalanceButton";
+import { NavLink } from "react-router-dom";
+import { addCurrentType } from "redux/extraInfo/extraInfo-slice";
+
 // import { BalanceBtn } from "../BalanceForm/BalanceButton";
 
 const ReportSection = () => {
@@ -17,6 +22,9 @@ const ReportSection = () => {
     //при первой загрузки получаем данные из локального хранилища либо записываем готовый массив контактов(обьектов)
     return JSON.parse(window.localStorage.getItem("product")) ?? [];
   });
+  const [transactionOptions, setTransactionOptions] = useState("expenses");
+  const dispatch = useDispatch();
+  dispatch(addCurrentType(transactionOptions));
 
   const isMobile = useMediaQuery("only screen and (max-width: 767px)");
   const isTablet = useMediaQuery("only screen and (min-width: 768px)");
@@ -65,16 +73,44 @@ const ReportSection = () => {
               {isdesktop && <BalanceBtn />}
             </div> */}
           </div>
+
           <div className={styles.transitionReport}>
-            <Report />
+            {transactionOptions === "expenses" ? (
+              <NavLink to="/" exact className={styles.link}>
+                <Report />
+              </NavLink>
+            ) : (
+              <NavLink to="/report" exact className={styles.link}>
+                <Report />
+              </NavLink>
+            )}
           </div>
         </div>
 
         <div className={styles.transactionSwitch}>
-          <button type="button" className={styles.btn}>
+          <button
+            type="button"
+            className={`${styles.btn} ${
+              transactionOptions === "expenses" && styles.activeBtn
+            }`}
+            onClick={() => {
+              setTransactionOptions("expenses");
+              dispatch(addCurrentType(transactionOptions));
+            }}
+          >
             витрати
           </button>
-          <button type="button" className={styles.btn}>
+
+          <button
+            type="button"
+            className={`${styles.btn} ${
+              transactionOptions === "income" && styles.activeBtn
+            }`}
+            onClick={() => {
+              setTransactionOptions("income");
+              dispatch(addCurrentType(transactionOptions));
+            }}
+          >
             доходи
           </button>
         </div>
