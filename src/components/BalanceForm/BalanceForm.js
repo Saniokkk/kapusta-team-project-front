@@ -71,6 +71,7 @@ const BalanceForm = () => {
             isNumericString={true}
             fixedDecimalScale={true}
             decimalScale={2}
+            disabled={balance}
           />
           {/* {disabledButton.current === true && <NumberFormat
             className={styles.form__input}
@@ -87,7 +88,9 @@ const BalanceForm = () => {
             disabled
           />} */}
 
-          {viewPort.width > 1279 && <BalanceBtn onSubmit={handleSubmit} />}
+          {viewPort.width > 1279 && (
+            <BalanceBtn onSubmit={handleSubmit} balance={balance} />
+          )}
         </div>
       </form>
       {balance === 0 && <ModalBalanceError />}
