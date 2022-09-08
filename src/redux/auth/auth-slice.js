@@ -10,16 +10,20 @@ const initialState = {
 const authSlice = createSlice({
   name: "auth",
   initialState,
+  reducers: {
+    setToken(state, { payload }) {
+      return { ...state, ...payload };
+    },
+  },
   extraReducers: {
     [authOperations.register.fulfilled](state, action) {
       state.user = action.payload.user;
-      state.token = action.payload.token;
-      console.log(action.payload.token);
+      state.token = action.payload.user.token;
       state.isLoggedIn = true;
     },
     [authOperations.logIn.fulfilled](state, action) {
       state.user = action.payload.user;
-      state.token = action.payload.token;
+      state.token = action.payload.user.token;
       state.isLoggedIn = true;
     },
     [authOperations.logOut.fulfilled](state) {
@@ -29,10 +33,13 @@ const authSlice = createSlice({
     },
     [authOperations.fetchCurrentUser.fulfilled](state, action) {
       state.user = action.payload;
-      state.token = action.payload.token;
       state.isLoggedIn = true;
+    },
+    [authOperations.updateCurrentUser.fulfilled](state, action) {
+      state.user.totalBalance = action.payload;
     },
   },
 });
 
 export default authSlice.reducer;
+export const { setToken } = authSlice.actions;

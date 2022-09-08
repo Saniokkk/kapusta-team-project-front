@@ -1,3 +1,19 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+ul li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
 /* section */
 .reportSection {
   position: relative;
@@ -38,7 +54,7 @@
   right: 0;
   top: 0;
   height: 296px;
-  background-color: #f5f6fb;
+  background-color: var(--grey-bg-home-color);
   border-bottom-left-radius: 100px;
 }
 
@@ -50,7 +66,7 @@
 
 @media screen and (min-width: 1280px) {
   .reportBackgroundSection {
-    background-color: #f2f5fc;
+    background-color: var(--report-bg-color);
   }
 }
 
@@ -86,7 +102,6 @@
 
 /* balance */
 .balance {
-  background-color: rgb(160, 174, 246);
   display: flex;
   align-items: center;
 }
@@ -94,7 +109,6 @@
 @media screen and (max-width: 767px) {
   .balance {
     flex-direction: column-reverse;
-    height: 136px;
     margin-bottom: 140px;
   }
 }
@@ -114,21 +128,31 @@
 }
 
 .balance .balanceAdd {
+  display: flex;
   width: 333px;
   height: 44px;
-  background-color: rosybrown;
 }
 
 @media screen and (max-width: 767px) {
   .balance .balanceAdd {
+    position: relative;
     width: 280px;
     height: 72px;
+  }
+  .balance .balanceForm {
+    position: absolute;
+    bottom: 0;
+    left: 7px;
+  }
+  .balance .balancebtn {
+    position: absolute;
+    bottom: 1px;
+    right: 7px;
   }
 }
 
 @media screen and (min-width: 768px) {
   .balance .balanceAdd {
-    justify-content: space-between;
     margin: 0;
   }
 }
@@ -139,18 +163,22 @@
   }
 }
 
-.balance .transitionReport {
-  width: 154px;
-  height: 24px;
-  background-color: rgb(120, 61, 61);
-}
-
+/* transitionReport */
 @media screen and (max-width: 767px) {
   .balance .transitionReport {
-    width: 150px;
-    height: 14px;
     margin-bottom: 43px;
   }
+}
+
+.transitionReport .link {
+  text-decoration: none;
+  color: #e7192e;
+}
+
+/*из компонента Report*/
+.balance .transitionReport .report__button {
+  margin: 0;
+  padding: 0;
 }
 
 /* transactionSwitch */
@@ -166,8 +194,8 @@
 }
 
 .transactionSwitch button.btn {
-  color: #000000;
-  background-color: #fafbfd;
+  color: var(--black-text-color);
+  background-color: var(--grey-bg-auth-color);
   font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: 700;
@@ -187,30 +215,32 @@
 }
 
 .transactionSwitch button.btn:hover,
-.transactionSwitch button.btn:focus {
-  background-color: #fefefe;
-  color: #ff751d;
+.transactionSwitch button.btn:focus,
+.transactionSwitch button.activeBtn {
+  background-color: var(--report-transition-switch);
+  color: var(--accent-color);
 }
 
 @media screen and (max-width: 767px) {
   .transactionSwitch button.btn {
-    background-color: #ffffff;
+    background-color: var(--white-color);
     border-radius: 0;
     height: 53px;
   }
 
   .transactionSwitch button.btn:hover,
-  .transactionSwitch button.btn:focus {
-    background-color: #ff751d;
-    color: #ffffff;
+  .transactionSwitch button.btn:focus,
+  .transactionSwitch button.activeBtn {
+    background-color: var(--accent-color);
+    color: var(--white-color);
   }
 }
 
 /* activity */
 @media screen and (min-width: 768px) {
   .activity {
-    background: #ffffff;
-    box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
+    background: var(--white-color);
+    box-shadow: 0px 10px 60px var(--google-btn-shadow);
     border-radius: 0px 30px 30px 30px;
     padding: 24px 40px 42px;
   }
@@ -240,22 +270,17 @@
   }
 }
 
-.activity .transaction .transactionDate {
-  background-color: rgb(15, 48, 117);
-}
-
+/*Data*/
 @media screen and (max-width: 767px) {
-  .activity .transaction .transactionDate {
+  .activity .transactionDate {
     position: absolute;
     top: 186px;
-    width: 102px;
-    height: 40px;
     left: 50%;
     transform: translate(-50%, 0);
   }
 }
 
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
   .activity .transaction .transactionDate {
     width: 102px;
     height: 40px;
@@ -267,19 +292,16 @@
     width: 104px;
     height: 40px;
   }
-}
+} */
 
-.activity .transaction .transactionform {
-  background-color: rgb(56, 76, 155);
-}
-
-@media screen and (max-width: 767px) {
+/* form */
+/* @media screen and (max-width: 767px) {
   .activity .transaction .transactionform {
     display: none;
   }
-}
+} */
 
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
   .activity .transaction .transactionform {
     width: 480px;
     height: 44px;
@@ -293,7 +315,7 @@
     width: 578px;
     height: 44px;
   }
-}
+} */
 
 .activity .transaction .transactionformbtnIc {
   display: flex;
@@ -321,7 +343,7 @@
 }
 
 .activity .transaction .transactionformbtn {
-  background-color: rgb(246, 236, 45);
+  background-color: var(--report-form-btn);
   height: 44px;
 }
 
@@ -355,7 +377,7 @@
 
 /* activity statement table header */
 .transactionTable .tableHeader {
-  background-color: #f5f6fb;
+  background-color: var(--grey-bg-home-color);
   border-radius: 20px 20px 0 0;
   padding: 0 118.49px 0 28.17px;
   display: flex;
@@ -378,7 +400,7 @@
   letter-spacing: 0.02em;
   text-transform: uppercase;
   display: flex;
-  color: #000000;
+  color: var(--black-text-color);
 }
 
 .tableHeader .tableHeaderline:nth-child(1) {
@@ -415,67 +437,140 @@
   }
 
   .tableList::-webkit-scrollbar-track {
-    background: #f5f6fb;
+    background: var(--grey-bg-home-color);
     /* цвет зоны отслеживания */
   }
 
   .tableList::-webkit-scrollbar-thumb {
-    background-color: #ff751d;
+    background-color: var(--accent-color);
     /* цвет бегунка */
     border-radius: 2px;
     /* округлось бегунка */
   }
 }
 
-.tableList ul {
+.activity .transactionList {
   display: flex;
   flex-direction: column;
 }
 
 @media screen and (max-width: 767px) {
-  /* скрываем заглушку */
-  .tableList ul:nth-child(2) {
-    display: none;
-  }
-  .tableList ul li {
+  .activity .transactionList .transactionListItem {
     display: flex;
     height: 46px;
-    border-bottom: 1px solid #f5f6fb;
+    border-bottom: 1px solid var(--grey-bg-home-color);
+  }
+  .activity .transactionList .transactionListItem ul {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 8px;
+  }
+  .transactionListItem .description {
+    height: 20px;
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1.16;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.04em;
+    color: #52555f;
+    margin-bottom: 3px;
+  }
+  .transactionListItem .date {
+    width: 44px;
+    height: 7px;
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 1.12;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-right: 20px;
+    color: #52555f;
+  }
+  .transactionListItem .categories {
+    display: flex;
+    margin-right: 12px;
+    width: 82px;
+    height: 7px;
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 8px;
+    line-height: 1.12;
+    letter-spacing: 0.04em;
+    color: #52555f;
+  }
+  .transactionListItem .sum {
+    display: flex;
+    align-items: center;
+    width: 84px;
+    height: 20px;
+
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 1.16;
+    display: flex;
+    align-items: center;
+    text-align: right;
+    letter-spacing: 0.04em;
+    margin-bottom: 5px;
+    color: #e7192e;
   }
 }
 
-@media screen and (min-width: 768px) {
+/* BUTTON */
+
+button {
+  margin: 0;
+}
+
+.button {
+  display: flex;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background-color: var(--product-bg-list);
+  fill: var(--product-list-btn);
+  transition-property: background-color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button:hover,
+.button:focus {
+  background-color: var(--grey-bg-home-color);
+}
+
+/* ICON */
+
+.icon {
+  margin: auto;
+}
+
+/* @media screen and (min-width: 768px) {
   .tableList ul li {
     display: flex;
     height: 38px;
-    border: 2px solid #f5f6fb;
+    border: 2px solid var(--grey-bg-home-color);
     border-right: none;
   }
   .tableList ul:nth-child(2) li:nth-child(1),
   .tableList ul li:not(:first-child) {
     border-top: none;
   }
-}
+} */
 
 /* activity statement summary */
-.activity .statement .summary {
-  background-color: #f5f6fb;
-  border-radius: 20px;
-  width: 213px;
-  height: 266px;
-  border: 1px solid #585a62;
-}
-
-@media screen and (max-width: 767px) {
-  .activity .statement .summary {
-    display: none;
-  }
-}
 
 @media screen and (min-width: 768px) {
   .activity .statement .summary {
-    width: 230px;
-    height: 278px;
     bottom: -318px;
     left: 32px;
     position: absolute;
@@ -485,7 +580,5 @@
 @media screen and (min-width: 1280px) {
   .activity .statement .summary {
     position: static;
-    width: 213px;
-    height: 266px;
   }
 }

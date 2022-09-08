@@ -18,21 +18,19 @@ const token = {
 const register = createAsyncThunk("/auth/register", async (credentials) => {
   try {
     const { data } = await axios.post("/auth/register", credentials);
-    console.log(data);
-    console.log(data.token);
-    token.set(data.token);
+    token.set(data.user.token);
     return data;
   } catch (error) {
     const codeError = error.response.status;
     if (codeError === 409) {
       toast.error("You are already registered, please try to login", {
         position: toast.POSITION.TOP_RIGHT,
-        theme: "dark",
+        theme: "light",
       });
     } else if (codeError === 500) {
       toast.error("Oops... Server error! Please try later!", {
         position: toast.POSITION.TOP_RIGHT,
-        theme: "dark",
+        theme: "light",
       });
     } else {
       toast.error("Something went wrong!");
@@ -46,18 +44,14 @@ const register = createAsyncThunk("/auth/register", async (credentials) => {
 const logIn = createAsyncThunk("/auth/login", async (credentials) => {
   try {
     const { data } = await axios.post("/auth/login", credentials);
-    token.set(data.token);
-    // toast.success(`Welcome ${data.user.email.split("@")[0]}`, {
-    //   position: toast.POSITION.TOP_RIGHT,
-    //   theme: "dark",
-    // });
+    token.set(data.user.token);
     return data;
   } catch (error) {
     const codeError = error.response.status;
-    if (codeError === 400) {
+    if (codeError === 401) {
       toast.error("Invalid address and/or password specified.", {
         position: toast.POSITION.TOP_RIGHT,
-        theme: "dark",
+        theme: "light",
       });
     }
   }
@@ -74,7 +68,7 @@ const logOut = createAsyncThunk("auth/logout", async (credentials) => {
     if (codeError === 500) {
       toast.error("Oops... something happened to the server", {
         position: toast.POSITION.TOP_RIGHT,
-        theme: "dark",
+        theme: "light",
       });
     } else {
       toast.error("Something went wrong!");
@@ -88,19 +82,40 @@ const fetchCurrentUser = createAsyncThunk(
   "user/current",
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
+    const persistToken = state.auth.token;
+    console.log(persistToken);
+    if (persistToken === null) {
+      return thunkAPI.rejectWithValue();
+    }
+    token.set(persistToken);
+    try {
+      const { data } = await axios.get("/user/current");
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(console.log(error));
+    }
+  }
+);
+
+// S1w5!sf
+
+//UpdateUserBalance
+
+const updateCurrentUser = createAsyncThunk(
+  "balance/updateBalance",
+  async (totalBalance, thunkAPI) => {
+    const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
-    console.log(persistedToken);
     if (!persistedToken) {
       return thunkAPI.rejectWithValue();
     }
-
     token.set(persistedToken);
     try {
-      const { data } = await axios.get("user/current");
-      return data;
-    } catch {
+      const { data } = await axios.patch("/balance/update", totalBalance);
+      return data.newBalance;
+    } catch (error) {
       token.unset();
-      toast.warn("Authorization timed out! Please authenticate again!");
+      console.log(error.message);
     }
   }
 );
@@ -110,6 +125,7 @@ const operations = {
   logIn,
   logOut,
   fetchCurrentUser,
+  updateCurrentUser,
 };
 
 export default operations;

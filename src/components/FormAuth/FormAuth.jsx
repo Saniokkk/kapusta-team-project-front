@@ -1,22 +1,18 @@
 import { useFormik } from "formik";
 import authOperations from "redux/auth/auth-operations";
 import { useDispatch } from "react-redux";
-import { motion } from "framer-motion";
-import styled from "./FormAuth.module.scss";
 import { useState } from "react";
 import { ModalLogout } from "components/ModalLogout";
 
+import { motion } from "framer-motion";
+
+import styled from "./FormAuth.module.scss";
+import icon from "assets/sprite-icons.svg";
+
 export const FormAuth = () => {
   const [stateRegister, setStateRegister] = useState(false);
+  const [statePass, setStatePass] = useState(false);
   const dispatch = useDispatch();
-
-  // const emailModal = async ({ email, password }) => {
-  //   const result = await authOperations.register({ email, password });
-
-  //   if (result.payload.user) {
-  //     setStateRegister(!stateRegister);
-  //   }
-  // };
 
   const validate = (values) => {
     const errors = {};
@@ -45,13 +41,12 @@ export const FormAuth = () => {
       password: "",
     },
     validate,
+    validateOnChange: false,
     onSubmit: (values, { resetForm }) => {
       const { email, password, button } = values;
       if (button === "register") {
         resetForm({ values: "" });
         dispatch(authOperations.register({ email, password }));
-
-        // emailModal({ email, password });
       } else if (button === "login") {
         resetForm({ values: "" });
         dispatch(authOperations.logIn({ email, password }));
@@ -61,16 +56,16 @@ export const FormAuth = () => {
 
   return (
     <>
-      <p className={styled.form__auth_title}>
+      <p className={styled.formAuthTitle}>
         Або зайти за допомогою e-mail та пароля, попередньо зареєструвавшись:
       </p>
-      <form className={styled.form__auth} onSubmit={formik.handleSubmit}>
-        <label htmlFor="email" className={styled.form__auth_label}>
+      <form className={styled.formAuth} onSubmit={formik.handleSubmit}>
+        <label htmlFor="email" className={styled.formAuthLabel}>
           {formik.errors.email && <span className={styled.star}>*</span>}
           Електронна пошта:
         </label>
         <input
-          className={styled.form__auth_input}
+          className={styled.formAuthInput}
           type="email"
           name="email"
           placeholder="your@mail.com"
@@ -79,33 +74,55 @@ export const FormAuth = () => {
           onChange={formik.handleChange}
           value={formik.values.email}
         />
-
         {formik.errors.email ? (
           <span className={styled.error}>{formik.errors.email}</span>
         ) : null}
-
-        <label htmlFor="password" className={styled.form__auth_label}>
+        <label htmlFor="password" className={styled.formAuthLabel}>
           {formik.errors.password && <span className={styled.star}>*</span>}
           Пароль:
         </label>
-        <input
-          className={styled.form__auth_input}
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Пароль"
-          onBlur={formik.handleBlur}
-          onChange={formik.handleChange}
-          value={formik.values.password}
-        />
+        <span className={styled.containerInputPass}>
+          <input
+            className={styled.formAuthInput}
+            type={statePass ? "text" : "password"}
+            name="password"
+            id="password"
+            placeholder="Пароль"
+            onBlur={formik.handleBlur}
+            onChange={formik.handleChange}
+            value={formik.values.password}
+          />
+          {statePass ? (
+            <svg
+              id="eye"
+              className={styled.eye}
+              width={20}
+              height={20}
+              onMouseDown={() => setStatePass(!statePass)}
+              onMouseUp={() => setStatePass(!statePass)}
+            >
+              <use href={`${icon}#icon-eye`} />
+            </svg>
+          ) : (
+            <svg
+              id="eye"
+              className={styled.eye}
+              width={20}
+              height={20}
+              onMouseDown={() => setStatePass(!statePass)}
+              onMouseUp={() => setStatePass(!statePass)}
+            >
+              <use href={`${icon}#icon-eye-blocked`} />
+            </svg>
+          )}
+        </span>
         {formik.errors.password ? (
           <span className={styled.error}>{formik.errors.password}</span>
         ) : null}
-
-        <ul className={styled.list__button}>
-          <li className={styled.list__button_item}>
+        <ul className={styled.listButton}>
+          <li className={styled.listButtonItem}>
             <motion.button
-              className={styled.form__auth_submit}
+              className={styled.formAuthSubmit}
               type="submit"
               onClick={() => (formik.values.button = "login")}
               whileHover={{ scale: 1.1 }}
@@ -114,9 +131,9 @@ export const FormAuth = () => {
               Увійти
             </motion.button>
           </li>
-          <li className={styled.list__button_item}>
+          <li className={styled.listButtonItem}>
             <motion.button
-              className={styled.form__auth_signup}
+              className={styled.formAuthSignup}
               onClick={() => (formik.values.button = "register")}
               whileHover={{ scale: 1.1 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}

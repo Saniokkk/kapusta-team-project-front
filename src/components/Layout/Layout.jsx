@@ -7,7 +7,7 @@ import { Header } from "../Header/Header";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export const Layout = () => {
+const Layout = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,3 +22,5 @@ export const Layout = () => {
     </>
   );
 };
+
+export default Layout;

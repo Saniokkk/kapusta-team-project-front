@@ -8,7 +8,7 @@
   @media screen and (min-width: 768px) {
     justify-content: center;
   }
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 1280px) {
     flex-direction: row;
   }
 }
@@ -24,7 +24,7 @@
   @media screen and (min-width: 768px) {
     margin-bottom: 32px;
   }
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 1280px) {
     margin-right: 32px;
     margin-bottom: 0px;
   }
@@ -45,15 +45,15 @@
   font-size: 12px;
   line-height: 1.7;
   letter-spacing: 0.02em;
-  color: #000000;
-  background-color: #f5f6fb;
+  color: var(--black-text-color);
+  background-color: var(--grey-bg-home-color);
   border: none;
   border-top: 2px solid;
   border-bottom: 2px solid;
   outline: none;
 
   @media screen and (min-width: 768px) {
-    background-color: #ffffff;
+    background-color: var(--white-color);
   }
 }
 
@@ -62,21 +62,25 @@
   width: 280px;
   border: 2px solid;
   border-radius: 16px 16px 0px 0px;
-  border-color: #ffffff;
+  border-color: var(--white-color);
 
   &::placeholder {
-    color: #c7ccdc;
+    color: var(--description-color);
   }
 
   &:focus {
-    border: 2px solid #ff751d;
+    border: 2px solid var(--accent-color);
   }
 
   @media screen and (min-width: 768px) {
-    width: 290px;
+    width: 184px;
     border-right: 0px;
     border-radius: 16px 0px 0px 0px;
-    border-color: #f5f6fb;
+    border-color: var(--grey-bg-home-color);
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 290px;
   }
 }
 
@@ -87,27 +91,31 @@
   text-align: right;
   border: 2px solid;
   border-radius: 22px;
-  border-color: #ffffff;
+  border-color: var(--white-color);
 
   &::placeholder {
-    color: #000000;
+    color: var(--black-text-color);
   }
 
   &:focus {
-    border: 2px solid #ff751d;
+    border: 2px solid var(--accent-color);
   }
 
   @media screen and (min-width: 768px) {
-    padding: 0px 35px 0px 10px;
-    width: 119px;
+    padding: 0px 48px 0px 14px;
+    width: 110px;
     font-weight: 400;
     border-left: 0px;
     border-radius: 0px 16px 16px 0px;
-    border-color: #f5f6fb;
+    border-color: var(--grey-bg-home-color);
 
     &::placeholder {
-      color: #c7ccdc;
+      color: var(--description-color);
     }
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 121px;
   }
 }
 
@@ -119,11 +127,11 @@
   left: 124px;
   width: 0;
   height: 91%;
-  color: #000000;
-  border: 1px solid #ffffff;
+  color: var(--black-text-color);
+  border: 1px solid var(--white-color);
 
   .inputSum:focus + & {
-    border: 1px solid #ff751d;
+    border: 1px solid var(--accent-color);
   }
 
   @media screen and (min-width: 768px) {
@@ -139,10 +147,10 @@
   right: 0;
   transform: translateY(-50%);
   margin-right: 22px;
-  fill: #52555f;
+  fill: var(--primary-text-color);
 
   @media screen and (min-width: 768px) {
-    right: 1.1em;
+    right: 1.4em;
     margin-right: 0px;
   }
 }
@@ -164,20 +172,20 @@
   @media screen and (min-width: 768px) {
     width: 125px;
   }
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 1280px) {
     width: 136px;
   }
 }
 
 .submitBtn {
   margin-right: 16px;
-  color: #ffffff;
-  background: #ff751d;
+  color: var(--white-color);
+  background: var(--accent-color);
   border: none;
 }
 
 .clearBtn {
-  background: #ffffff;
-  color: #52555f;
-  border: 2px solid #f6f7fc;
+  background: var(--white-color);
+  color: var(--primary-text-color);
+  border: 2px solid var(--grey-bg-auth-color);
 }

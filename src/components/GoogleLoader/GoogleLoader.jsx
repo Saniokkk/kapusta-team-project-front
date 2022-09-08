@@ -1,45 +1,28 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import authSelectors from "../../redux/auth/auth-selector";
-import { operations } from "../../redux/auth/auth-operations";
-import { authSlice } from "../../redux/auth/auth-slice";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setToken } from "redux/auth/auth-slice";
 import { Container } from "../Container";
-
-function useQuery() {
-    const { search } = useLocation();
-
-    return React.useMemo(() => new URLSearchParams(search), [search]);
-}
+import { useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const GoogleLoader = () => {
-    const query = useQuery();
-    const dispatch = useDispatch();
-    const storedToken = useSelector(authSelectors.getToken);
-    const [token, setToken] = useState(null);
-    const history = useHistory();
+  const [searchParams] = useSearchParams();
+  const dispatch = useDispatch();
+  let navigate = useNavigate();
+  const token = searchParams.get("token");
 
-    useEffect(() => {
-        setToken(query.get('token'));
-    }, [query]);
+  useEffect(() => {
+    dispatch(setToken({ token }));
+    navigate("/", { replace: true });
+  });
 
-    useEffect(() => {
-        dispatch(authSlice(token));
-    }, [dispatch, token]);
-
-    useEffect(() => {
-        if (storedToken) {
-            dispatch(operations.getCurrentUser());
-        }
-    }, [dispatch, history, storedToken]);
-
-    return (
-        <>
-            <Container>
-                <p>Loading...</p>
-            </Container>
-        </>
-    );
+  return (
+    <>
+      <Container>
+        <p>Loading...</p>
+      </Container>
+    </>
+  );
 };
 
 export default GoogleLoader;

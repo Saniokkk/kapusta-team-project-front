@@ -1,38 +1,39 @@
-import "./App.css";
-import { Layout } from "components/Layout/Layout";
+import { Suspense, lazy } from "react";
+import { Loader } from "components/Loader";
 import { Routes, Route, Navigate } from "react-router-dom";
-// import { ReportSection } from 'pages/ReportSection';
-import { ReportSection } from "components/ReportSection";
-// import { Switch, Redirect } from "react-router-dom";
-// import { useEffect, lazy, Suspense } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import operations from "./redux/auth/auth-operations";
-// import authSelectors from "./redux/auth/auth-selector";
-import "react-toastify/dist/ReactToastify.css";
-// import PublicRoute from "routes/PublicRoute";
-// import PrivateRoute from "routes/PrivateRoute";
 import { ProtectedRoute } from "routes/ProtectedRoute";
-// import ProductList from 'components/Transaction/ProductList/ProductList';
-// import TransactionForm from 'components/Transaction/TransactionForm/TransactionForm';
-// import { Transaction } from 'components/Transaction';
-import { TransactionsPage } from "pages/TransactionsPage";
-
-import { Home } from "pages/Home";
-// import IncomeReportPage from "pages/Report/IncomeReportPage";
-// import ExpensesReportPage from "pages/Report/ExpensesReportPage";
 import authSelectors from "redux/auth/auth-selector";
 import { useSelector } from "react-redux";
-import ExpensesReportPage from "pages/Report/ExpensesReportPage";
-import IncomeReportPage from "pages/Report/IncomeReportPage";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
+
+const GoogleLoader = lazy(() =>
+  import(
+    "./components/GoogleLoader/GoogleLoader" /* webpackChunkName: "GoogleLoader" */
+  )
+);
+
+const Layout = lazy(() =>
+  import("./components/Layout/Layout" /* webpackChunkName: "Layout" */)
+);
+
+const Home = lazy(() =>
+  import("./pages/Home/Home" /* webpackChunkName: "Home" */)
+);
+
+const Report = lazy(() =>
+  import(
+    "./components/ReportSection/ReportSection" /* webpackChunkName: "TransactionsPage" */
+  )
+);
 
 function App() {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
   return (
-    <>
+    <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="report" element={<ReportSection />}></Route>
           <Route
             index
             element={
@@ -48,43 +49,15 @@ function App() {
             path="transaction"
             element={
               <ProtectedRoute isAllowed={isLoggedIn} redirectPath="/">
-                <TransactionsPage />
+                <Report />
               </ProtectedRoute>
-            }
-          />
-          {/* // <Route
-          //   path="income"
-          //   element={
-          //     <PrivateRoute>
-          //       <IncomeReportPage />
-          //     </PrivateRoute>
-          //   }
-          // ></Route> */}
-
-          {/* <Route
-            path="expenses"
-            element={
-              <PrivateRoute>
-                <ExpensesReportPage />
-              </PrivateRoute>
-            }
-          ></Route> */}
-          <Route
-            path="allpages"
-            element={
-              <>
-                {/* <Home /> */}
-                {/* <TransactionsPage /> */}
-                <ExpensesReportPage />
-                <IncomeReportPage />
-              </>
             }
           ></Route>
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
+        <Route path="api/auth/google-redirect" element={<GoogleLoader />} />
       </Routes>
-    </>
+    </Suspense>
   );
 }
-
 export default App;

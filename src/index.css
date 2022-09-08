@@ -1,4 +1,56 @@
 @import "./css/normalize.scss";
+:root {
+  --black-text-color: #000000;
+  --primary-text-color: #52555f;
+  --email-text-color: #a6abb9;
+  --warning-text-color: #ff0000;
+  --description-color: #c7ccdc;
+  --dark-blue-color: #071f41;
+
+  --white-color: #ffffff;
+  --accent-color: #ff751d;
+  --balance-minus: #e53935;
+  --error-color: #eb5757;
+  --secondary-accent-color: #ffdac0;
+  --icons-item-bg: #ffa500;
+  --loader-bg-color: #b7b7b7;
+  --plus-balance-color: #407946;
+  --minus-balance-color: #e7192e;
+
+  --grey-bg-auth-color: #f6f7fb;
+  --grey-bg-home-color: #f5f6fb;
+  --grey-bg-u-color: #f5f6fa;
+  --report-bg-color: #f2f5fc;
+  --category-btn-fill: #f1f1f1;
+
+  --logout-btn-color: #cbccd0;
+
+  --dark-theme-color: #939397;
+
+  --form-submit-disable: #efb089;
+  --form-signup-disable: #fbfbfb;
+  --income-section-line: #e0e5eb;
+  --triangle-up-color: #1d346a;
+  --modal-balans-gradient: #031634;
+  --report-balans-add: #bc8f8f;
+  --report-transition-report: #783d3d;
+  --report-transition-switch: #fefefe;
+  --report-transition-activity: #0f3075;
+  --report-form-activity: #384c9b;
+  --report-form-btn: #f6ec2d;
+  --report-summaty-border: #585a62;
+  --product-list-btn: #afb1b8;
+  --bg-thumb-hover: #ff9900;
+
+  --modal-logaut-backdrop: rgba(0, 0, 0, 0.5);
+  --form-wrapper-shadow: rgba(170, 178, 197, 0.4);
+  --google-btn-shadow: rgba(170, 178, 197, 0.2);
+  --modal-logaut-shadow: rgba(82, 85, 95, 0.4);
+  --balans-form-color: rgba(82, 85, 95, 0.7);
+  --form-submit-shodow: rgba(255, 107, 8, 0.35);
+  --report-bg-balans: rgb(160, 174, 246);
+  --product-bg-list: rgba(255, 255, 255, 0.1);
+}
 
 body {
   font-family: "Roboto", sans-serif;
@@ -22,19 +74,21 @@ input::-webkit-inner-spin-button {
 }
 
 /* SCROLLBAR */
+
 ::-webkit-scrollbar-track {
-  background: #f5f6fb;
+  background: var(--grey-bg-home-color);
 }
 
 ::-webkit-scrollbar {
+  height: 6px;
   width: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ff751d;
+  background: var(--accent-color);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: var(--bg-thumb-hover);
 }
