@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import styles from "./ReportSection.module.css";
 import { useState } from "react";
 import { useMediaQuery } from "@react-hook/media-query";
@@ -12,12 +13,12 @@ import icon from "assets/symbol-icons.svg";
 import { BalanceForm } from "components/BalanceForm";
 
 // import { BalanceBtn } from "../BalanceForm/BalanceButton";
-import { NavLink } from "react-router-dom";
 import { addCurrentType } from "redux/extraInfo/extraInfo-slice";
 import { getDate, getCurrentType } from "redux/extraInfo/extraInfo-selectors";
 
 const ReportSection = () => {
   const [products, setProducts] = useState([]);
+  const [visibleForm, setVisibleForm] = useState(false);
 
   const dispatch = useDispatch();
   const transactionOptions = useSelector(getCurrentType);
@@ -48,28 +49,30 @@ const ReportSection = () => {
     <section className={styles.reportSection}>
       <div className={styles.reportBackgroundSection}></div>
       <div className={styles.conteiner}>
-        <div className={styles.balance}>
-          <div className={styles.balanceAdd}>
-            <div className={styles.balanceForm}>
-              <BalanceForm />
-            </div>
-            {/* <div className={styles.balancebtn}>
+        {!visibleForm && (
+          <div className={styles.balance}>
+            <div className={styles.balanceAdd}>
+              <div className={styles.balanceForm}>
+                <BalanceForm />
+              </div>
+              {/* <div className={styles.balancebtn}>
               {isdesktop && <BalanceBtn />}
             </div> */}
-          </div>
+            </div>
 
-          <div className={styles.transitionReport}>
-            {transactionOptions === "expenses" ? (
-              <NavLink to="/report" exact className={styles.link}>
-                <Report />
-              </NavLink>
-            ) : (
-              <NavLink to="" exact className={styles.link}>
-                <Report />
-              </NavLink>
-            )}
+            <div className={styles.transitionReport}>
+              {transactionOptions === "expenses" ? (
+                <NavLink to="/report" exact className={styles.link}>
+                  <Report />
+                </NavLink>
+              ) : (
+                <NavLink to="" exact className={styles.link}>
+                  <Report />
+                </NavLink>
+              )}
+            </div>
           </div>
-        </div>
+        )}
 
         <div className={styles.transactionSwitch}>
           <button
@@ -77,7 +80,10 @@ const ReportSection = () => {
             className={`${styles.btn} ${
               transactionOptions === "expenses" && styles.activeBtn
             }`}
-            onClick={() => dispatch(addCurrentType("expenses"))}
+            onClick={() => {
+              dispatch(addCurrentType("expenses"));
+              setVisibleForm(true);
+            }}
           >
             витрати
           </button>
@@ -87,7 +93,10 @@ const ReportSection = () => {
             className={`${styles.btn} ${
               transactionOptions === "income" && styles.activeBtn
             }`}
-            onClick={() => dispatch(addCurrentType("income"))}
+            onClick={() => {
+              dispatch(addCurrentType("income"));
+              setVisibleForm(true);
+            }}
           >
             доходи
           </button>
@@ -99,6 +108,7 @@ const ReportSection = () => {
               <div className={styles.transactionDate}>
                 <Datepicker />
               </div>
+
               <ul className={styles.transactionList}>
                 {products.map(({ id, description, categories, sum }) => {
                   return (
@@ -134,7 +144,14 @@ const ReportSection = () => {
               </ul>
             </>
           )}
+
           {isTablet && (
+            <div className={styles.transaction}>
+              <TransactionForm onSubmit={addproduct} />
+            </div>
+          )}
+
+          {visibleForm && isMobile && (
             <div className={styles.transaction}>
               <TransactionForm onSubmit={addproduct} />
             </div>

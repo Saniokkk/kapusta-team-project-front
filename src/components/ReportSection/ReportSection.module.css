@@ -385,12 +385,6 @@ ul li {
   height: 38px;
 }
 
-@media screen and (max-width: 767px) {
-  .transactionTable .tableHeader {
-    display: none;
-  }
-}
-
 .tableHeader .tableHeaderline {
   font-family: "Roboto", sans-serif;
   font-style: normal;
