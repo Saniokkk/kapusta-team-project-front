@@ -1,5 +1,5 @@
 import styles from "./ReportSection.module.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useMediaQuery } from "@react-hook/media-query";
 import TransactionForm from "components/Transaction/TransactionForm/TransactionForm";
 import ProductList from "components/Transaction/ProductList/ProductList";
