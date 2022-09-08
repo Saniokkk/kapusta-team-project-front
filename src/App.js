@@ -26,6 +26,11 @@ const Report = lazy(() =>
     "./components/ReportSection/ReportSection" /* webpackChunkName: "TransactionsPage" */
   )
 );
+const ExpensesReportPage = lazy(() =>
+  import(
+    "./pages/Report/ExpensesReportPage" /* webpackChunkName: "ExpensesReportPage" */
+  )
+);
 
 function App() {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
@@ -50,6 +55,14 @@ function App() {
             element={
               <ProtectedRoute isAllowed={isLoggedIn} redirectPath="/">
                 <Report />
+              </ProtectedRoute>
+            }
+          ></Route>
+          <Route
+            path="report"
+            element={
+              <ProtectedRoute isAllowed={isLoggedIn} redirectPath="/">
+                <ExpensesReportPage />
               </ProtectedRoute>
             }
           ></Route>
