@@ -1,12 +1,10 @@
 import { Suspense, lazy } from "react";
 import { Loader } from "components/Loader";
 import { Routes, Route, Navigate } from "react-router-dom";
-import { ReportSection } from "components/ReportSection";
-import "react-toastify/dist/ReactToastify.css";
 import { ProtectedRoute } from "routes/ProtectedRoute";
 import authSelectors from "redux/auth/auth-selector";
 import { useSelector } from "react-redux";
-
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
 const GoogleLoader = lazy(() =>
@@ -36,26 +34,28 @@ function App() {
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="report" element={<ReportSection />}></Route>
           <Route
             index
             element={
-              <ProtectedRoute isAllowed={!isLoggedIn} redirectPath="report">
+              <ProtectedRoute
+                isAllowed={!isLoggedIn}
+                redirectPath="transaction"
+              >
                 <Home />
               </ProtectedRoute>
             }
           />
           <Route
-            path="report"
+            path="transaction"
             element={
               <ProtectedRoute isAllowed={isLoggedIn} redirectPath="/">
                 <Report />
               </ProtectedRoute>
             }
           ></Route>
-          <Route path="api/auth/google-redirect" element={<GoogleLoader />} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
+        <Route path="api/auth/google-redirect" element={<GoogleLoader />} />
       </Routes>
     </Suspense>
   );

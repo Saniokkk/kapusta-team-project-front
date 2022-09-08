@@ -1,8 +1,8 @@
-.form__auth {
+.formAuth {
   display: flex;
   flex-direction: column;
 
-  &_title {
+  &Title {
     font-size: 10px;
     line-height: 1.2;
     color: var(--primary-text-color);
@@ -13,7 +13,7 @@
     }
   }
 
-  &_label {
+  &Label {
     font-size: 10px;
     line-height: 1.2;
     margin-bottom: 12px;
@@ -25,7 +25,7 @@
     }
   }
 
-  &_input {
+  &Input {
     width: 100%;
     padding: 17px 19px;
     background: var(--grey-bg-auth-color);
@@ -44,7 +44,7 @@
     }
   }
 
-  &_submit {
+  &Submit {
     padding: 12px 33px;
     background: var(--accent-color);
     border-radius: 16px;
@@ -63,7 +63,7 @@
     }
   }
 
-  &_signup {
+  &Signup {
     padding: 12px 15px;
     background: var(--grey-bg-home-color);
     border-radius: 16px;
@@ -86,14 +86,14 @@
   }
 }
 
-.list__button {
+.listButton {
   display: flex;
   justify-content: space-around;
   margin-top: 40px;
 
   list-style: none;
 
-  &_item:not(:last-child) {
+  &Item:not(:last-child) {
     margin-right: 8px;
   }
 }

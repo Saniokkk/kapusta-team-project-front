@@ -3,22 +3,27 @@ import authOperations from "./auth-operations";
 
 const initialState = {
   user: { email: "", avatarURL: null, totalBalance: null },
-  token: "",
+  token: null,
   isLoggedIn: false,
 };
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
+  reducers: {
+    setToken(state, { payload }) {
+      return { ...state, ...payload };
+    },
+  },
   extraReducers: {
     [authOperations.register.fulfilled](state, action) {
       state.user = action.payload.user;
-      state.token = action.payload.token;
+      state.token = action.payload.user.token;
       state.isLoggedIn = true;
     },
     [authOperations.logIn.fulfilled](state, action) {
       state.user = action.payload.user;
-      state.token = action.payload.token;
+      state.token = action.payload.user.token;
       state.isLoggedIn = true;
     },
     [authOperations.logOut.fulfilled](state) {
@@ -28,7 +33,6 @@ const authSlice = createSlice({
     },
     [authOperations.fetchCurrentUser.fulfilled](state, action) {
       state.user = action.payload;
-      state.token = action.payload.token;
       state.isLoggedIn = true;
     },
     [authOperations.updateCurrentUser.fulfilled](state, action) {
@@ -38,3 +42,4 @@ const authSlice = createSlice({
 });
 
 export default authSlice.reducer;
+export const { setToken } = authSlice.actions;

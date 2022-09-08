@@ -10,9 +10,12 @@ import { Report } from "../Report";
 import { useDispatch, useSelector } from "react-redux";
 import icon from "assets/symbol-icons.svg";
 import { BalanceForm } from "components/BalanceForm";
-import { BalanceBtn } from "../BalanceForm/BalanceButton";
+
+// import { BalanceBtn } from "../BalanceForm/BalanceButton";
 import { NavLink } from "react-router-dom";
 import { addCurrentType } from "redux/extraInfo/extraInfo-slice";
+
+// import { BalanceBtn } from "../BalanceForm/BalanceButton";
 
 const ReportSection = () => {
   const [products, setProducts] = useState(() => {
@@ -25,7 +28,7 @@ const ReportSection = () => {
 
   const isMobile = useMediaQuery("only screen and (max-width: 767px)");
   const isTablet = useMediaQuery("only screen and (min-width: 768px)");
-  const isdesktop = useMediaQuery("only screen and (max-width: 1279px)");
+  // const isdesktop = useMediaQuery("only screen and (max-width: 1279px)");
 
   const date = useSelector((state) => state.extraInfo.date);
 
@@ -66,9 +69,9 @@ const ReportSection = () => {
             <div className={styles.balanceForm}>
               <BalanceForm />
             </div>
-            <div className={styles.balancebtn}>
+            {/* <div className={styles.balancebtn}>
               {isdesktop && <BalanceBtn />}
-            </div>
+            </div> */}
           </div>
 
           <div className={styles.transitionReport}>
@@ -178,4 +181,4 @@ const ReportSection = () => {
   );
 };
 
-export { ReportSection };
+export default ReportSection;
