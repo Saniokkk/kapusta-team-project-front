@@ -12,87 +12,21 @@ import {
   // Brush,
 } from 'recharts';
 
-const data = [
-  {
-    name: 'Продукти',
-    amount: 5000,
-    uv: 2323,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: 'Алкоголь',
-    amount: 200,
-    uv: 2323,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: 'Розваги',
-    amount: 800,
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: 'Здоровя',
-    amount: 900,
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: 'Транспорт',
-    amount: 2000,
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: 'Для дому',
-    amount: 1500,
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: 'Техніка',
-    amount: 800,
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    name: 'Комунальні',
-    amount: 3000,
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    name: 'Спорт',
-    amount: 1800,
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    name: 'Освіта',
-    amount: 1000,
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    name: 'Інше',
-    amount: 3000,
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
+// const data = [
+//   {
+//     title: 'Продукти',
+//     amount: 5000,
+//   },
+//   {
+//     title: 'Алкоголь',
+//     amount: 200,
+//   },
+//   {
+//     title: 'Розваги',
+//     amount: 800,
+//   },
 
-const sortedData = data.sort((a, b) => b.amount - a.amount);
+// ];
 
 // let formatter = new Intl.NumberFormat('ua-UA', {
 //   style: 'currency',
@@ -124,7 +58,8 @@ const renderCustomizedLabel = (props) => {
   );
 };
 
-const MobileChart = () => {
+const MobileChart = ({ items }) => {
+  const sortedData = [...items].sort((a, b) => b.amount - a.amount);
   return (
     <>
       <ResponsiveContainer width='99%' height={400}>
@@ -142,7 +77,7 @@ const MobileChart = () => {
         >
           <XAxis
             type='number'
-            dataKey='amount'
+            dataKey='sum'
             // tickCount={500}
             ticks={[
               0, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000,
@@ -165,7 +100,7 @@ const MobileChart = () => {
           ></XAxis>
           <YAxis
             type='category'
-            dataKey='name'
+            dataKey='title'
             axisLine={false}
             tickLine={false}
             // minTickGap={5}
@@ -188,8 +123,8 @@ const MobileChart = () => {
             // label={{ position: 'top' }}
             // style={{ stroke: '#000' }}
           >
-            <LabelList dataKey='amount' content={renderCustomizedLabel} />
-            {data.map((entry, index) => (
+            <LabelList dataKey='sum' content={renderCustomizedLabel} />
+            {sortedData.map((entry, index) => (
               <Cell fill={index % 3 === 0 ? '#FF751D' : '#FFDAC0'} />
             ))}
           </Bar>

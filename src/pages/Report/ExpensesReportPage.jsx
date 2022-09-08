@@ -1,23 +1,50 @@
 import BackgroundBottom from 'components/BackgroundBottom/BackgroundBottom';
 import { BalanceForm } from 'components/BalanceForm';
-// import { BalanceReportSection } from 'components/BalanceReportSection';
+// import Chart from 'components/BarChart/BarChart';
 import ButtonToHome from 'components/ButtonToHome';
 import CurrentMonth from 'components/CurrentMonth/CurrentMonth';
-import { ListExpenses } from 'components/ListExpenses/ListExpenses';
+
 import styles from './ReportPage.module.css';
 
+import { Dashboard } from 'components/Dashboard/Dashboard';
+import { useLocation } from 'react-router-dom';
+
 const ExpensesReportPage = () => {
+  const location = useLocation();
+  const { state } = location;
+  console.log(state.from);
+  let category = state.from;
+  // console.log(category);
+
   return (
     <BackgroundBottom>
       <div className={styles.reportWrapper}>
         <ButtonToHome />
-        {/* <BalanceReportSection /> */}
-        <BalanceForm />
-        <CurrentMonth />
+        <div className={styles.reportFlexbox}>
+          <BalanceForm />
+          <CurrentMonth />
+        </div>
       </div>
-      <ListExpenses />
+      <Dashboard category={category} />
     </BackgroundBottom>
   );
 };
 
 export default ExpensesReportPage;
+
+// const ExpensesReportPage = () => {
+//
+//   return (
+//     <BackgroundBottom>
+//
+//       <div className={styles.reportWrapper}>
+//         <ButtonToHome />
+//         <div className={styles.reportFlexbox}>
+//           <BalanceForm />
+//           <CurrentMonth />
+//         </div>
+//       </div>
+//       <ExpensesList />
+//     </BackgroundBottom>
+//   );
+// };

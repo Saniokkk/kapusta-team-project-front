@@ -2,3 +2,8 @@
   width: 478px;
   height: 478px;
 }
+
+.centered {
+  margin-left: auto;
+  margin-right: auto;
+}
