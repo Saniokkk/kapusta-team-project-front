@@ -1,7 +1,7 @@
 import styles from "./ModalBalanceError.module.css";
 import { Triangle } from "./Triangle";
 import { createPortal } from "react-dom";
-const ModalBalanceError = ({ text1, text2 }) => {
+const ModalBalanceError = () => {
   return createPortal(
     <>
       <div className={styles.triangle__box}>
