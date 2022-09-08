@@ -14,23 +14,18 @@ import { BalanceForm } from "components/BalanceForm";
 // import { BalanceBtn } from "../BalanceForm/BalanceButton";
 import { NavLink } from "react-router-dom";
 import { addCurrentType } from "redux/extraInfo/extraInfo-slice";
-
-// import { BalanceBtn } from "../BalanceForm/BalanceButton";
+import { getDate, getCurrentType } from "redux/extraInfo/extraInfo-selectors";
 
 const ReportSection = () => {
-  const [products, setProducts] = useState(() => {
-    //при первой загрузки получаем данные из локального хранилища либо записываем готовый массив контактов(обьектов)
-    return JSON.parse(window.localStorage.getItem("product")) ?? [];
-  });
-  const [transactionOptions, setTransactionOptions] = useState("expenses");
+  const [products, setProducts] = useState([]);
+
   const dispatch = useDispatch();
-  dispatch(addCurrentType(transactionOptions));
+  const transactionOptions = useSelector(getCurrentType);
+  const date = useSelector(getDate);
 
   const isMobile = useMediaQuery("only screen and (max-width: 767px)");
   const isTablet = useMediaQuery("only screen and (min-width: 768px)");
   // const isdesktop = useMediaQuery("only screen and (max-width: 1279px)");
-
-  const date = useSelector((state) => state.extraInfo.date);
 
   const addproduct = (description, categories, sum) => {
     const product = {
@@ -43,22 +38,11 @@ const ReportSection = () => {
     setProducts((prevState) => [product, ...prevState]);
   };
 
-  const getlist = () => {
-    return products.map((product) => {
-      return product;
-    });
-  };
-
   const deleteContact = (Id) => {
     setProducts((prevState) =>
       prevState.filter((product) => product.id !== Id)
     );
   };
-
-  //   // первый раз при загрузки и каждый раз при изменении компонента перезаписываем в локальное хранилище
-  useEffect(() => {
-    window.localStorage.setItem("product", JSON.stringify(products));
-  }, [products]);
 
   return (
     <section className={styles.reportSection}>
@@ -76,11 +60,11 @@ const ReportSection = () => {
 
           <div className={styles.transitionReport}>
             {transactionOptions === "expenses" ? (
-              <NavLink to="/" exact className={styles.link}>
+              <NavLink to="/endpoint" exact className={styles.link}>
                 <Report />
               </NavLink>
             ) : (
-              <NavLink to="/report" exact className={styles.link}>
+              <NavLink to="" exact className={styles.link}>
                 <Report />
               </NavLink>
             )}
@@ -93,10 +77,7 @@ const ReportSection = () => {
             className={`${styles.btn} ${
               transactionOptions === "expenses" && styles.activeBtn
             }`}
-            onClick={() => {
-              setTransactionOptions("expenses");
-              dispatch(addCurrentType(transactionOptions));
-            }}
+            onClick={() => dispatch(addCurrentType("expenses"))}
           >
             витрати
           </button>
@@ -106,10 +87,7 @@ const ReportSection = () => {
             className={`${styles.btn} ${
               transactionOptions === "income" && styles.activeBtn
             }`}
-            onClick={() => {
-              setTransactionOptions("income");
-              dispatch(addCurrentType(transactionOptions));
-            }}
+            onClick={() => dispatch(addCurrentType("income"))}
           >
             доходи
           </button>
@@ -122,7 +100,7 @@ const ReportSection = () => {
                 <Datepicker />
               </div>
               <ul className={styles.transactionList}>
-                {getlist().map(({ id, description, categories, sum }) => {
+                {products.map(({ id, description, categories, sum }) => {
                   return (
                     <li key={id} className={styles.transactionListItem}>
                       <ul>
@@ -165,10 +143,7 @@ const ReportSection = () => {
           <div className={styles.statement}>
             {isTablet && (
               <>
-                <ProductList
-                  visible={getlist()}
-                  deleteContact={deleteContact}
-                />
+                <ProductList visible={products} deleteContact={deleteContact} />
                 <div className={styles.summary}>
                   <Summary />
                 </div>
