@@ -60,7 +60,7 @@ const ReportSection = () => {
 
           <div className={styles.transitionReport}>
             {transactionOptions === "expenses" ? (
-              <NavLink to="/endpoint" exact className={styles.link}>
+              <NavLink to="/report" exact className={styles.link}>
                 <Report />
               </NavLink>
             ) : (
