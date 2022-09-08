@@ -17,18 +17,13 @@ const data = [
   {
     id: 2,
     title: 'Додаткові доходи',
-    amount: 200.0,
+    amount: 8000.0,
     icon: 'icon-extraSalary',
-  },
-  {
-    id: 3,
-    title: 'Інше',
-    amount: 800.0,
-    icon: 'icon-other',
   },
 ];
 
-const IncomeList = () => {
+const IncomeList = ({ category }) => {
+  console.log(category);
   const viewPort = useWindowDimensions();
 
   let totalIncome = data.reduce((prev, item) => {
@@ -38,8 +33,8 @@ const IncomeList = () => {
   return (
     <>
       <ProfitStats total={totalIncome} />
-      <div className={styles.iconBox}>
-        <div className={styles.titleBox}>
+      <div className={styles.incomeWrapper}>
+        <div className={styles.switching}>
           <button className={styles.btnToLeft}>
             <svg className={styles.icon}>
               <use
@@ -63,16 +58,22 @@ const IncomeList = () => {
           {data.map((item) => (
             <IncomeItem
               key={item.id}
-              title={item.title}
-              amount={item.amount}
-              icon={item.icon}
+              {...item}
+              // title={item.title}
+              // amount={item.amount}
+              // icon={item.icon}
             />
           ))}
         </ul>
       </div>
       <hr className={styles.sectionLine} />
+
       <div className={styles.graphBox}>
-        {viewPort.width < 767 ? <MobileChart /> : <Chart />}
+        {viewPort.width < 767 ? (
+          <MobileChart items={data} />
+        ) : (
+          <Chart items={data} />
+        )}
       </div>
     </>
   );

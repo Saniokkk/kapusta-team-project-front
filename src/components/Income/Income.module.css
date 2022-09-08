@@ -5,14 +5,14 @@
 }
 /* Mobile 320 */
 
-.iconBox {
+.incomeWrapper {
   width: 100%;
   height: auto;
 
   margin-left: auto;
   margin-right: auto;
-
-  margin-bottom: 20px;
+  margin-bottom: 32px;
+  padding: 20px;
 
   list-style: none;
   display: flex;
@@ -21,14 +21,15 @@
 
   text-align: center;
 
-  background: var(--white-color);
+  background: #ffffff;
 }
-.titleBox {
-  height: 20px;
+.switching {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  /* flex-direction: row; */
+  /* align-items: center; */
   justify-content: center;
+
+  /* height: 20px; */
   margin-bottom: 20px;
 }
 .incomeTitle {
@@ -36,7 +37,7 @@
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
-  line-height: 16px;
+  line-height: 1.14;
 
   text-align: center;
   letter-spacing: 0.02em;
@@ -65,15 +66,21 @@
 .btnToRight {
   margin-left: 15px;
 }
+
 /* List */
 .incomeList {
   display: flex;
-  list-style: none;
   justify-content: center;
   margin-bottom: 20px;
 }
 /* Styles for IncomeItem  */
 .incomeItem {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.04em;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -86,12 +93,6 @@
 
 .incomeAmount {
   margin-bottom: 5px;
-  font-family: "Roboto";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 14px;
-  letter-spacing: 0.04em;
   text-transform: uppercase;
 
   color: var(--primary-text-color);
@@ -106,7 +107,7 @@
   top: 22%;
   left: 15%;
 
-  color: var(--dark-blue-color);
+  /* color: #071f41; */
   margin-bottom: 5px;
 
   z-index: 1;
@@ -212,7 +213,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  .iconBox {
+  .incomeWrapper {
     width: 704px;
     height: 195px;
     padding-top: 20px;
@@ -221,11 +222,6 @@
 
     box-shadow: 0px 10px 60px var(--google-btn-shadow);
     border-radius: 30px;
-  }
-
-  .incomeTitle {
-    margin-bottom: 20px;
-    margin-top: 20px;
   }
 
   .incomeList {
@@ -279,7 +275,7 @@
 }
 /* desktop */
 @media screen and (min-width: 1280px) {
-  .iconBox {
+  .incomeWrapper {
     width: 1034px;
     height: 196px;
   }
