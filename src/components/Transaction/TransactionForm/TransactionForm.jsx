@@ -3,7 +3,7 @@ import { useMediaQuery } from "@react-hook/media-query";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { calendarSelectors } from "../../../redux/extraInfo";
-import { addTransaction } from "services/transactionsApi";
+import { addTransactionExpense } from "services/transactionsApi";
 import Datepicker from "components/DatePicker/Datepicker";
 import Category from "components/Transaction/Category/Category";
 import icons from "assets/symbol-icons.svg";
@@ -16,7 +16,8 @@ const TransactionForm = ({ onSubmit }) => {
   const pickedDate = useSelector(calendarSelectors.getDate);
   const dayWithZero = ("0" + pickedDate.day).slice(-2);
   const monthWithZero = ("0" + pickedDate.month).slice(-2);
-  const convertedDate = `${dayWithZero}.${monthWithZero}.${pickedDate.year}`;
+  // const convertedDate = `${dayWithZero}.${monthWithZero}.${pickedDate.year}`;
+  const convertedDate = `${pickedDate.year}.${monthWithZero}.${dayWithZero}`;
   //console.log(convertedDate);
 
   const isMobile = useMediaQuery("only screen and (max-width: 767px)");
@@ -35,10 +36,10 @@ const TransactionForm = ({ onSubmit }) => {
         description,
         category: category,
         sum,
-        type: "expense",
       };
+      //console.log(transaction);
       //onSubmit(description, category, price);
-      addTransaction(transaction);
+      addTransactionExpense(transaction);
       setCategories("Категорія продукту");
       resetForm();
     },
@@ -47,14 +48,14 @@ const TransactionForm = ({ onSubmit }) => {
   const { description, sum } = formik.values;
 
   //округление до сотых
-  const negativeSum = (price) => {
-    const index = `${price}.00`.indexOf(".");
-    const number = `${price}.00`.slice(0, index + 3);
-    const posNumber = Number.parseFloat(`${number}`).toFixed(2);
-    const negNumber = `- ${posNumber} грн.`;
+  // const negativeSum = (price) => {
+  //   const index = `${price}.00`.indexOf(".");
+  //   const number = `${price}.00`.slice(0, index + 3);
+  //   const posNumber = Number.parseFloat(`${number}`).toFixed(2);
+  //   const negNumber = `- ${posNumber} грн.`;
 
-    return negNumber;
-  };
+  //   return negNumber;
+  // };
 
   const reset = () => {
     setCategories("Категорія продукту");
@@ -90,7 +91,7 @@ const TransactionForm = ({ onSubmit }) => {
             value={sum}
             onChange={(e) => {
               formik.handleChange(e);
-              negativeSum(e.target.value);
+              //negativeSum(e.target.value);
             }}
           />
           <span className={s.borderTop}></span>

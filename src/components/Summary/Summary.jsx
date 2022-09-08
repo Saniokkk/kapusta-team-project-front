@@ -1,105 +1,44 @@
 import s from "./Summary.module.scss";
+import { useState, useEffect } from "react";
+import { getTransactionsByType } from "services/reportsApi";
 
 export function Summary() {
-  const data = {
-    data: {
-      incomeTransactions: [
-        {
-          _id: "1",
-          date: "2022-06-27T00:00:00.000Z",
-          owner: "630a4ce122d8de88190363c9",
-          description: "1",
-          category: "income",
-          sum: 500,
-          type: "income",
-          createdAt: "2022-08-30T16:57:07.350Z",
-          updatedAt: "2022-08-30T16:57:07.350Z",
-        },
-      ],
-      expenseTransactions: [
-        {
-          _id: "2",
-          date: "2022-06-27T00:00:00.000Z",
-          owner: "630a4ce122d8de88190363c9",
-          description: "1111",
-          category: "alcohol",
-          sum: 100,
-          type: "expense",
-          createdAt: "2022-08-30T16:11:15.591Z",
-          updatedAt: "2022-08-30T16:11:15.591Z",
-        },
-        {
-          _id: "3",
-          date: "2022-07-27T00:00:00.000Z",
-          owner: "630a4ce122d8de88190363c9",
-          description: "1111",
-          category: "alcohol",
-          sum: 100,
-          type: "expense",
-          createdAt: "2022-08-30T16:11:15.591Z",
-          updatedAt: "2022-08-30T16:11:15.591Z",
-        },
-        {
-          _id: "4",
-          date: "2022-08-27T00:00:00.000Z",
-          owner: "630a4ce122d8de88190363c9",
-          description: "1111",
-          category: "alcohol",
-          sum: 100,
-          type: "expense",
-          createdAt: "2022-08-30T16:11:15.591Z",
-          updatedAt: "2022-08-30T16:11:15.591Z",
-        },
-        {
-          _id: "5",
-          date: "2022-09-27T00:00:00.000Z",
-          owner: "630a4ce122d8de88190363c9",
-          description: "1111",
-          category: "alcohol",
-          sum: 100,
-          type: "expense",
-          createdAt: "2022-08-30T16:11:15.591Z",
-          updatedAt: "2022-08-30T16:11:15.591Z",
-        },
-      ],
-      totalExpense: 300,
-      totalIncome: 1000,
-    },
-  };
+  const [data, setData] = useState([]);
 
-  const { expenseTransactions, totalExpense } = data.data;
+  //useEffect з розпиленням prevState
+  useEffect(() => {
+    async function fetchTransactions() {
+      try {
+        const transactions = await getTransactionsByType("expense");
+        setData((prevData) => ({
+          ...prevData,
+          ...transactions.expenseReportByMonthForYear,
+        }));
+        console.log("qqqqq", transactions.expenseReportByMonthForYear);
+      } catch (error) {
+        console.log(error);
+      }
+    }
 
-  function convertDate(date) {
-    const convDate = new Date(date)
-      .toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "numeric",
-        day: "numeric",
-      })
-      .slice(0, -8);
+    fetchTransactions();
+  }, []);
 
-    return convDate;
-  }
+  //зміна для обробки данних: останні шість місяців зверху
+  const newData = Object.entries(data).reverse().slice(0, 6);
 
-  function toMonthName(monthNumber) {
-    const date = new Date();
-    date.setMonth(monthNumber - 1);
-
-    return date.toLocaleString("uk-UA", {
-      month: "long",
-    });
-  }
+  console.log("Data", data);
 
   return (
     <div className={s.wrapper}>
       <h2 className={s.title}>Зведення</h2>
       <ul className={s.list}>
-        {expenseTransactions.map(({ _id, date }) => (
-          <li key={_id}>
-            <span>{toMonthName(convertDate(date))}</span>
-            <span>{totalExpense}</span>
-          </li>
-        ))}
+        {newData &&
+          newData.map(([key, value], index) => (
+            <li key={index}>
+              <span>{key}</span>
+              <span>{value}</span>
+            </li>
+          ))}
       </ul>
     </div>
   );
