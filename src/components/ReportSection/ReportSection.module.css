@@ -236,6 +236,22 @@ ul li {
   }
 }
 
+.backReportSectionbtn {
+  background-color: var(--product-bg-list);
+  width: 24px;
+  height: 24px;
+  display: flex;
+  margin-bottom: 16px;
+  margin-top: -24px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+}
+
+.backReportSectionbtn:hover,
+.backReportSectionbtn:focus {
+  background-color: var(--description-color);
+}
+
 /* activity */
 @media screen and (min-width: 768px) {
   .activity {

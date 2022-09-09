@@ -200,7 +200,7 @@ const ReportSection = () => {
 
         {visibleForm && isMobile && (
           <>
-            <button
+            {/* <button
               type="button"
               onClick={() => {
                 setVisibleForm(false);
@@ -208,6 +208,22 @@ const ReportSection = () => {
               }}
             >
               на главную
+            </button>
+            <div className={styles.transaction}>
+              <TransactionForm />
+            </div> */}
+
+            <button
+              type="button"
+              className={styles.backReportSectionbtn}
+              onClick={() => {
+                setVisibleForm(false);
+                setJumpBetweenDevices(false);
+              }}
+            >
+              <svg className={styles.icon} width="18" height="12">
+                <use href={`${icon}#icon-arrowToBackReportSection`} />
+              </svg>
             </button>
             <div className={styles.transaction}>
               <TransactionForm />
