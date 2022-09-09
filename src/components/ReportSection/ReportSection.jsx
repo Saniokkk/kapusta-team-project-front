@@ -12,7 +12,10 @@ import icon from "assets/symbol-icons.svg";
 import { BalanceForm } from "components/BalanceForm";
 
 // import { BalanceBtn } from "../BalanceForm/BalanceButton";
-import { addCurrentType } from "redux/extraInfo/extraInfo-slice";
+import {
+  addCurrentType,
+  addCurrentCategory,
+} from "redux/extraInfo/extraInfo-slice";
 import { getDate, getCurrentType } from "redux/extraInfo/extraInfo-selectors";
 
 const ReportSection = () => {
@@ -75,6 +78,20 @@ const ReportSection = () => {
     setVisibleForm(false);
   }, [isMobile, setProducts, visibleForm, jumpBetweenDevices, isTablet]);
 
+  const handleBtnClick = (evt) => {
+    if (evt.target.name === "expense") {
+      dispatch(addCurrentType("expenses"));
+      dispatch(addCurrentCategory("Категорія товару"));
+    }
+
+    if (evt.target.name === "income") {
+      dispatch(addCurrentType("income"));
+      dispatch(addCurrentCategory("Категорія доходу"));
+    }
+
+    visible();
+  };
+
   return (
     <section className={styles.reportSection}>
       <div className={styles.reportBackgroundSection}></div>
@@ -108,26 +125,22 @@ const ReportSection = () => {
           <div className={styles.transactionSwitch}>
             <button
               type="button"
+              name="expense"
               className={`${styles.btn} ${
                 transactionOptions === "expenses" && styles.activeBtn
               }`}
-              onClick={() => {
-                dispatch(addCurrentType("expenses"));
-                visible();
-              }}
+              onClick={handleBtnClick}
             >
               витрати
             </button>
 
             <button
               type="button"
+              name="income"
               className={`${styles.btn} ${
                 transactionOptions === "income" && styles.activeBtn
               }`}
-              onClick={() => {
-                dispatch(addCurrentType("income"));
-                visible();
-              }}
+              onClick={handleBtnClick}
             >
               доходи
             </button>

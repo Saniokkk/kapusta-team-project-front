@@ -1,8 +1,14 @@
+import { useSelector, useDispatch } from "react-redux";
+import {
+  getCurrentType,
+  getCurrentCategory,
+} from "redux/extraInfo/extraInfo-selectors";
+import { addCurrentCategory } from "redux/extraInfo/extraInfo-slice";
 import { useState } from "react";
 import s from "./Category.module.scss";
 import icon from "assets/symbol-icons.svg";
 
-const items = [
+const categoriesExpense = [
   { id: 1, title: "Транспорт" },
   { id: 2, title: "Продукти" },
   { id: 3, title: "Здоров'я" },
@@ -16,14 +22,28 @@ const items = [
   { id: 11, title: "Інше" },
 ];
 
-const Category = ({ onSubmit, value }) => {
+const categoriesIncome = [
+  { id: 1, title: "Дохід" },
+  { id: 2, title: "Доп.дохід" },
+];
+
+const Category = () => {
   const [menu, setМenu] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const transactionType = useSelector(getCurrentType);
+  const currentCategory = useSelector(getCurrentCategory);
+
+  const categoryType =
+    transactionType === "expenses" ? categoriesExpense : categoriesIncome;
 
   const handleChange = (evt) => {
     const {
       dataset: { action },
     } = evt.target;
-    onSubmit(action);
+    console.log(action);
+    dispatch(addCurrentCategory(action));
     setМenu(false);
   };
 
@@ -42,7 +62,7 @@ const Category = ({ onSubmit, value }) => {
           type="button"
           onClick={() => (!menu ? setМenu(true) : setМenu(false))}
         >
-          {value}
+          {currentCategory}
 
           <svg className={menu ? s.iconDown : ""} width="14" height="7">
             <use href={`${icon}#icon-categories`} />
@@ -52,7 +72,7 @@ const Category = ({ onSubmit, value }) => {
 
       {menu && (
         <ul className={s.dropdownContent}>
-          {items.map(({ title }, index) => {
+          {categoryType.map(({ title }, index) => {
             return (
               <li key={index} data-action={title} onClick={handleChange}>
                 {title}
