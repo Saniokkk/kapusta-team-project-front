@@ -13,6 +13,9 @@
 <symbol id="icon-arrowRight" viewBox="0 0 32 32">
 <path fill="none" stroke="#ff751d" style="stroke: var(--color1, #ff751d)" stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="5.3333" d="M9.333 2.667l10.667 13.333-10.667 13.333"></path>
 </symbol>
+<symbol id="icon-arrowToBackReportSection" viewBox="0 0 48 32">
+<path fill="#ff751d" style="fill: var(--color1, #ff751d)" d="M48 13.333h-37.787l9.547-9.573-3.76-3.76-16 16 16 16 3.76-3.76-9.547-9.573h37.787v-5.333z"></path>
+</symbol>
 <symbol id="icon-arrowToBack" viewBox="0 0 32 32">
 <path fill="#ff751d" style="fill: var(--color1, #ff751d)" d="M32 14.222h-25.191l6.364-6.382-2.507-2.507-10.667 10.667 10.667 10.667 2.507-2.507-6.364-6.382h25.191v-3.556z"></path>
 </symbol>
