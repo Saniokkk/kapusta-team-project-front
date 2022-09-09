@@ -7,6 +7,7 @@ import { calendarSelectors } from "../../../redux/extraInfo";
 import { addTransactionExpense } from "services/transactionsApi";
 import Datepicker from "components/DatePicker/Datepicker";
 import Category from "components/Transaction/Category/Category";
+import { motion } from "framer-motion";
 import icons from "assets/symbol-icons.svg";
 import s from "./TransactionForm.module.scss";
 
@@ -104,12 +105,24 @@ const TransactionForm = ({ onSubmit }) => {
       </form>
 
       <div className={s.buttons}>
-        <button type="submit" className={s.submitBtn} form="example">
+        <motion.button
+          type="submit"
+          className={s.submitBtn}
+          form="example"
+          whileHover={{ scale: 1.1 }}
+          transition={{ type: "spring", stiffness: 400, damping: 10 }}
+        >
           ввести
-        </button>
-        <button className={s.clearBtn} type="button" onClick={reset}>
+        </motion.button>
+        <motion.button
+          className={s.clearBtn}
+          type="button"
+          onClick={reset}
+          whileHover={{ scale: 1.1 }}
+          transition={{ type: "spring", stiffness: 400, damping: 10 }}
+        >
           очистити
-        </button>
+        </motion.button>
       </div>
     </div>
   );
