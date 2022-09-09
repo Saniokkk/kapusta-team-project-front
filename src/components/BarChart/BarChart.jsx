@@ -10,25 +10,14 @@ import {
   ResponsiveContainer,
   Text,
 } from 'recharts';
+
 // const items = [
 //   {
 //     id: 1,
-//     title: 'Заробітня плата',
-//     amount: 5000.0,
-//     icon: 'icon-salary',
-//   },
-//   {
-//     id: 2,
-//     title: 'Додаткові доходи',
-//     amount: 8000.0,
-//     icon: 'icon-extraSalary',
+//     title: 'банани',
+//     sum: 5000.0,
 //   },
 // ];
-
-// let formatter = new Intl.NumberFormat('ua-UA', {
-//   style: 'currency',
-//   currency: 'UAH',
-// });
 
 //  { title: 'Продукти', pathIcon: 'products', sum: 5000.0 },
 const renderCustomizedLabel = (props) => {
@@ -57,8 +46,9 @@ const renderCustomizedLabel = (props) => {
 };
 
 const Chart = ({ items }) => {
+  // const Chart = () => {
   const sortedData = [...items].sort((a, b) => b.amount - a.amount);
-  // let chartWidth = sortedData.length < 3 ? 200 : 758;
+
   let chartWidth = 200;
   if (sortedData.length > 2) {
     chartWidth = 400;
@@ -73,84 +63,92 @@ const Chart = ({ items }) => {
     chartWidth = 704;
   }
 
-  // if (sortedData.length > 13) {
-  //   chartWidth = 1000;
-  // }
+  if (sortedData.length > 13) {
+    chartWidth = 1000;
+  }
   if (sortedData.length > 20) {
     chartWidth = 1500;
   }
 
   return (
-    <>
-      {/* <ResponsiveContainer width='99%' height={400}> */}
-      {/* <ResponsiveContainer width={704} height='98%'> */}
-      <ResponsiveContainer
-        width={chartWidth}
-        height='99%'
-        className={styles.centered}
+    // <ResponsiveContainer width='99%' height={400}>
+    // {/* <ResponsiveContainer width={704} height='98%'> */}
+    <ResponsiveContainer
+      width={chartWidth}
+      height='99%'
+      className={styles.centered}
+    >
+      <BarChart
+        // data={sortedData}
+        data={items}
+        maxBarSize={38}
+        // width={400}
+        width={400}
+        // width={200}
+        // height={350}
+        barCategoryGap={25}
+        barGap={5}
+        // style={{ stroke: '#fff', strokeWidth: 2 }}
+        margin={{
+          top: 5,
+          right: 20,
+          left: 30,
+          bottom: 5,
+        }}
       >
-        <BarChart
-          data={sortedData}
-          maxBarSize={38}
-          // width={400}
-          width={400}
-          // width={200}
-          // height={350}
-          barCategoryGap={25}
-          barGap={5}
-          // style={{ stroke: '#fff', strokeWidth: 2 }}
-          margin={{
-            top: 5,
-            right: 20,
-            left: 30,
-            bottom: 5,
-          }}
+        <CartesianGrid stroke='#f5f5f5' vertical={false} />
+        <XAxis
+          // allowDataOverflow={false}
+          dataKey='title'
+          axisLine={false}
+          tickLine={false}
+          minTickGap={5}
+          fontSize={12}
+          fontWeight={400}
+          fontFamily={'Roboto'}
+          letterSpacing={'0.02em'}
+          domain={['dataMin', 'dataMax']}
+        />
+        <YAxis
+          dataKey='sum'
+          // type='number'
+          // domain={[-1, 1]}
+          tickCount={600}
+          axisLine={false}
+          tickLine={false}
+          hide={true}
+          label={{ position: 'top' }}
+          // allowDataOverflow={false}
+        />
+        <Text scaleToFit={true} width={30} />
+        {/* <Brush dataKey='name' height={30} stroke='#8884d8' /> */}
+        <Bar
+          dataKey='sum'
+          barSize={38}
+          // fill={'#FFDAC0'}
+          radius={[10, 10, 0, 0]}
+          // barSize={38}
+          // label={{ position: 'top' }}
+          // style={{ stroke: '#000' }}
         >
-          <CartesianGrid stroke='#f5f5f5' vertical={false} />
-          <XAxis
-            // allowDataOverflow={false}
-            dataKey='title'
-            axisLine={false}
-            tickLine={false}
-            minTickGap={5}
-            fontSize={12}
-            fontWeight={400}
-            fontFamily={'Roboto'}
-            letterSpacing={'0.02em'}
-            domain={['dataMin', 'dataMax']}
-          />
-          <YAxis
-            dataKey='sum'
-            // type='number'
-            // domain={[-1, 1]}
-            tickCount={600}
-            axisLine={false}
-            tickLine={false}
-            hide={true}
-            label={{ position: 'top' }}
-            // allowDataOverflow={false}
-          />
-          <Text scaleToFit={true} width={30} />
-          {/* <Brush dataKey='name' height={30} stroke='#8884d8' /> */}
-          <Bar
-            dataKey='amount'
-            barSize={38}
-            // fill={'#FFDAC0'}
-            radius={[10, 10, 0, 0]}
-            // barSize={38}
-            // label={{ position: 'top' }}
-            // style={{ stroke: '#000' }}
-          >
-            <LabelList dataKey='amount' content={renderCustomizedLabel} />
-            {sortedData.map((entry, index) => (
-              <Cell fill={index % 3 === 0 ? '#FF751D' : '#FFDAC0'} />
-            ))}
-          </Bar>
-          {/* <LabelList dataKey='amount' content={renderCustomizedLabel} /> */}
-        </BarChart>
-      </ResponsiveContainer>
-    </>
+          <LabelList dataKey='sum' content={renderCustomizedLabel} />
+          {/* {sortedData.map((entry, index) => ( */}
+          {items.map((entry, index) => (
+            <Cell
+              // key={entry.id}
+              fill={index % 3 === 0 ? '#FF751D' : '#FFDAC0'}
+            />
+          ))}
+        </Bar>
+        {/* <LabelList dataKey='amount' content={renderCustomizedLabel} /> */}
+      </BarChart>
+    </ResponsiveContainer>
   );
 };
 
 export default Chart;
+
+// let formatter = new Intl.NumberFormat('ua-UA', {
+//   style: 'currency',
+//   currency: 'UAH',
+// });
