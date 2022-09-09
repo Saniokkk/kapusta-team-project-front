@@ -19,6 +19,7 @@ export const localizationExpense = (obj) => {
   const filterArr = arr.filter((item) => {
     return item[1] > 0;
   });
+  // const filterArr = arr;
 
   const arrCategory = filterArr.reduce((acc, item) => {
     switch (item[0]) {
@@ -68,6 +69,7 @@ export const localizationIncome = (obj) => {
   const filterArr = arr.filter((item) => {
     return item[1] > 0;
   });
+  // const filterArr = arr;
 
   const arrCategory = filterArr.reduce((acc, item, index) => {
     switch (item[0]) {
