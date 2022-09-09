@@ -1,7 +1,8 @@
 import { useFormik } from "formik";
 import { useMediaQuery } from "@react-hook/media-query";
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { getCurrentCategory } from "redux/extraInfo/extraInfo-selectors";
+import { addCurrentCategory } from "redux/extraInfo/extraInfo-slice";
 import { calendarSelectors } from "../../../redux/extraInfo";
 import { addTransactionExpense } from "services/transactionsApi";
 import Datepicker from "components/DatePicker/Datepicker";
@@ -10,8 +11,9 @@ import icons from "assets/symbol-icons.svg";
 import s from "./TransactionForm.module.scss";
 
 const TransactionForm = ({ onSubmit }) => {
-  const [category, setCategories] = useState("Категорія продукту");
   //const [price, setPrice] = useState(0);
+  const dispatch = useDispatch();
+  const currentCategory = useSelector(getCurrentCategory);
 
   const pickedDate = useSelector(calendarSelectors.getDate);
   const dayWithZero = ("0" + pickedDate.day).slice(-2);
@@ -27,20 +29,20 @@ const TransactionForm = ({ onSubmit }) => {
   const formik = useFormik({
     initialValues: {
       description: "",
-      category: category,
+      category: currentCategory,
       sum: "",
     },
     onSubmit: (values, { resetForm }) => {
       const transaction = {
         date: convertedDate,
         description,
-        category: category,
+        category: currentCategory,
         sum,
       };
-      //console.log(transaction);
+      console.log(transaction);
       //onSubmit(description, category, price);
       addTransactionExpense(transaction);
-      setCategories("Категорія продукту");
+      dispatch(addCurrentCategory("Категорія продукту"));
       resetForm();
     },
   });
@@ -58,7 +60,7 @@ const TransactionForm = ({ onSubmit }) => {
   // };
 
   const reset = () => {
-    setCategories("Категорія продукту");
+    dispatch(addCurrentCategory("Категорія продукту"));
     formik.resetForm();
   };
 
@@ -79,7 +81,7 @@ const TransactionForm = ({ onSubmit }) => {
           />
         </label>
 
-        <Category name="category" onSubmit={setCategories} value={category} />
+        <Category name="category" />
 
         <label className={s.label}>
           <input

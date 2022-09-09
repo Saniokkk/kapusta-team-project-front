@@ -13,7 +13,10 @@ import { BalanceForm } from "components/BalanceForm";
 
 // import { BalanceBtn } from "../BalanceForm/BalanceButton";
 import { NavLink } from "react-router-dom";
-import { addCurrentType } from "redux/extraInfo/extraInfo-slice";
+import {
+  addCurrentType,
+  addCurrentCategory,
+} from "redux/extraInfo/extraInfo-slice";
 import { getDate, getCurrentType } from "redux/extraInfo/extraInfo-selectors";
 
 const ReportSection = () => {
@@ -42,6 +45,18 @@ const ReportSection = () => {
     setProducts((prevState) =>
       prevState.filter((product) => product.id !== Id)
     );
+  };
+
+  const handleBtnClick = (evt) => {
+    if (evt.target.name === "expense") {
+      dispatch(addCurrentType("expenses"));
+      dispatch(addCurrentCategory("Категорія товару"));
+    }
+
+    if (evt.target.name === "income") {
+      dispatch(addCurrentType("income"));
+      dispatch(addCurrentCategory("Категорія доходу"));
+    }
   };
 
   return (
@@ -74,20 +89,22 @@ const ReportSection = () => {
         <div className={styles.transactionSwitch}>
           <button
             type="button"
+            name="expense"
             className={`${styles.btn} ${
               transactionOptions === "expenses" && styles.activeBtn
             }`}
-            onClick={() => dispatch(addCurrentType("expenses"))}
+            onClick={handleBtnClick}
           >
             витрати
           </button>
 
           <button
             type="button"
+            name="income"
             className={`${styles.btn} ${
               transactionOptions === "income" && styles.activeBtn
             }`}
-            onClick={() => dispatch(addCurrentType("income"))}
+            onClick={handleBtnClick}
           >
             доходи
           </button>
