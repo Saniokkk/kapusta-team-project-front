@@ -10,8 +10,7 @@ import { Report } from "../Report";
 import { useDispatch, useSelector } from "react-redux";
 import icon from "assets/symbol-icons.svg";
 import { BalanceForm } from "components/BalanceForm";
-
-// import { BalanceBtn } from "../BalanceForm/BalanceButton";
+import { BalanceBtn } from "../BalanceForm/BalanceButton";
 import {
   addCurrentType,
   addCurrentCategory,
@@ -54,7 +53,7 @@ const ReportSection = () => {
 
   const isMobile = useMediaQuery("only screen and (max-width: 767px)");
   const isTablet = useMediaQuery("only screen and (min-width: 768px)");
-  // const isdesktop = useMediaQuery("only screen and (max-width: 1279px)");
+  const isdesktop = useMediaQuery("only screen and (max-width: 1279px)");
 
   const visible = () => {
     if (isMobile) {
@@ -102,9 +101,9 @@ const ReportSection = () => {
               <div className={styles.balanceForm}>
                 <BalanceForm />
               </div>
-              {/* <div className={styles.balancebtn}>
-              {isdesktop && <BalanceBtn />}
-            </div> */}
+              <div className={styles.balancebtn}>
+                {isdesktop && <BalanceBtn />}
+              </div>
             </div>
 
             <div className={styles.transitionReport}>
@@ -213,19 +212,6 @@ const ReportSection = () => {
 
         {visibleForm && isMobile && (
           <>
-            {/* <button
-              type="button"
-              onClick={() => {
-                setVisibleForm(false);
-                setJumpBetweenDevices(false);
-              }}
-            >
-              на главную
-            </button>
-            <div className={styles.transaction}>
-              <TransactionForm />
-            </div> */}
-
             <button
               type="button"
               className={styles.backReportSectionbtn}

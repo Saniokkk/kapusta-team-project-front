@@ -189,6 +189,7 @@ ul li {
 @media screen and (max-width: 767px) {
   .transactionSwitch {
     position: fixed;
+    margin-left: -20px;
     bottom: 0px;
   }
 }
@@ -214,6 +215,10 @@ ul li {
   border: 1px solid transparent;
 }
 
+.transactionSwitch button.btn:nth-child(1) {
+  margin-right: 4px;
+}
+
 .transactionSwitch button.btn:hover,
 .transactionSwitch button.btn:focus,
 .transactionSwitch button.activeBtn {
@@ -223,9 +228,10 @@ ul li {
 
 @media screen and (max-width: 767px) {
   .transactionSwitch button.btn {
-    background-color: var(--white-color);
+    background-color: var(--grey-bg-home-color);
     border-radius: 0;
     height: 53px;
+    width: 158px;
   }
 
   .transactionSwitch button.btn:hover,
