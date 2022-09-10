@@ -13,32 +13,26 @@ import useWindowDimensions from "hooks/useWindowDimensions";
 
 const BalanceForm = () => {
   const [balance, setBalance] = useState(0);
-
+  const [amount, setAmount] = useState(0);
+  const [disable, setDisable] = useState(false);
   const dispatch = useDispatch();
   const totalBalance = useSelector(selectors.getUserBalance);
   // const disabledButton = useRef(false)
   useEffect(() => {
     if (totalBalance) {
+      setAmount(totalBalance);
       setBalance(totalBalance);
     }
-  }, [totalBalance]);
+    if (balance) {
+      setDisable(true);
+    }
+  }, [balance, totalBalance]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    if (balance === 0) {
-      return <ModalBalanceError />;
-    }
-    if (totalBalance > 0) {
-      const form = e.target;
-      form.elements.input.disabled = "disabled";
-      const button = form.elements.button;
-      button.disabled = "disabled";
-      // disabledButton.current = true
-      console.log(e.target.elements);
-      return;
-    }
-    dispatch(authOperations.updateCurrentUser({ totalBalance: balance }));
+    console.log();
+    setBalance(amount);
+    dispatch(authOperations.updateCurrentUser({ totalBalance: amount }));
   };
 
   const handleChange = (e) => {
@@ -46,7 +40,7 @@ const BalanceForm = () => {
 
     const valueInput = parseFloat(value.split(" ").join(""));
     console.log("value input:", valueInput, "type:", typeof valueInput);
-    setBalance(valueInput);
+    setAmount(valueInput);
   };
 
   const viewPort = useWindowDimensions();
@@ -65,35 +59,23 @@ const BalanceForm = () => {
             name="input"
             thousandSeparator={" "}
             suffix={" UAH"}
-            value={balance}
+            value={amount}
             onChange={handleChange}
             allowLeadingZeros={true}
             isNumericString={true}
             fixedDecimalScale={true}
             decimalScale={2}
-            disabled={balance}
+            disabled={disable}
           />
-          {/* {disabledButton.current === true && <NumberFormat
-            className={styles.form__input}
-            autoComplete="off"
-            name="input"
-            thousandSeparator={" "}
-            suffix={" UAH"}
-            value={balance}
-            onChange={handleChange}
-            allowLeadingZeros={true}
-            isNumericString={true}
-            fixedDecimalScale={true}
-            decimalScale={2}
-            disabled
-          />} */}
+          <div className={styles.modal}>
+            {balance === 0 && <ModalBalanceError />}
+          </div>
 
           {viewPort.width > 1279 && (
             <BalanceBtn onSubmit={handleSubmit} balance={balance} />
           )}
         </div>
       </form>
-      {balance === 0 && <ModalBalanceError />}
     </>
   );
 };
