@@ -18,9 +18,8 @@ const BalanceForm = () => {
   const [amount, setAmount] = useState(0);
   const [disable, setDisable] = useState(false);
 
-  // const disabledButton = useRef(false)
   useEffect(() => {
-    if (totalBalance) {
+    if (totalBalance !== null) {
       setAmount(totalBalance);
       setBalance(totalBalance);
     }
