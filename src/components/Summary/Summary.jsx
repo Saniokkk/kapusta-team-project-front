@@ -1,9 +1,12 @@
 import s from "./Summary.module.scss";
 import { useState, useEffect } from "react";
 import { getTransactionsByType } from "services/reportsApi";
+import selectors from "redux/auth/auth-selector";
+import { useSelector } from "react-redux";
 
 export function Summary() {
   const [data, setData] = useState([]);
+  const totalBalance = useSelector(selectors.getUserBalance);
 
   //useEffect з розпиленням prevState
   useEffect(() => {
@@ -21,7 +24,7 @@ export function Summary() {
     }
 
     fetchTransactions();
-  }, []);
+  }, [totalBalance]);
 
   //зміна для обробки данних: останні шість місяців зверху
   const newData = Object.entries(data).reverse().slice(0, 6);
