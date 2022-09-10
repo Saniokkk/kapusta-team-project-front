@@ -10,14 +10,6 @@
   border-radius: 30px;
   padding: 29px 25px 35px;
 
-  @media screen and(min-width:768px) {
-    padding: 29px 30px 32px;
-    width: 288px;
-    height: 152px;
-  }
-  @media screen and(min-width:1024px) {
-    padding: 29px 30px 32px;
-  }
   @media screen and(min-width:1024px) {
     padding: 29px 30px 32px;
   }
