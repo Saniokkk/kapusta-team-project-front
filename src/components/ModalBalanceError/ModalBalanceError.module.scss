@@ -1,7 +1,6 @@
 .modal {
   display: flex;
   flex-direction: column;
-  position: absolute;
   background: linear-gradient(
     117.84deg,
     var(--triangle-up-color) 2.84%,
@@ -10,29 +9,39 @@
   border-radius: 30px;
   padding: 29px 25px 35px;
 
-  @media screen and(min-width:1024px) {
+  @media screen and (min-width: 1280px) {
     padding: 29px 30px 32px;
   }
 }
 
-.triangle__box {
-  position: relative;
+.triangleBox {
+  position: absolute;
+  z-index: 20;
+  top: 70px;
+  left: -10px;
+  width: 288px;
+  
+  @media screen and (min-width: 768px) {
+    top: 50px;
+    left: 0;
+  }
+    @media screen and (min-width: 1028px) {
+      top: 50px;
+      left: 0;
+    }
 }
 
+
 .text {
-  font-family: "Roboto";
-  font-weight: 400;
   font-size: 14px;
-  line-height: 20px;
+  line-height: 1.42;
   color: var(--white-color);
   margin-bottom: 20px;
 }
 
-.text__modal {
-  font-family: "Roboto";
-  font-weight: 400;
+.textModal {
   font-size: 12px;
-  line-height: 16px;
+  line-height: 1.33;
   color: var(--white-color);
   text-align: left;
 }
