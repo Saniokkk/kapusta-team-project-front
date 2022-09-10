@@ -70,14 +70,18 @@
   }
 
   &:focus {
-    border: 2px solid var(--accent-color);
+    border-color: var(--accent-color);
   }
 
   @media screen and (min-width: 768px) {
     width: 184px;
+    border-right: 0px;
     border-radius: 16px 0px 0px 0px;
     border-color: var(--grey-bg-home-color);
-    border-right: 2px solid var(--white-color);
+
+    &:focus + .borderRight {
+      opacity: 1;
+    }
   }
 
   @media screen and (min-width: 1280px) {
@@ -99,20 +103,23 @@
   }
 
   &:focus {
-    border: 2px solid var(--accent-color);
+    border-color: var(--accent-color);
   }
 
   @media screen and (min-width: 768px) {
     padding: 0px 48px 0px 14px;
     width: 110px;
     font-weight: 400;
-
+    border-left: 0px;
     border-radius: 0px 16px 16px 0px;
     border-color: var(--grey-bg-home-color);
-    border-left: 2px solid var(--white-color);
 
     &::placeholder {
       color: var(--description-color);
+    }
+
+    &:focus + .borderLeft {
+      opacity: 1;
     }
   }
 
@@ -121,20 +128,38 @@
   }
 }
 
-/* custom border for dropdown menu */
+/* custom borders for inputs */
 
-.borderTop {
+.borderRight,
+.borderLeft,
+.borderMiddle {
   position: absolute;
-  top: 2px;
-  left: 124px;
-  width: 0;
-  height: 91%;
-  color: var(--black-text-color);
-  border: 1px solid var(--white-color);
-  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background-color: var(--accent-color);
+  opacity: 0;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-  .inputSum:focus + & {
-    border: 1px solid var(--accent-color);
+.borderRight {
+  right: -2px;
+  z-index: 4;
+}
+
+.borderLeft {
+  left: -2px;
+  z-index: 4;
+}
+
+.borderMiddle {
+  left: 124px;
+  background-color: var(--white-color);
+  opacity: 1;
+  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  .inputSum:focus ~ & {
+    background-color: var(--accent-color);
   }
 
   @media screen and (min-width: 768px) {

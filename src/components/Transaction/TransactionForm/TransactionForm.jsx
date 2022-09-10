@@ -85,6 +85,7 @@ const TransactionForm = ({ onSubmit }) => {
             value={description}
             onChange={formik.handleChange}
           />
+          <span className={s.borderRight}></span>
         </label>
 
         <Category name="category" />
@@ -102,7 +103,10 @@ const TransactionForm = ({ onSubmit }) => {
               //negativeSum(e.target.value);
             }}
           />
-          <span className={s.borderTop}></span>
+
+          <span className={s.borderLeft}></span>
+          <span className={s.borderMiddle}></span>
+
           <svg className={s.icon} width="20" height="20">
             <use href={`${icons}#icon-calculator`} />
           </svg>
