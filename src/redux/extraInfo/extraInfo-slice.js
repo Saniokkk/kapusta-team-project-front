@@ -6,7 +6,7 @@ const day = String(new Date().getDate());
 
 const initialState = {
   date: { day, month, year },
-  currentType: "expenses",
+  currentType: "expense",
   currentCategory: "Категорія продукту",
 };
 

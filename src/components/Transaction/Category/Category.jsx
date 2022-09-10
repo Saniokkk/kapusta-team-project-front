@@ -36,7 +36,7 @@ const Category = () => {
   const currentCategory = useSelector(getCurrentCategory);
 
   const categoryType =
-    transactionType === "expenses" ? categoriesExpense : categoriesIncome;
+    transactionType === "expense" ? categoriesExpense : categoriesIncome;
 
   const handleChange = (evt) => {
     const {

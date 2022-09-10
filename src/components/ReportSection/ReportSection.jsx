@@ -15,7 +15,8 @@ import {
   addCurrentType,
   addCurrentCategory,
 } from "redux/extraInfo/extraInfo-slice";
-import { getDate, getCurrentType } from "redux/extraInfo/extraInfo-selectors";
+import { getCurrentType } from "redux/extraInfo/extraInfo-selectors";
+import ProductListMobile from "./ProductListMobile/ProductListMobile";
 
 const ReportSection = () => {
   const [products, setProducts] = useState([
@@ -25,31 +26,13 @@ const ReportSection = () => {
       categories: "Транспорт",
       sum: "8.00",
     },
-    {
-      id: "id-2",
-      description: "Бананы",
-      categories: "Продукты",
-      sum: "30.00",
-    },
-    {
-      id: "id-3",
-      description: "Яблоки",
-      categories: "Продукты",
-      sum: "25.00",
-    },
-    {
-      id: "id-4",
-      description: "Метро",
-      categories: "Транспорт",
-      sum: "8.00",
-    },
   ]);
+
   const [visibleForm, setVisibleForm] = useState(false);
   const [jumpBetweenDevices, setJumpBetweenDevices] = useState(false);
 
   const dispatch = useDispatch();
   const transactionOptions = useSelector(getCurrentType);
-  const date = useSelector(getDate);
 
   const isMobile = useMediaQuery("only screen and (max-width: 767px)");
   const isTablet = useMediaQuery("only screen and (min-width: 768px)");
@@ -75,11 +58,11 @@ const ReportSection = () => {
     }
 
     setVisibleForm(false);
-  }, [isMobile, setProducts, visibleForm, jumpBetweenDevices, isTablet]);
+  }, [isMobile, setProducts, jumpBetweenDevices]);
 
   const handleBtnClick = (evt) => {
     if (evt.target.name === "expense") {
-      dispatch(addCurrentType("expenses"));
+      dispatch(addCurrentType("expense"));
       dispatch(addCurrentCategory("Категорія товару"));
     }
 
@@ -107,15 +90,9 @@ const ReportSection = () => {
             </div>
 
             <div className={styles.transitionReport}>
-              {transactionOptions === "expenses" ? (
-                <NavLink to="/report" exact className={styles.link}>
-                  <Report />
-                </NavLink>
-              ) : (
-                <NavLink to="" exact className={styles.link}>
-                  <Report />
-                </NavLink>
-              )}
+              <NavLink to="/report" exact className={styles.link}>
+                <Report />
+              </NavLink>
             </div>
           </div>
         )}
@@ -126,7 +103,7 @@ const ReportSection = () => {
               type="button"
               name="expense"
               className={`${styles.btn} ${
-                transactionOptions === "expenses" && styles.activeBtn
+                transactionOptions === "expense" && styles.activeBtn
               }`}
               onClick={handleBtnClick}
             >
@@ -153,47 +130,11 @@ const ReportSection = () => {
                 <div className={styles.transactionDate}>
                   <Datepicker />
                 </div>
-
-                <ul className={styles.transactionList}>
-                  {products.map(({ id, description, categories, sum }) => {
-                    return (
-                      <li key={id} className={styles.transactionListItem}>
-                        <ul>
-                          <li>
-                            <p className={styles.description}>{description}</p>
-                            <p
-                              className={styles.date}
-                            >{`${date.day}.${date.month}.${date.year}`}</p>
-                          </li>
-                          <li className={styles.categories}>
-                            <p>{categories}</p>
-                          </li>
-                          <li className={styles.sum}>
-                            <p>{sum}</p>
-                          </li>
-                          <li>
-                            <button
-                              className={styles.button}
-                              type="button"
-                              // onClick={() => deleteTransaction(id)}
-                            >
-                              <svg
-                                className={styles.icon}
-                                width="18"
-                                height="18"
-                              >
-                                <use href={`${icon}#icon-delete`} />
-                              </svg>
-                            </button>
-                          </li>
-                        </ul>
-                      </li>
-                    );
-                  })}
-                </ul>
+                <ProductListMobile visible={products} />
               </>
             )}
 
+            {/* компоненты форма с кнопками "ввести" , "очистити" */}
             {isTablet && (
               <>
                 <div className={styles.transaction}>
@@ -210,6 +151,7 @@ const ReportSection = () => {
           </div>
         )}
 
+        {/* кнопка на главную на мобильном устройстви */}
         {visibleForm && isMobile && (
           <>
             <button
