@@ -17,7 +17,6 @@ const ExpensesReportPage = () => {
 
   return (
     <>
-      <h2>Hello</h2>
       <BackgroundBottom>
         <div className={styles.reportWrapper}>
           <ButtonToHome />
