@@ -5,8 +5,8 @@ import {
 } from "redux/extraInfo/extraInfo-selectors";
 import { addCurrentCategory } from "redux/extraInfo/extraInfo-slice";
 import { useState } from "react";
-import s from "./Category.module.scss";
 import icon from "assets/symbol-icons.svg";
+import s from "./Category.module.scss";
 
 const categoriesExpense = [
   { id: 1, title: "Транспорт" },
@@ -42,12 +42,12 @@ const Category = () => {
     const {
       dataset: { action },
     } = evt.target;
-    console.log(action);
     dispatch(addCurrentCategory(action));
     setМenu(false);
   };
 
-  const isActiveClass = menu ? `${s.buttonActive}` : `${s.buttonCommon}`;
+  const dropDownClass = menu ? `${s.buttonActive}` : `${s.buttonCommon}`;
+  const borderClass = menu ? `${s.borderTopActive}` : `${s.borderTop}`;
 
   return (
     <div className={s.wrapper}>
@@ -58,7 +58,7 @@ const Category = () => {
 
       <div className={s.dropDownWrapper}>
         <button
-          className={`${s.dropDown} ${isActiveClass}`}
+          className={`${s.dropDown} ${dropDownClass}`}
           type="button"
           onClick={() => (!menu ? setМenu(true) : setМenu(false))}
         >
@@ -68,6 +68,7 @@ const Category = () => {
             <use href={`${icon}#icon-categories`} />
           </svg>
         </button>
+        <span className={borderClass}></span>
       </div>
 
       {menu && (
