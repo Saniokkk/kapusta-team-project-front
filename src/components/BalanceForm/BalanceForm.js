@@ -12,11 +12,12 @@ import { BalanceBtn } from "./BalanceButton";
 import useWindowDimensions from "hooks/useWindowDimensions";
 
 const BalanceForm = () => {
+  const dispatch = useDispatch();
+  const totalBalance = useSelector(selectors.getUserBalance);
   const [balance, setBalance] = useState(0);
   const [amount, setAmount] = useState(0);
   const [disable, setDisable] = useState(false);
-  const dispatch = useDispatch();
-  const totalBalance = useSelector(selectors.getUserBalance);
+
   // const disabledButton = useRef(false)
   useEffect(() => {
     if (totalBalance) {

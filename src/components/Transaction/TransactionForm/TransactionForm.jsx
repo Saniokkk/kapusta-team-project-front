@@ -10,6 +10,7 @@ import Category from "components/Transaction/Category/Category";
 import { motion } from "framer-motion";
 import icons from "assets/symbol-icons.svg";
 import s from "./TransactionForm.module.scss";
+import authOperations from "redux/auth/auth-operations";
 
 const TransactionForm = ({ onSubmit }) => {
   //const [price, setPrice] = useState(0);
@@ -42,7 +43,11 @@ const TransactionForm = ({ onSubmit }) => {
       };
       console.log(transaction);
       //onSubmit(description, category, price);
-      addTransactionExpense(transaction);
+      addTransactionExpense(transaction).then((res) => {
+        dispatch(
+          authOperations.updateCurrentUser({ totalBalance: res.totalBalance })
+        );
+      });
       dispatch(addCurrentCategory("Категорія продукту"));
       resetForm();
     },
