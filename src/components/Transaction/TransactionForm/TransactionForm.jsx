@@ -1,7 +1,10 @@
 import { useFormik } from "formik";
 import { useMediaQuery } from "@react-hook/media-query";
 import { useSelector, useDispatch } from "react-redux";
-import { getCurrentCategory } from "redux/extraInfo/extraInfo-selectors";
+import {
+  getCurrentCategory,
+  getCurrentType,
+} from "redux/extraInfo/extraInfo-selectors";
 import { addCurrentCategory } from "redux/extraInfo/extraInfo-slice";
 import { calendarSelectors } from "../../../redux/extraInfo";
 import { addTransactionExpense } from "services/transactionsApi";
@@ -17,6 +20,7 @@ import { Notify } from "notiflix/build/notiflix-notify-aio";
 const TransactionForm = ({ onSubmit }) => {
   //const [price, setPrice] = useState(0);
   const dispatch = useDispatch();
+  const transactionType = useSelector(getCurrentType);
   const currentCategory = useSelector(getCurrentCategory);
   const totalBalance = useSelector(selectors.getUserBalance);
 
@@ -38,7 +42,7 @@ const TransactionForm = ({ onSubmit }) => {
       sum: "",
     },
     onSubmit: (values, { resetForm }) => {
-      if (totalBalance < sum) {
+      if (totalBalance < sum && transactionType !== "income") {
         Notify.info("Ваш баланс недостатній для здійснення операції");
         return;
       }
