@@ -11,11 +11,14 @@ import { motion } from "framer-motion";
 import icons from "assets/symbol-icons.svg";
 import s from "./TransactionForm.module.scss";
 import authOperations from "redux/auth/auth-operations";
+import selectors from "redux/auth/auth-selector";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 
 const TransactionForm = ({ onSubmit }) => {
   //const [price, setPrice] = useState(0);
   const dispatch = useDispatch();
   const currentCategory = useSelector(getCurrentCategory);
+  const totalBalance = useSelector(selectors.getUserBalance);
 
   const pickedDate = useSelector(calendarSelectors.getDate);
   const dayWithZero = ("0" + pickedDate.day).slice(-2);
@@ -35,6 +38,10 @@ const TransactionForm = ({ onSubmit }) => {
       sum: "",
     },
     onSubmit: (values, { resetForm }) => {
+      if (totalBalance < sum) {
+        Notify.info("Ваш баланс недостатній для здійснення операції");
+        return;
+      }
       const transaction = {
         date: convertedDate,
         description,
@@ -44,6 +51,7 @@ const TransactionForm = ({ onSubmit }) => {
       console.log(transaction);
       //onSubmit(description, category, price);
       addTransactionExpense(transaction).then((res) => {
+        console.log(res.totalBalance, "Balans");
         dispatch(
           authOperations.updateCurrentUser({ totalBalance: res.totalBalance })
         );
