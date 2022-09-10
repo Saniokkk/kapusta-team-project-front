@@ -7,26 +7,28 @@ import CurrentMonth from 'components/CurrentMonth/CurrentMonth';
 import styles from './ReportPage.module.css';
 
 import { Dashboard } from 'components/Dashboard/Dashboard';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 
 const ExpensesReportPage = () => {
-  const location = useLocation();
-  const { state } = location;
-  console.log(state.from);
-  let category = state.from;
-  // console.log(category);
+  // const location = useLocation();
+  // const { state } = location;
+  // console.log(state.from);
+  // let category = state.from;
 
   return (
-    <BackgroundBottom>
-      <div className={styles.reportWrapper}>
-        <ButtonToHome />
-        <div className={styles.reportFlexbox}>
-          <BalanceForm />
-          <CurrentMonth />
+    <>
+      <h2>Hello</h2>
+      <BackgroundBottom>
+        <div className={styles.reportWrapper}>
+          <ButtonToHome />
+          <div className={styles.reportFlexbox}>
+            <BalanceForm />
+            <CurrentMonth />
+          </div>
         </div>
-      </div>
-      <Dashboard category={category} />
-    </BackgroundBottom>
+        <Dashboard />
+      </BackgroundBottom>
+    </>
   );
 };
 
