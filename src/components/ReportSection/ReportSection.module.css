@@ -209,8 +209,10 @@ ul li {
   border: 1px solid transparent;
 }
 
-.transactionSwitch button.btn:nth-child(1) {
-  margin-right: 4px;
+@media screen and (max-width: 767px) {
+  .transactionSwitch button.btn:nth-child(1) {
+    margin-right: 4px;
+  }
 }
 
 .transactionSwitch button.btn:hover,
@@ -218,6 +220,10 @@ ul li {
 .transactionSwitch button.activeBtn {
   background-color: var(--report-transition-switch);
   color: var(--accent-color);
+}
+
+.transactionSwitch button.btn:disabled {
+  cursor: default;
 }
 
 @media screen and (max-width: 767px) {

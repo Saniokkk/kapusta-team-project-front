@@ -104,6 +104,7 @@ const ReportSection = () => {
               className={`${styles.btn} ${
                 transactionOptions === "expense" && styles.activeBtn
               }`}
+              disabled={transactionOptions === "expense" ? true : false}
               onClick={handleBtnClick}
             >
               витрати
@@ -115,6 +116,7 @@ const ReportSection = () => {
               className={`${styles.btn} ${
                 transactionOptions === "income" && styles.activeBtn
               }`}
+              disabled={transactionOptions === "income" ? true : false}
               onClick={handleBtnClick}
             >
               доходи
