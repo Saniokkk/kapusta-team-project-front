@@ -15,7 +15,7 @@ import icons from 'assets/symbol-icons.svg';
 import s from './TransactionForm.module.scss';
 import authOperations from 'redux/auth/auth-operations';
 import selectors from 'redux/auth/auth-selector';
-// import { Notify } from "notiflix/build/notiflix-notify-aio";
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 const TransactionForm = ({ onSubmit }) => {
   //const [price, setPrice] = useState(0);
@@ -43,7 +43,7 @@ const TransactionForm = ({ onSubmit }) => {
     },
     onSubmit: (values, { resetForm }) => {
       if (totalBalance < sum && transactionType !== 'income') {
-        // Notify.info("Ваш баланс недостатній для здійснення операції");
+        Notify.info('Ваш баланс недостатній для здійснення операції');
         return;
       }
       const transaction = {
