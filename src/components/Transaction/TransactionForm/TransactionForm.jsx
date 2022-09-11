@@ -1,35 +1,35 @@
 import { useFormik } from "formik";
 import { useMediaQuery } from "@react-hook/media-query";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  getCurrentCategory,
-  getCurrentType,
-} from "redux/extraInfo/extraInfo-selectors";
-import { addCurrentCategory } from "redux/extraInfo/extraInfo-slice";
+import selectors from "redux/auth/auth-selector";
+import authOperations from "redux/auth/auth-operations";
 import { calendarSelectors } from "../../../redux/extraInfo";
-import { addTransactionExpense } from "services/transactionsApi";
+import { addCurrentCategory } from "redux/extraInfo/extraInfo-slice";
+import {
+  getCurrentType,
+  getCurrentCategory,
+} from "redux/extraInfo/extraInfo-selectors";
+import {
+  addTransactionExpense,
+  addTransactionIncome,
+} from "services/transactionsApi";
 import Datepicker from "components/DatePicker/Datepicker";
 import Category from "components/Transaction/Category/Category";
 import { motion } from "framer-motion";
+import { Notify } from "notiflix/build/notiflix-notify-aio";
 import icons from "assets/symbol-icons.svg";
 import s from "./TransactionForm.module.scss";
-import authOperations from "redux/auth/auth-operations";
-import selectors from "redux/auth/auth-selector";
-import { Notify } from "notiflix/build/notiflix-notify-aio";
 
-const TransactionForm = ({ onSubmit }) => {
-  //const [price, setPrice] = useState(0);
+const TransactionForm = () => {
   const dispatch = useDispatch();
   const transactionType = useSelector(getCurrentType);
   const currentCategory = useSelector(getCurrentCategory);
   const totalBalance = useSelector(selectors.getUserBalance);
-
   const pickedDate = useSelector(calendarSelectors.getDate);
+
   const dayWithZero = ("0" + pickedDate.day).slice(-2);
   const monthWithZero = ("0" + pickedDate.month).slice(-2);
-  // const convertedDate = `${dayWithZero}.${monthWithZero}.${pickedDate.year}`;
-  const convertedDate = `${pickedDate.year}.${monthWithZero}.${dayWithZero}`;
-  //console.log(convertedDate);
+  const convertedDate = `${pickedDate.year}-${monthWithZero}-${dayWithZero}`;
 
   const isMobile = useMediaQuery("only screen and (max-width: 767px)");
   const isTablet = useMediaQuery("only screen and (min-width: 768px)");
@@ -46,45 +46,49 @@ const TransactionForm = ({ onSubmit }) => {
         Notify.info("Ваш баланс недостатній для здійснення операції");
         return;
       }
+
       const transaction = {
         date: convertedDate,
         description,
-        category: currentCategory,
+        category: currentCategory === "Здоров'я" ? "Здоровя" : currentCategory,
         sum,
       };
-      console.log(transaction);
-      //onSubmit(description, category, price);
-      addTransactionExpense(transaction).then((res) => {
-        console.log(res.totalBalance, "Balans");
-        dispatch(
-          authOperations.updateCurrentUser({ totalBalance: res.totalBalance })
-        );
-      });
-      dispatch(addCurrentCategory("Категорія продукту"));
+
+      handleSubmitData(transaction);
       resetForm();
     },
   });
 
   const { description, sum } = formik.values;
 
-  //округление до сотых
-  // const negativeSum = (price) => {
-  //   const index = `${price}.00`.indexOf(".");
-  //   const number = `${price}.00`.slice(0, index + 3);
-  //   const posNumber = Number.parseFloat(`${number}`).toFixed(2);
-  //   const negNumber = `- ${posNumber} грн.`;
+  const handleSubmitData = (transaction) => {
+    if (transactionType === "expense") {
+      addTransactionExpense(transaction).then((res) => {
+        dispatch(
+          authOperations.updateCurrentUser({ totalBalance: res.totalBalance })
+        );
+      });
+    }
 
-  //   return negNumber;
-  // };
+    if (transactionType === "income") {
+      addTransactionIncome(transaction).then((res) => {
+        dispatch(
+          authOperations.updateCurrentUser({ totalBalance: res.totalBalance })
+        );
+      });
+    }
+
+    dispatch(addCurrentCategory("Категорія"));
+  };
 
   const reset = () => {
-    dispatch(addCurrentCategory("Категорія продукту"));
+    dispatch(addCurrentCategory("Категорія"));
     formik.resetForm();
   };
 
   return (
     <div className={s.formWrapper}>
-      <form onSubmit={formik.handleSubmit} className={s.form} id="example">
+      <form onSubmit={formik.handleSubmit} className={s.form} id="transactions">
         {isTablet ? <Datepicker /> : <></>}
         <label className={s.label}>
           <input
@@ -112,7 +116,6 @@ const TransactionForm = ({ onSubmit }) => {
             value={sum}
             onChange={(e) => {
               formik.handleChange(e);
-              //negativeSum(e.target.value);
             }}
           />
 
@@ -129,7 +132,7 @@ const TransactionForm = ({ onSubmit }) => {
         <motion.button
           type="submit"
           className={s.submitBtn}
-          form="example"
+          form="transactions"
           whileHover={{ scale: 1.1 }}
           transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >

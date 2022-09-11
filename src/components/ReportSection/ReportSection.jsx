@@ -63,14 +63,13 @@ const ReportSection = () => {
   const handleBtnClick = (evt) => {
     if (evt.target.name === "expense") {
       dispatch(addCurrentType("expense"));
-      dispatch(addCurrentCategory("Категорія товару"));
     }
 
     if (evt.target.name === "income") {
       dispatch(addCurrentType("income"));
-      dispatch(addCurrentCategory("Категорія доходу"));
     }
 
+    dispatch(addCurrentCategory("Категорія"));
     visible();
   };
 
@@ -105,6 +104,7 @@ const ReportSection = () => {
               className={`${styles.btn} ${
                 transactionOptions === "expense" && styles.activeBtn
               }`}
+              disabled={transactionOptions === "expense" ? true : false}
               onClick={handleBtnClick}
             >
               витрати
@@ -116,6 +116,7 @@ const ReportSection = () => {
               className={`${styles.btn} ${
                 transactionOptions === "income" && styles.activeBtn
               }`}
+              disabled={transactionOptions === "income" ? true : false}
               onClick={handleBtnClick}
             >
               доходи
