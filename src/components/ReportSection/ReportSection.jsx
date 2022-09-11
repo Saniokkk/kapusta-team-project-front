@@ -38,6 +38,18 @@ const ReportSection = () => {
   const isTablet = useMediaQuery("only screen and (min-width: 768px)");
   const isdesktop = useMediaQuery("only screen and (max-width: 1279px)");
 
+  const isDisabledExpense = isMobile
+    ? false
+    : transactionOptions === "expense"
+    ? true
+    : false;
+
+  const isDisabledIncome = isMobile
+    ? false
+    : transactionOptions === "income"
+    ? true
+    : false;
+
   const visible = () => {
     if (isMobile) {
       setVisibleForm(true);
@@ -104,7 +116,7 @@ const ReportSection = () => {
               className={`${styles.btn} ${
                 transactionOptions === "expense" && styles.activeBtn
               }`}
-              disabled={transactionOptions === "expense" ? true : false}
+              disabled={isDisabledExpense}
               onClick={handleBtnClick}
             >
               витрати
@@ -116,7 +128,7 @@ const ReportSection = () => {
               className={`${styles.btn} ${
                 transactionOptions === "income" && styles.activeBtn
               }`}
-              disabled={transactionOptions === "income" ? true : false}
+              disabled={isDisabledIncome}
               onClick={handleBtnClick}
             >
               доходи
