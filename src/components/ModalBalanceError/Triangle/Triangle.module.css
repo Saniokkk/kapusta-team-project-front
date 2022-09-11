@@ -4,9 +4,7 @@
   left: 87px;
 }
 
-.triangle__up {
-  width: 0;
-  height: 0;
+.triangleUp {
   border-left: 12px solid transparent;
   border-right: 12px solid transparent;
   border-bottom: 10px solid var(--triangle-up-color);

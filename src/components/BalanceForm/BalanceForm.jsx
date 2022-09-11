@@ -1,4 +1,3 @@
-import styles from "./BalanceForm.module.scss";
 import NumberFormat from "react-number-format";
 import selectors from "redux/auth/auth-selector";
 import { useSelector } from "react-redux";
@@ -10,6 +9,8 @@ import { useState, useEffect } from "react";
 import { BalanceBtn } from "./BalanceButton";
 
 import useWindowDimensions from "hooks/useWindowDimensions";
+
+import styles from "./BalanceForm.module.scss";
 
 const BalanceForm = () => {
   const dispatch = useDispatch();
@@ -67,9 +68,7 @@ const BalanceForm = () => {
             decimalScale={2}
             disabled={disable}
           />
-          <div className={styles.modal}>
-            {balance === 0 && <ModalBalanceError />}
-          </div>
+          {balance === 0 && <ModalBalanceError />}
 
           {viewPort.width > 1279 && (
             <BalanceBtn onSubmit={handleSubmit} balance={balance} />

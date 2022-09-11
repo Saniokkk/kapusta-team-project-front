@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import s from "./ModalLogout.module.scss";
 import icon from "assets/sprite-icons.svg";
 import { gsap, Power1 } from "gsap";
 import { motion } from "framer-motion";
+import s from "./ModalLogout.module.scss";
 
 const ModalLogout = ({
   handleClickLeft,
@@ -65,7 +65,7 @@ const ModalLogout = ({
         </div>
 
         <div className={s.buttons}>
-          <div className={s.divbtn} ref={(el) => (buttons = el)}>
+          <div className={s.divBtn} ref={(el) => (buttons = el)}>
             <motion.button
               className={s.outBtnn}
               onClick={handleClickLeft}

@@ -21,7 +21,6 @@
 }
 .form__title {
   margin-bottom: 8px;
-  font-family: "Roboto";
   font-weight: 500;
   font-size: 12px;
   line-height: 14px;
@@ -42,8 +41,6 @@
 }
 
 .form__input {
-  font-family: "Roboto";
-  font-style: normal;
   font-weight: 700;
   font-size: 12px;
   line-height: 14px;
@@ -94,6 +91,7 @@
   padding: 12px 22px 12px 18px;
   border: 2px solid var(--white-color);
   border-radius: 0px 22px 22px 0px;
+  
   @media screen and (min-width: 768px) {
     margin-left: 15px;
     border: 2px solid var(--white-color);
