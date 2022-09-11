@@ -8,6 +8,7 @@ import {
   LabelList,
   ResponsiveContainer,
   Text,
+  Label,
   // Label,
   // Brush,
 } from 'recharts';
@@ -49,8 +50,9 @@ const renderCustomizedLabel = (props) => {
         fontWeight={400}
         letterSpacing={'0.02em'}
         fill='#52555F'
-        textAnchor='middle'
+        // textAnchor='middle'
         dominantBaseline='middle'
+        textAnchor='start'
       >
         {value.toString() + ' грн'}
       </text>
@@ -59,7 +61,9 @@ const renderCustomizedLabel = (props) => {
 };
 
 const MobileChart = ({ items }) => {
-  const sortedData = [...items].sort((a, b) => b.amount - a.amount);
+  console.log(items);
+  const sortedData = [...items].sort((a, b) => b.sum - a.sum);
+  console.log(sortedData);
   return (
     <>
       <ResponsiveContainer width='99%' height={400}>
@@ -77,21 +81,21 @@ const MobileChart = ({ items }) => {
         >
           <XAxis
             type='number'
-            dataKey='sum'
+            dataKey='num'
             // tickCount={500}
             ticks={[
               0, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000,
               5500,
             ]}
-            axisLine={false}
-            tickLine={false}
+            // axisLine={true}
+            // tickLine={false}
             hide={true}
             domain={['dataMin', 'dataMax']}
-            // label={{ position: 'insideTop' }}
+            label={{ position: 'insideTop' }}
+
             // allowDataOverflow={true}
             // type='category'
-            // axisLine={false}
-            // tickLine={false}
+
             // minTickGap={5}
             // fontSize={12}
             // fontWeight={400}
@@ -112,18 +116,22 @@ const MobileChart = ({ items }) => {
             // domain={}
             // domain={[-1, 1]}
             // orientation='right'
-          />
-          <Text scaleToFit={true} width={30} />
+          ></YAxis>
+          {/* <Text scaleToFit={true} width={30} /> */}
           {/* <Brush dataKey='name' height={30} stroke='#8884d8' /> */}
           <Bar
-            dataKey='amount'
+            dataKey='sum'
             // fill={'#FFDAC0'}
             radius={[0, 10, 10, 0]}
             barSize={15}
             // label={{ position: 'top' }}
             // style={{ stroke: '#000' }}
           >
-            <LabelList dataKey='sum' content={renderCustomizedLabel} />
+            <LabelList
+              dataKey='sum'
+              content={renderCustomizedLabel}
+              position='insideTopRight'
+            />
             {sortedData.map((entry, index) => (
               <Cell fill={index % 3 === 0 ? '#FF751D' : '#FFDAC0'} />
             ))}

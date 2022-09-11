@@ -1,13 +1,14 @@
-// import Chart from 'components/BarChart/BarChart';
+import Chart from 'components/BarChart/BarChart';
+import MobileChart from 'components/BarChart/MobileChart';
 
-// import MobileChart from 'components/BarChart/MobileChart';
 import { CardExpenses } from 'components/CardExpenses';
 import { ProfitStats } from 'components/ProfitStats/ProfitStats';
+import { ReportTitle } from './ReportTitle';
 import {
   localizationExpense,
   localizationIncome,
 } from 'helpers/localizationCategory';
-// import useWindowDimensions from 'hooks/useWindowDimensions';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
@@ -18,7 +19,7 @@ import {
 import { getTransactionsByMonth } from 'services/reportsApi';
 
 import styles from './ReportSummary.module.css';
-import { ReportTitle } from './ReportTitle';
+// import ReportChartDesktop from 'components/BarChart/ChartTest';
 
 const dataExpenses = {
   Транспорт: 3500,
@@ -33,23 +34,24 @@ const dataExpenses = {
   Освіта: 3500,
   Інше: 200,
 };
-// const itemsforChart = [
-//   {
-//     // title: 'Продукти',
-//     sum: 5000.0,
-//     category: 'products',
-//     // description: 'banana',
-//     title: 'морква',
-//   },
-//   {
-//     // title: 'Продукти',
-//     pathIcon: 'products',
-//     sum: 5000.0,
-//     category: 'products',
-//     // description: 'banana',
-//     title: 'банан',
-//   },
-// ];
+const itemsforChart = [
+  {
+    sum: 5000.0,
+    title: 'морква',
+  },
+  {
+    sum: 300.0,
+    title: 'банан',
+  },
+  // {
+  //   sum: 500.0,
+  //   title: 'хліб',
+  // },
+  // {
+  //   sum: 1500.0,
+  //   title: 'молоко',
+  // },
+];
 
 const dataIncome = {
   Дохід: 7000,
@@ -70,7 +72,7 @@ export const Dashboard = ({ category }) => {
   // console.log('year', year);
 
   // console.log('transactionOption', transactionOption);
-  // const viewPort = useWindowDimensions();
+  const viewPort = useWindowDimensions();
 
   const option = transactionOption === 'income' ? 'дохід' : 'витрати';
   // console.log('option', option);
@@ -79,6 +81,7 @@ export const Dashboard = ({ category }) => {
     async function getTransactions() {
       try {
         const transactions = await getTransactionsByMonth(month, year);
+        console.log(transactions);
         // const expenses = localizationExpense(
         //   transactions.totalExpanseByCategory
         // );
@@ -88,8 +91,8 @@ export const Dashboard = ({ category }) => {
 
         // console.log('ExpanseByCategory', transactions.totalExpanseByCategory);
         // console.log('IncomeByCategory', transactions.totalIncomeByCategory);
-        // console.log(transactions.totalExpense);
-        // console.log(transactions.totalIncome);
+        console.log(transactions.totalExpense);
+        console.log(transactions.totalIncome);
 
         if (option === 'витрати') {
           setItems(expenses);
@@ -107,6 +110,7 @@ export const Dashboard = ({ category }) => {
     getTransactions();
   }, [month, year, option]);
 
+  // const itemsOrig = items ? items : 'Упссс, даних немає!';
   return (
     <>
       <ProfitStats totalExp={totalExp} totalInc={totalInc} />
@@ -121,11 +125,13 @@ export const Dashboard = ({ category }) => {
 
       <div className={styles.graphBox}>
         <div className={styles.wrapper}>
-          {/* {viewPort.width < 767 ? (
+          {/* <ReportChartDesktop data={itemsforChart} /> */}
+          {viewPort.width < 767 ? (
             <MobileChart items={itemsforChart} />
           ) : (
             <Chart items={itemsforChart} />
-          )} */}
+          )}
+          {/* <MobileChart items={itemsforChart} /> */}
         </div>
       </div>
     </>

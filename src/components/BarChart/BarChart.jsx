@@ -22,7 +22,6 @@ import {
 //  { title: 'Продукти', pathIcon: 'products', sum: 5000.0 },
 const renderCustomizedLabel = (props) => {
   const { x, y, width, value } = props;
-  const radius = 10;
 
   return (
     <g>
@@ -30,7 +29,7 @@ const renderCustomizedLabel = (props) => {
         width={10}
         height={20}
         x={x + width / 2}
-        y={y - radius}
+        y={y - 10}
         fontSize={12}
         fontFamily='Roboto'
         fontWeight={400}
@@ -46,8 +45,11 @@ const renderCustomizedLabel = (props) => {
 };
 
 const Chart = ({ items }) => {
-  // const Chart = () => {
-  const sortedData = [...items].sort((a, b) => b.amount - a.amount);
+  // let chartWidth = 600;
+  // if (items.length > 10){
+  //   chartWidth=65*items.length
+  // }
+  const sortedData = [...items].sort((a, b) => b.sum - a.sum);
 
   let chartWidth = 200;
   if (sortedData.length > 2) {
@@ -71,78 +73,86 @@ const Chart = ({ items }) => {
   }
 
   return (
-    // <ResponsiveContainer width='99%' height={400}>
-    // {/* <ResponsiveContainer width={704} height='98%'> */}
-    <ResponsiveContainer
-      width={chartWidth}
-      height='99%'
-      className={styles.centered}
-    >
-      <BarChart
-        // data={sortedData}
-        data={items}
-        maxBarSize={38}
-        // width={400}
-        width={400}
-        // width={200}
-        // height={350}
-        barCategoryGap={25}
-        barGap={5}
-        // style={{ stroke: '#fff', strokeWidth: 2 }}
-        margin={{
-          top: 5,
-          right: 20,
-          left: 30,
-          bottom: 5,
-        }}
+    <>
+      <ResponsiveContainer
+        width={chartWidth}
+        height='99%'
+        className={styles.centered}
       >
-        <CartesianGrid stroke='#f5f5f5' vertical={false} />
-        <XAxis
-          // allowDataOverflow={false}
-          dataKey='title'
-          axisLine={false}
-          tickLine={false}
-          minTickGap={5}
-          fontSize={12}
-          fontWeight={400}
-          fontFamily={'Roboto'}
-          letterSpacing={'0.02em'}
-          domain={['dataMin', 'dataMax']}
-        />
-        <YAxis
-          dataKey='sum'
-          // type='number'
-          // domain={[-1, 1]}
-          tickCount={600}
-          axisLine={false}
-          tickLine={false}
-          hide={true}
-          label={{ position: 'top' }}
-          // allowDataOverflow={false}
-        />
-        <Text scaleToFit={true} width={30} />
-        {/* <Brush dataKey='name' height={30} stroke='#8884d8' /> */}
-        <Bar
-          dataKey='sum'
-          barSize={38}
-          // fill={'#FFDAC0'}
-          radius={[10, 10, 0, 0]}
-          // barSize={38}
-          // label={{ position: 'top' }}
-          // style={{ stroke: '#000' }}
+        <BarChart
+          // data={sortedData}
+          data={items}
+          maxBarSize={38}
+          // width={400}
+          width={400}
+          // width={200}
+          // height={350}
+          barCategoryGap={25}
+          barGap={5}
+          // style={{ stroke: '#fff', strokeWidth: 2 }}
+          margin={{
+            top: 5,
+            right: 20,
+            left: 30,
+            bottom: 5,
+          }}
         >
-          <LabelList dataKey='sum' content={renderCustomizedLabel} />
-          {/* {sortedData.map((entry, index) => ( */}
-          {items.map((entry, index) => (
-            <Cell
-              // key={entry.id}
-              fill={index % 3 === 0 ? '#FF751D' : '#FFDAC0'}
+          <CartesianGrid stroke='#f5f5f5' vertical={false} />
+          <XAxis
+            // allowDataOverflow={false}
+            dataKey='title'
+            axisLine={false}
+            tickLine={false}
+            minTickGap={5}
+            fontSize={12}
+            fontWeight={400}
+            fontFamily={'Roboto'}
+            letterSpacing={'0.02em'}
+            domain={['dataMin', 'dataMax']}
+            // ticks={[
+            //   0, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000,
+            //   5500,
+            // ]}
+          />
+          <YAxis
+            dataKey='sum'
+            type='number'
+            tickCount={600}
+            axisLine={false}
+            tickLine={false}
+            hide={true}
+            label={{ position: 'top' }}
+            // allowDataOverflow={false}
+          />
+          <Text scaleToFit={true} width={30} />
+          {/* <Brush dataKey='name' height={30} stroke='#8884d8' /> */}
+          <Bar
+            dataKey='sum'
+            barSize={38}
+            // fill={'#FFDAC0'}
+            radius={[10, 10, 0, 0]}
+            // barSize={38}
+            // label={{ position: 'top' }}
+            // style={{ stroke: '#000' }}
+          >
+            <LabelList
+              dataKey='sum'
+              content={renderCustomizedLabel}
+              fill='#52555F'
             />
-          ))}
-        </Bar>
-        {/* <LabelList dataKey='amount' content={renderCustomizedLabel} /> */}
-      </BarChart>
-    </ResponsiveContainer>
+            {/* {sortedData.map((entry, index) => ( */}
+            {items.map((entry, index) => (
+              <Cell
+                // key={entry.id}
+                // key={`cell-${index}`}
+                fill={index % 3 === 0 ? '#FF751D' : '#FFDAC0'}
+              />
+            ))}
+          </Bar>
+          {/* <LabelList dataKey='amount' content={renderCustomizedLabel} /> */}
+        </BarChart>
+      </ResponsiveContainer>
+    </>
   );
 };
 

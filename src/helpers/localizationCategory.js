@@ -86,18 +86,18 @@ export const localizationIncome = (obj) => {
   return arrCategory;
 };
 
-const totalExpanseByCategory = {
-  Транспорт: 3500,
-  Продукти: 9000,
-  Здоровя: 2000,
-  Алкоголь: 0,
-  Розваги: 3500,
-  Дім: 8000,
-  Техніка: 0,
-  Комуналка: 1750,
-  "Спорт, хобі": 1500,
-  Освіта: 3500,
-  Інше: 200,
-};
+// const totalExpanseByCategory = {
+//   Транспорт: 3500,
+//   Продукти: 9000,
+//   Здоровя: 2000,
+//   Алкоголь: 0,
+//   Розваги: 3500,
+//   Дім: 8000,
+//   Техніка: 0,
+//   Комуналка: 1750,
+//   'Спорт, хобі': 1500,
+//   Освіта: 3500,
+//   Інше: 200,
+// };
 
-console.log(localizationExpense(totalExpanseByCategory));
+// console.log(localizationExpense(totalExpanseByCategory));
