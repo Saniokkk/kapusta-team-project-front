@@ -63,14 +63,13 @@ const ReportSection = () => {
   const handleBtnClick = (evt) => {
     if (evt.target.name === "expense") {
       dispatch(addCurrentType("expense"));
-      dispatch(addCurrentCategory("Категорія товару"));
     }
 
     if (evt.target.name === "income") {
       dispatch(addCurrentType("income"));
-      dispatch(addCurrentCategory("Категорія доходу"));
     }
 
+    dispatch(addCurrentCategory("Категорія"));
     visible();
   };
 

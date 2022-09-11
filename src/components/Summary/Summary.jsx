@@ -1,35 +1,31 @@
-import s from "./Summary.module.scss";
 import { useState, useEffect } from "react";
-import { getTransactionsByType } from "services/reportsApi";
-import selectors from "redux/auth/auth-selector";
 import { useSelector } from "react-redux";
+import selectors from "redux/auth/auth-selector";
+import { getCurrentType } from "redux/extraInfo/extraInfo-selectors";
+import { getTransactionsByType } from "services/reportsApi";
+import s from "./Summary.module.scss";
 
 export function Summary() {
   const [data, setData] = useState([]);
+
   const totalBalance = useSelector(selectors.getUserBalance);
+  const transactionType = useSelector(getCurrentType);
 
-  //useEffect з розпиленням prevState
-  useEffect(() => {
-    async function fetchTransactions() {
-      try {
-        const transactions = await getTransactionsByType("expense");
-        setData((prevData) => ({
-          ...prevData,
-          ...transactions.expenseReportByMonthForYear,
-        }));
-        console.log("qqqqq", transactions.expenseReportByMonthForYear);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    fetchTransactions();
-  }, [totalBalance]);
-
-  //зміна для обробки данних: останні шість місяців зверху
   const newData = Object.entries(data).reverse().slice(0, 6);
 
-  console.log("Data", data);
+  useEffect(() => {
+    if (transactionType === "expense") {
+      getTransactionsByType("expense").then((data) =>
+        setData(data.expenseReportByMonthForYear)
+      );
+    }
+
+    if (transactionType === "income") {
+      getTransactionsByType("income").then((data) =>
+        setData(data.incomeReportByMonthForYear)
+      );
+    }
+  }, [totalBalance, transactionType]);
 
   return (
     <div className={s.wrapper}>

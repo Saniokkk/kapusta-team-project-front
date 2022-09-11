@@ -1,5 +1,10 @@
 import axios from "axios";
 
+export async function getTransactionsByDate(date) {
+  const { data } = await axios.get(`/report/currentDay/${date}`);
+  return data;
+}
+
 export async function addTransactionExpense(values) {
   const { data } = await axios.post("/transactions/expense", values);
   return data;

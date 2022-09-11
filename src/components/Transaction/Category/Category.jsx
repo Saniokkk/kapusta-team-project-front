@@ -5,38 +5,21 @@ import {
 } from "redux/extraInfo/extraInfo-selectors";
 import { addCurrentCategory } from "redux/extraInfo/extraInfo-slice";
 import { useState } from "react";
+import { categoriesExpense, categoriesIncome } from "./categories";
 import icon from "assets/symbol-icons.svg";
 import s from "./Category.module.scss";
-
-const categoriesExpense = [
-  { id: 1, title: "Транспорт" },
-  { id: 2, title: "Продукти" },
-  { id: 3, title: "Здоров'я" },
-  { id: 4, title: "Алкоголь" },
-  { id: 5, title: "Розваги" },
-  { id: 6, title: "Дім" },
-  { id: 7, title: "Техніка" },
-  { id: 8, title: "Комуналка" },
-  { id: 9, title: "Спорт, хобі" },
-  { id: 10, title: "Освіта" },
-  { id: 11, title: "Інше" },
-];
-
-const categoriesIncome = [
-  { id: 1, title: "Дохід" },
-  { id: 2, title: "Доп.дохід" },
-];
 
 const Category = () => {
   const [menu, setМenu] = useState(false);
 
   const dispatch = useDispatch();
-
   const transactionType = useSelector(getCurrentType);
   const currentCategory = useSelector(getCurrentCategory);
 
   const categoryType =
     transactionType === "expense" ? categoriesExpense : categoriesIncome;
+  const dropDownClass = menu ? `${s.buttonActive}` : `${s.buttonCommon}`;
+  const borderClass = menu ? `${s.borderTopActive}` : `${s.borderTop}`;
 
   const handleChange = (evt) => {
     const {
@@ -45,9 +28,6 @@ const Category = () => {
     dispatch(addCurrentCategory(action));
     setМenu(false);
   };
-
-  const dropDownClass = menu ? `${s.buttonActive}` : `${s.buttonCommon}`;
-  const borderClass = menu ? `${s.borderTopActive}` : `${s.borderTop}`;
 
   return (
     <div className={s.wrapper}>
