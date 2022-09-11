@@ -1,22 +1,16 @@
-import { useSelector } from "react-redux";
-import { getDate } from "redux/extraInfo/extraInfo-selectors";
-
 import styles from "./ProductListMobile.module.css";
 import icon from "assets/symbol-icons.svg";
 
-const ProductListMobile = ({ visible }) => {
-  const date = useSelector(getDate);
+const ProductListMobile = ({ visible, data }) => {
   return (
     <ul className={styles.transactionList}>
-      {visible.map(({ id, description, categories, sum }) => {
+      {visible.map(({ _id, description, categories, sum }) => {
         return (
-          <li key={id} className={styles.transactionListItem}>
+          <li key={_id} className={styles.transactionListItem}>
             <ul>
               <li>
                 <p className={styles.description}>{description}</p>
-                <p
-                  className={styles.date}
-                >{`${date.day}.${date.month}.${date.year}`}</p>
+                <p className={styles.date}>{data}</p>
               </li>
               <li className={styles.categories}>
                 <p>{categories}</p>
@@ -39,6 +33,9 @@ const ProductListMobile = ({ visible }) => {
           </li>
         );
       })}
+      <li className={styles.transactionListItem}></li>
+      <li className={styles.transactionListItem}></li>
+      <li className={styles.transactionListItem}></li>
     </ul>
   );
 };
