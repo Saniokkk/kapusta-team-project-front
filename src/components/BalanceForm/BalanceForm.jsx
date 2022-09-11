@@ -25,57 +25,52 @@ const BalanceForm = () => {
       setBalance(totalBalance);
     }
     if (balance) {
-      setDisable(true);
+      setDisable(!disable);
     }
-  }, [balance, totalBalance]);
+  }, [balance, disable, totalBalance]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log();
     setBalance(amount);
     dispatch(authOperations.updateCurrentUser({ totalBalance: amount }));
   };
 
   const handleChange = (e) => {
     const { value } = e.target;
-
     const valueInput = parseFloat(value.split(" ").join(""));
-    console.log("value input:", valueInput, "type:", typeof valueInput);
     setAmount(valueInput);
   };
 
   const viewPort = useWindowDimensions();
 
   return (
-    <>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <div className={styles.form_title__box}>
-          <h3 className={styles.form__title}>Баланс:</h3>
-        </div>
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <div className={styles.formTitleBox}>
+        <h3 className={styles.formTitle}>Баланс:</h3>
+      </div>
 
-        <div className={styles.form_input__box}>
-          <NumberFormat
-            className={styles.form__input}
-            autoComplete="off"
-            name="input"
-            thousandSeparator={" "}
-            suffix={" UAH"}
-            value={amount}
-            onChange={handleChange}
-            allowLeadingZeros={true}
-            isNumericString={true}
-            fixedDecimalScale={true}
-            decimalScale={2}
-            disabled={disable}
-          />
-          {balance === 0 && <ModalBalanceError />}
+      <div className={styles.formInputBox}>
+        <NumberFormat
+          className={styles.formInput}
+          autoComplete="off"
+          name="input"
+          thousandSeparator={" "}
+          suffix={" UAH"}
+          value={amount}
+          onChange={handleChange}
+          allowLeadingZeros={true}
+          isNumericString={true}
+          fixedDecimalScale={true}
+          decimalScale={2}
+          disabled={balance ? "disabled" : ""}
+        />
+        {balance === 0 && <ModalBalanceError />}
 
-          {viewPort.width > 1279 && (
-            <BalanceBtn onSubmit={handleSubmit} balance={balance} />
-          )}
-        </div>
-      </form>
-    </>
+        {viewPort.width > 1279 && (
+          <BalanceBtn onSubmit={handleSubmit} balance={balance} />
+        )}
+      </div>
+    </form>
   );
 };
 
