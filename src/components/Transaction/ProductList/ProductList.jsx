@@ -8,6 +8,7 @@ import {
   deleteTransaction,
 } from "services/transactionsApi";
 import { calendarSelectors } from "../../../redux/extraInfo";
+import { makeNumberWithSpaces } from "helpers/numberWithSpaces";
 import icon from "assets/symbol-icons.svg";
 import s from "./ProductList.module.scss";
 
@@ -49,9 +50,10 @@ const ProductList = () => {
   const negativeSum = (price) => {
     const index = `${price}.00`.indexOf(".");
     const number = `${price}.00`.slice(0, index + 3);
-    const convNumber = Number.parseFloat(`${number}`).toFixed(2);
-    const negNumber = `- ${convNumber} грн.`;
-    const posNumber = `${convNumber} грн.`;
+    const convNumber = Number.parseFloat(number).toFixed(2);
+    const numberWithSpaces = makeNumberWithSpaces(Number(convNumber));
+    const negNumber = `- ${numberWithSpaces} грн.`;
+    const posNumber = `${numberWithSpaces} грн.`;
 
     if (transactionType === "expense") {
       return negNumber;

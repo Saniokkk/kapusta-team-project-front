@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import selectors from "redux/auth/auth-selector";
 import { getCurrentType } from "redux/extraInfo/extraInfo-selectors";
 import { getTransactionsByType } from "services/reportsApi";
+import { makeNumberWithSpaces } from "helpers/numberWithSpaces";
 import s from "./Summary.module.scss";
 
 export function Summary() {
@@ -35,7 +36,7 @@ export function Summary() {
           newData.map(([key, value], index) => (
             <li key={index}>
               <span>{key}</span>
-              <span>{value}</span>
+              <span>{makeNumberWithSpaces(value)}</span>
             </li>
           ))}
       </ul>
