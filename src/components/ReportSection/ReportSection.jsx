@@ -18,15 +18,14 @@ import {
 import { getCurrentType } from "redux/extraInfo/extraInfo-selectors";
 import ProductListMobile from "./ProductListMobile/ProductListMobile";
 
+////////////////////
+import { getDate } from "redux/extraInfo/extraInfo-selectors";
+import { getTransactionsByDay } from "services/reportsApi";
+////////////////////
+
 const ReportSection = () => {
-  const [products, setProducts] = useState([
-    {
-      id: "id-1",
-      description: "Метро",
-      categories: "Транспорт",
-      sum: "8.00",
-    },
-  ]);
+  const [products, setProducts] = useState([]);
+  const [unmount, setUnmount] = useState(false); // компоненты монтируются один раз при загрузке страницы
 
   const [visibleForm, setVisibleForm] = useState(false);
   const [jumpBetweenDevices, setJumpBetweenDevices] = useState(false);
@@ -37,6 +36,14 @@ const ReportSection = () => {
   const isMobile = useMediaQuery("only screen and (max-width: 767px)");
   const isTablet = useMediaQuery("only screen and (min-width: 768px)");
   const isdesktop = useMediaQuery("only screen and (max-width: 1279px)");
+
+  ////////////////////
+  const date = useSelector(getDate);
+  const dayWithZero = ("0" + date.day).slice(-2);
+  const monthWithZero = ("0" + date.month).slice(-2);
+  const convertedDate = `${date.year}-${monthWithZero}-${dayWithZero}`;
+  const convertedDateList = `${date.year}.${monthWithZero}.${dayWithZero}`;
+  ////////////////////
 
   const visible = () => {
     if (isMobile) {
@@ -54,11 +61,48 @@ const ReportSection = () => {
 
     if (isMobile & jumpBetweenDevices) {
       setVisibleForm(true);
-      return;
+
+      ////////////////////
+      if (unmount) {
+        return;
+      }
+
+      getTransactionsByDay(convertedDate).then((res) => {
+        transactionOptions === "expense" && setProducts(res.expenseByDay);
+        transactionOptions === "income" && setProducts(res.incomeByDay);
+      });
+
+      return () => {
+        setUnmount(true);
+      };
+      ////////////////////
     }
 
     setVisibleForm(false);
-  }, [isMobile, setProducts, jumpBetweenDevices]);
+
+    ////////////////////
+    if (unmount) {
+      return;
+    }
+
+    getTransactionsByDay(convertedDate).then((res) => {
+      transactionOptions === "expense" && setProducts(res.expenseByDay);
+      transactionOptions === "income" && setProducts(res.incomeByDay);
+    });
+
+    return () => {
+      setUnmount(true);
+    };
+    ////////////////////
+  }, [
+    unmount,
+    isMobile,
+    products,
+    transactionOptions,
+    convertedDate,
+    setProducts,
+    jumpBetweenDevices,
+  ]);
 
   const handleBtnClick = (evt) => {
     if (evt.target.name === "expense") {
@@ -71,6 +115,7 @@ const ReportSection = () => {
       dispatch(addCurrentCategory("Категорія доходу"));
     }
 
+    setUnmount(false);
     visible();
   };
 
@@ -123,6 +168,7 @@ const ReportSection = () => {
           </div>
         )}
 
+        {/* календарь, список транзакций для мобильного */}
         {!visibleForm && (
           <div className={styles.activity}>
             {isMobile && (
@@ -130,18 +176,24 @@ const ReportSection = () => {
                 <div className={styles.transactionDate}>
                   <Datepicker />
                 </div>
-                <ProductListMobile visible={products} />
+                <ProductListMobile
+                  convertedDateList={convertedDateList}
+                  visible={products}
+                />
               </>
             )}
 
-            {/* компоненты форма с кнопками "ввести" , "очистити" */}
+            {/* форма, список транзакций, сумма за месяц */}
             {isTablet && (
               <>
                 <div className={styles.transaction}>
                   <TransactionForm />
                 </div>
                 <div className={styles.statement}>
-                  <ProductList visible={products} />
+                  <ProductList
+                    convertedDateList={convertedDateList}
+                    visible={products}
+                  />
                   <div className={styles.summary}>
                     <Summary />
                   </div>
@@ -151,7 +203,7 @@ const ReportSection = () => {
           </div>
         )}
 
-        {/* кнопка на главную на мобильном устройстви */}
+        {/* кнопка на главную на мобильном устройстве */}
         {visibleForm && isMobile && (
           <>
             <button

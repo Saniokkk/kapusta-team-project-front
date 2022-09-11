@@ -15,3 +15,8 @@ export async function getTransactionsByMonth(month, year) {
   const { data } = await axios.get(`/report/categories/${month}/${year}`);
   return data;
 }
+
+export async function getTransactionsByDay(date) {
+  const { data } = await axios.get(`/report/currentDay/${date}`);
+  return data;
+}

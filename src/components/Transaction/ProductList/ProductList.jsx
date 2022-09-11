@@ -8,7 +8,7 @@ import {
 import icon from "assets/symbol-icons.svg";
 import s from "./ProductList.module.scss";
 
-const ProductList = ({ visible, deleteContact }) => {
+const ProductList = ({ convertedDateList, visible, deleteContact }) => {
   //const [expenseTransactions, setExpenseTransactions] = useState([]);
 
   //const pickedDate = useSelector(calendarSelectors.getDate);
@@ -37,18 +37,18 @@ const ProductList = ({ visible, deleteContact }) => {
           </tr>
         </thead>
         <tbody>
-          {visible.map(({ id, description, categories, sum }) => {
+          {visible.map(({ _id, description, category, sum }) => {
             return (
-              <tr key={id}>
-                <td>22.03.2022</td>
+              <tr key={_id}>
+                <td>{convertedDateList}</td>
                 <td>{description}</td>
-                <td>{categories}</td>
+                <td>{category}</td>
                 <td>{sum}</td>
                 <td>
                   <button
                     className={s.button}
                     type="button"
-                    onClick={() => deleteTransaction(id)}
+                    onClick={() => deleteTransaction(_id)}
                   >
                     <svg className={s.icon} width="18" height="18">
                       <use href={`${icon}#icon-delete`} />
