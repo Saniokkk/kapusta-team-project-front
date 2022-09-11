@@ -95,7 +95,6 @@ const TransactionForm = () => {
             className={s.inputDesc}
             type="text"
             name="description"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
             required
             placeholder="Опис продукту"
             value={description}
