@@ -91,7 +91,7 @@
   padding: 12px 22px 12px 18px;
   border: 2px solid var(--white-color);
   border-radius: 0px 22px 22px 0px;
-  
+
   @media screen and (min-width: 768px) {
     margin-left: 15px;
     border: 2px solid var(--white-color);
@@ -99,7 +99,7 @@
     padding: 12px 6px;
   }
 
- &:not([disabled]):hover {
+  &:not([disabled]):hover {
     background-color: var(--accent-color);
     color: var(--white-color);
   }

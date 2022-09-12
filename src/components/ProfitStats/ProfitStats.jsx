@@ -6,13 +6,13 @@ export const ProfitStats = ({ totalExp, totalInc }) => {
 
   return (
     <div className={styles.data}>
-      <p className={styles.operationsData}>
+      <p className={styles.incomeOperations}>
         Витрати:
-        <span className={styles.expenseData}>- {totalExp}.00 грн</span>
+        <span className={styles.expenseData}>- {totalExp}.00 грн.</span>
       </p>
       <div className={styles.line}></div>
       <p className={styles.operationsData}>
-        Дохід: <span className={styles.income}>+ {totalInc}.00 грн</span>
+        Дохід: <span className={styles.income}>+ {totalInc}.00 грн.</span>
       </p>
     </div>
   );

@@ -11,6 +11,7 @@ import {
   // Label,
   // Brush,
 } from 'recharts';
+import styles from './BarChart.module.css';
 
 // const data = [
 //   {
@@ -60,9 +61,19 @@ const renderCustomizedLabel = (props) => {
 
 const MobileChart = ({ items }) => {
   const sortedData = [...items].sort((a, b) => b.amount - a.amount);
+  let chartWidth = 83 * sortedData.length;
+
+  // if (sortedData.length > 2) {
+  //   // chartWidth = 400;
+  //    chartWidth = 83 * sortedData.length;
+  // }
   return (
     <>
-      <ResponsiveContainer width='99%' height={400}>
+      <ResponsiveContainer
+        width='99%'
+        height={chartWidth}
+        className={styles.centered}
+      >
         <BarChart
           width={280}
           height={580}
@@ -116,7 +127,7 @@ const MobileChart = ({ items }) => {
           <Text scaleToFit={true} width={30} />
           {/* <Brush dataKey='name' height={30} stroke='#8884d8' /> */}
           <Bar
-            dataKey='amount'
+            dataKey='sum'
             // fill={'#FFDAC0'}
             radius={[0, 10, 10, 0]}
             barSize={15}
