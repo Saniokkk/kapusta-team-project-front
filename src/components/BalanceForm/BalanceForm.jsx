@@ -25,7 +25,7 @@ const BalanceForm = () => {
       setBalance(totalBalance);
     }
     if (balance) {
-      setDisable(!disable);
+      setDisable(true);
     }
   }, [balance, disable, totalBalance]);
 
