@@ -19,15 +19,6 @@ import { getCurrentType } from "redux/extraInfo/extraInfo-selectors";
 import ProductListMobile from "./ProductListMobile/ProductListMobile";
 
 const ReportSection = () => {
-  const [products, setProducts] = useState([
-    {
-      id: "id-1",
-      description: "Метро",
-      categories: "Транспорт",
-      sum: "8.00",
-    },
-  ]);
-
   const [visibleForm, setVisibleForm] = useState(false);
   const [jumpBetweenDevices, setJumpBetweenDevices] = useState(false);
 
@@ -58,7 +49,7 @@ const ReportSection = () => {
     }
 
     setVisibleForm(false);
-  }, [isMobile, setProducts, jumpBetweenDevices]);
+  }, [isMobile, jumpBetweenDevices]);
 
   const handleBtnClick = (evt) => {
     if (evt.target.name === "expense") {
@@ -78,78 +69,76 @@ const ReportSection = () => {
       <div className={styles.reportBackgroundSection}></div>
       <div className={styles.conteiner}>
         {!visibleForm && (
-          <div className={styles.balance}>
-            <div className={styles.balanceAdd}>
-              <div className={styles.balanceForm}>
-                <BalanceForm />
+          <>
+            <div className={styles.balance}>
+              <div className={styles.balanceAdd}>
+                <div className={styles.balanceForm}>
+                  <BalanceForm />
+                </div>
+                <div className={styles.balancebtn}>
+                  {isdesktop && <BalanceBtn />}
+                </div>
               </div>
-              <div className={styles.balancebtn}>
-                {isdesktop && <BalanceBtn />}
+
+              <div className={styles.transitionReport}>
+                <NavLink to="/report" exact className={styles.link}>
+                  <Report />
+                </NavLink>
               </div>
             </div>
 
-            <div className={styles.transitionReport}>
-              <NavLink to="/report" exact className={styles.link}>
-                <Report />
-              </NavLink>
+            <div className={styles.transactionSwitch}>
+              <button
+                type="button"
+                name="expense"
+                className={`${styles.btn} ${
+                  transactionOptions === "expense" && styles.activeBtn
+                }`}
+                // disabled={transactionOptions === "expense" ? true : false}
+                onClick={handleBtnClick}
+              >
+                витрати
+              </button>
+
+              <button
+                type="button"
+                name="income"
+                className={`${styles.btn} ${
+                  transactionOptions === "income" && styles.activeBtn
+                }`}
+                // disabled={transactionOptions === "income" ? true : false}
+                onClick={handleBtnClick}
+              >
+                доходи
+              </button>
             </div>
-          </div>
-        )}
 
-        {!visibleForm && (
-          <div className={styles.transactionSwitch}>
-            <button
-              type="button"
-              name="expense"
-              className={`${styles.btn} ${
-                transactionOptions === "expense" && styles.activeBtn
-              }`}
-              disabled={transactionOptions === "expense" ? true : false}
-              onClick={handleBtnClick}
-            >
-              витрати
-            </button>
-
-            <button
-              type="button"
-              name="income"
-              className={`${styles.btn} ${
-                transactionOptions === "income" && styles.activeBtn
-              }`}
-              disabled={transactionOptions === "income" ? true : false}
-              onClick={handleBtnClick}
-            >
-              доходи
-            </button>
-          </div>
-        )}
-
-        {!visibleForm && (
-          <div className={styles.activity}>
-            {isMobile && (
-              <>
-                <div className={styles.transactionDate}>
-                  <Datepicker />
-                </div>
-                <ProductListMobile visible={products} />
-              </>
-            )}
-
-            {/* компоненты форма с кнопками "ввести" , "очистити" */}
-            {isTablet && (
-              <>
-                <div className={styles.transaction}>
-                  <TransactionForm />
-                </div>
-                <div className={styles.statement}>
-                  <ProductList visible={products} />
-                  <div className={styles.summary}>
-                    <Summary />
+            <div className={styles.activity}>
+              {isMobile && (
+                <>
+                  <div className={styles.transactionDate}>
+                    <Datepicker />
                   </div>
-                </div>
-              </>
-            )}
-          </div>
+                  <ProductListMobile />
+                </>
+              )}
+
+              {/* компоненты форма с кнопками "ввести" , "очистити" */}
+              {isTablet && (
+                <>
+                  <div className={styles.transaction}>
+                    <TransactionForm />
+                  </div>
+                  <div className={styles.statement}>
+                    <ProductList />
+                    <div className={styles.summary}>
+                      <Summary />
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+          </>
         )}
 
         {/* кнопка на главную на мобильном устройстви */}

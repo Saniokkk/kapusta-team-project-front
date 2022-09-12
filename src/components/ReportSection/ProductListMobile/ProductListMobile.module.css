@@ -77,7 +77,6 @@ ul li {
   .transactionListItem .sum {
     display: flex;
     align-items: center;
-    width: 84px;
     height: 20px;
 
     font-family: "Roboto", sans-serif;
@@ -90,7 +89,14 @@ ul li {
     text-align: right;
     letter-spacing: 0.04em;
     margin-bottom: 5px;
-    color: #e7192e;
+  }
+
+  .red {
+    color: var(--minus-balance-color);
+  }
+
+  .green {
+    color: var(--plus-balance-color);
   }
 }
 
@@ -102,7 +108,7 @@ button {
 
 .button {
   display: flex;
-  width: 32px;
+  margin-left: 10px;
   height: 32px;
   border-radius: 50%;
   border: 1px solid transparent;
