@@ -5,7 +5,7 @@ import {
   Cell,
   XAxis,
   YAxis,
-  CartesianGrid,
+  // CartesianGrid,
   LabelList,
   ResponsiveContainer,
   Text,
