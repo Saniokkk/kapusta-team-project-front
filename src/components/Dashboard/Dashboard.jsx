@@ -64,12 +64,12 @@ const itemsforChart = [
   },
 ];
 
-const dataIncome = {
-  Дохід: 7000,
-  'Доп.дохід': 2500,
-  // { title: 'salary', pathIcon: 'other', sum: 4350.0 },
-  // { title: 'extraSalary', pathIcon: 'other', sum: 4350.0 },
-};
+// const dataIncome = {
+//   Дохід: 7000,
+//   'Доп.дохід': 2500,
+//   // { title: 'salary', pathIcon: 'other', sum: 4350.0 },
+//   // { title: 'extraSalary', pathIcon: 'other', sum: 4350.0 },
+// };
 
 export const Dashboard = ({ category }) => {
   const [items, setItems] = useState();
