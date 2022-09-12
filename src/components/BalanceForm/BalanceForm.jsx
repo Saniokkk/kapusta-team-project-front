@@ -2,7 +2,7 @@ import NumberFormat from "react-number-format";
 import selectors from "redux/auth/auth-selector";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-
+import {toast} from "react-toastify"
 import authOperations from "redux/auth/auth-operations";
 import { ModalBalanceError } from "components/ModalBalanceError";
 import { useState, useEffect } from "react";
@@ -16,7 +16,7 @@ const BalanceForm = () => {
   const dispatch = useDispatch();
   const totalBalance = useSelector(selectors.getUserBalance);
   const [balance, setBalance] = useState(0);
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState("");
   const [disable, setDisable] = useState(false);
 
   useEffect(() => {
@@ -32,6 +32,10 @@ const BalanceForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setBalance(amount);
+    if(amount < 0){
+      toast.warn("Баланс не може бути від'ємним")
+      return
+    }
     dispatch(authOperations.updateCurrentUser({ totalBalance: amount }));
   };
 
@@ -63,6 +67,7 @@ const BalanceForm = () => {
           fixedDecimalScale={true}
           decimalScale={2}
           disabled={balance ? "disabled" : ""}
+          placeholder={"00.00 UAH"}
         />
         {balance === 0 && <ModalBalanceError />}
 
