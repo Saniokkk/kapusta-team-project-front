@@ -15,6 +15,10 @@ import { makeNumberWithSpaces } from "helpers/numberWithSpaces";
 const ProductListMobile = () => {
   const [data, setData] = useState([]);
 
+  const dataData = data.sort((a, b) => {
+    return Date.parse(b.createdAt) - Date.parse(a.createdAt);
+  });
+
   const dispatch = useDispatch();
   const totalBalance = useSelector(selectors.getUserBalance);
   const transactionType = useSelector(getCurrentType);
@@ -56,7 +60,7 @@ const ProductListMobile = () => {
   return (
     <ul className={styles.transactionList}>
       {data &&
-        data.map(({ _id, date, description, category, sum }) => {
+        dataData.map(({ _id, date, description, category, sum }) => {
           const sumClass =
             category === "Доп.дохід" || category === "Дохід"
               ? `${styles.green}`
