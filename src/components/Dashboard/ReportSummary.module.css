@@ -28,8 +28,10 @@
   line-height: 1.14;
 
   display: flex;
+  width: 75px;
   align-items: center;
   text-align: center;
+  justify-content: center;
   letter-spacing: 0.02em;
   text-transform: uppercase;
   margin-bottom: 0;
@@ -48,11 +50,11 @@
 }
 
 .btnToLeft {
-  margin-right: 15px;
+  margin-right: 10px;
 }
 
 .btnToRight {
-  margin-left: 15px;
+  margin-left: 10px;
 }
 
 .list {
@@ -79,7 +81,7 @@
   margin-right: auto;
   margin-left: auto;
   /* padding: 20px 138px 19px 135px; */
-  padding: 20px;
+  padding: 15px;
   width: 100%;
   height: auto;
 
@@ -112,20 +114,27 @@
   .graphBox {
     margin-right: auto;
     margin-left: auto;
-
-    padding: 20px;
+    /* padding: 10px; */
+    padding-top: 20px;
     width: 704px;
-    /* height: 422px; */
+    height: 422px;
+    position: relative;
     /* overflow: scroll; */
     box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
     border-radius: 30px;
   }
   .wrapper {
     /* width: 605px; */
-    width: 635px;
-    height: 328px;
-    margin: 0 auto;
+    position: absolute;
+    left: 35px;
+    bottom: 40px;
+    width: 630px;
+    height: 314px;
+    /* margin: 0 auto; */
     overflow: auto;
+
+    background-image: linear-gradient(#f5f6fbd3 2px, transparent 2px);
+    background-size: 100% 35px;
   }
 }
 /* desktop */
@@ -140,9 +149,13 @@
     width: 1034px;
   }
   .wrapper {
+    /* position: static; */
     /* width: 605px; */
-    width: 704px;
-    height: 328px;
+    width: 758px;
+    left: 142px;
+    /* bottom: 35px; */
+    /* height: 345px; */
+    /* height: 382px; */
     margin: 0 auto;
     overflow: auto;
   }

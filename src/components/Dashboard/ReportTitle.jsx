@@ -1,10 +1,35 @@
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCurrentType } from 'redux/extraInfo/extraInfo-selectors';
+import { addCurrentType } from 'redux/extraInfo/extraInfo-slice';
 import spriteIcons from '../../assets/sprite-icons.svg';
+
 import styles from './ReportSummary.module.css';
 
 export const ReportTitle = ({ category }) => {
+  const transactionOption = useSelector(getCurrentType);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  function onPageSwitch() {
+    if (transactionOption === 'expense') {
+      dispatch(addCurrentType('income'));
+    }
+
+    if (transactionOption === 'income') {
+      dispatch(addCurrentType('expense'));
+    }
+  }
+
   return (
     <div className={styles.switching}>
-      <button className={styles.btnToLeft}>
+      <button
+        className={styles.btnToLeft}
+        onClick={() => {
+          navigate('/report');
+          onPageSwitch();
+        }}
+      >
         <svg className={styles.icon}>
           <use
             className={styles.svg}
@@ -13,7 +38,13 @@ export const ReportTitle = ({ category }) => {
         </svg>
       </button>
       <h2 className={styles.title}>{category}</h2>
-      <button className={styles.btnToRight}>
+      <button
+        className={styles.btnToRight}
+        onClick={() => {
+          navigate('/report');
+          onPageSwitch();
+        }}
+      >
         <svg className={styles.icon}>
           <use
             className={styles.svg}

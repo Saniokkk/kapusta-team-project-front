@@ -1,13 +1,13 @@
-// import Chart from 'components/BarChart/BarChart';
+import Chart from 'components/BarChart/BarChart';
 
-// import MobileChart from 'components/BarChart/MobileChart';
+import MobileChart from 'components/BarChart/MobileChart';
 import { CardExpenses } from 'components/CardExpenses';
 import { ProfitStats } from 'components/ProfitStats/ProfitStats';
 import {
   localizationExpense,
   localizationIncome,
 } from 'helpers/localizationCategory';
-// import useWindowDimensions from 'hooks/useWindowDimensions';
+import useWindowDimensions from 'hooks/useWindowDimensions';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
@@ -20,36 +20,49 @@ import { getTransactionsByMonth } from 'services/reportsApi';
 import styles from './ReportSummary.module.css';
 import { ReportTitle } from './ReportTitle';
 
-const dataExpenses = {
-  Транспорт: 3500,
-  Продукти: 9000,
-  Здоровя: 2000,
-  Алкоголь: 0,
-  Розваги: 3500,
-  Дім: 8000,
-  Техніка: 0,
-  Комуналка: 1350,
-  'Спорт, хобі': 1500,
-  Освіта: 3500,
-  Інше: 200,
-};
-// const itemsforChart = [
-//   {
-//     // title: 'Продукти',
-//     sum: 5000.0,
-//     category: 'products',
-//     // description: 'banana',
-//     title: 'морква',
-//   },
-//   {
-//     // title: 'Продукти',
-//     pathIcon: 'products',
-//     sum: 5000.0,
-//     category: 'products',
-//     // description: 'banana',
-//     title: 'банан',
-//   },
-// ];
+// const dataExpenses = {
+//   Транспорт: 3500,
+//   Продукти: 9000,
+//   Здоровя: 2000,
+//   Алкоголь: 0,
+//   Розваги: 3500,
+//   Дім: 8000,
+//   Техніка: 0,
+//   Комуналка: 1350,
+//   'Спорт, хобі': 1500,
+//   Освіта: 3500,
+//   Інше: 200,
+// };
+const itemsforChart = [
+  {
+    sum: 500.0,
+    title: 'овочі',
+  },
+  {
+    sum: 1000.0,
+    title: 'фрукти',
+  },
+  {
+    sum: 100.0,
+    title: 'овочі',
+  },
+  {
+    sum: 100.0,
+    title: 'фрукти',
+  },
+  {
+    sum: 500.0,
+    title: 'овочі',
+  },
+  {
+    sum: 1000.0,
+    title: 'фрукти',
+  },
+  {
+    sum: 6000.0,
+    title: 'овочі',
+  },
+];
 
 const dataIncome = {
   Дохід: 7000,
@@ -60,8 +73,8 @@ const dataIncome = {
 
 export const Dashboard = ({ category }) => {
   const [items, setItems] = useState();
-  const [totalExp, setTotalExp] = useState();
-  const [totalInc, setTotalInc] = useState();
+  const [totalExp, setTotalExp] = useState(null);
+  const [totalInc, setTotalInc] = useState(null);
 
   const transactionOption = useSelector(getCurrentType);
   const month = useSelector(getMonth);
@@ -70,7 +83,7 @@ export const Dashboard = ({ category }) => {
   // console.log('year', year);
 
   // console.log('transactionOption', transactionOption);
-  // const viewPort = useWindowDimensions();
+  const viewPort = useWindowDimensions();
 
   const option = transactionOption === 'income' ? 'дохід' : 'витрати';
   // console.log('option', option);
@@ -79,12 +92,12 @@ export const Dashboard = ({ category }) => {
     async function getTransactions() {
       try {
         const transactions = await getTransactionsByMonth(month, year);
-        // const expenses = localizationExpense(
-        //   transactions.totalExpanseByCategory
-        // );
-        // const income = localizationIncome(transactions.totalIncomeByCategory);
-        const expenses = localizationExpense(dataExpenses);
-        const income = localizationIncome(dataIncome);
+        const expenses = localizationExpense(
+          transactions.totalExpanseByCategory
+        );
+        const income = localizationIncome(transactions.totalIncomeByCategory);
+        // const expenses = localizationExpense(dataExpenses);
+        // const income = localizationIncome(dataIncome);
 
         // console.log('ExpanseByCategory', transactions.totalExpanseByCategory);
         // console.log('IncomeByCategory', transactions.totalIncomeByCategory);
@@ -107,6 +120,17 @@ export const Dashboard = ({ category }) => {
     getTransactions();
   }, [month, year, option]);
 
+  function getChartItems(chartItems) {
+    console.log(chartItems);
+    // res = chartItems;
+    return chartItems;
+  }
+
+  // const getChartItems = (chartItems) => {
+  //   console.log('chartItems', chartItems);
+  //   return chartItems;
+  // };
+  console.log('getChartItems', getChartItems);
   return (
     <>
       <ProfitStats totalExp={totalExp} totalInc={totalInc} />
@@ -115,17 +139,28 @@ export const Dashboard = ({ category }) => {
 
         <ul className={styles.list}>
           {items &&
-            items.map((item) => <CardExpenses key={item.title} {...item} />)}
+            items.map((item) => (
+              <CardExpenses
+                key={item.title}
+                {...item}
+                onClick={getChartItems}
+              />
+            ))}
         </ul>
       </div>
 
       <div className={styles.graphBox}>
         <div className={styles.wrapper}>
-          {/* {viewPort.width < 767 ? (
+          {/* <div className={styles.bgrLines}> */}
+          {/* <Chart items={itemsforChart} /> */}
+
+          {viewPort.width < 767 ? (
             <MobileChart items={itemsforChart} />
           ) : (
+            // <Chart items={itemsforChart} />
             <Chart items={itemsforChart} />
-          )} */}
+          )}
+          {/* </div> */}
         </div>
       </div>
     </>
