@@ -18,22 +18,7 @@ import {
 import { getCurrentType } from "redux/extraInfo/extraInfo-selectors";
 import ProductListMobile from "./ProductListMobile/ProductListMobile";
 
-//////////////////
-import { getDate } from "redux/extraInfo/extraInfo-selectors";
-import { getTransactionsByDate } from "services/transactionsApi";
-//////////////////
-
 const ReportSection = () => {
-  const [products, setProducts] = useState([]);
-  //////////////////
-  const [unmount, setUnmount] = useState(false);
-  // const [dataRefresh, setDataRefresh] = useState(() => (prevState) => {
-  //   if (prevState !== dataRefresh) {
-  //     console.log("qwe");
-  //   }
-  // });
-  //////////////////
-
   const [visibleForm, setVisibleForm] = useState(false);
   const [jumpBetweenDevices, setJumpBetweenDevices] = useState(false);
 
@@ -44,23 +29,10 @@ const ReportSection = () => {
   const isTablet = useMediaQuery("only screen and (min-width: 768px)");
   const isdesktop = useMediaQuery("only screen and (max-width: 1279px)");
 
-  //////////////////
-  // const date = useSelector(getDate);
-  const date = useSelector(getDate);
-  const dayWithZero = ("0" + date.day).slice(-2);
-  const monthWithZero = ("0" + date.month).slice(-2);
-  const convertedDate = `${date.year}-${monthWithZero}-${dayWithZero}`;
-  const convertedDateList = `${dayWithZero}.${monthWithZero}.${date.year}`;
-  // setDataRefresh(date);
-  console.log(convertedDateList, "convertedDateList");
-
-  //////////////////
-
   const visible = () => {
     if (isMobile) {
       setVisibleForm(true);
       setJumpBetweenDevices(true);
-      setUnmount(false);
       return;
     }
     return;
@@ -68,51 +40,16 @@ const ReportSection = () => {
 
   useEffect(() => {
     if (isMobile & !jumpBetweenDevices) {
-      //////////////////
-      if (unmount) {
-        return;
-      }
-
-      getTransactionsByDate(convertedDate).then((res) => {
-        transactionOptions === "expense" && setProducts(res.expenseByDay);
-        transactionOptions === "income" && setProducts(res.incomeByDay);
-      });
-
-      return () => {
-        setUnmount(true);
-      };
-      //////////////////
+      return;
     }
 
     if (isMobile & jumpBetweenDevices) {
       setVisibleForm(true);
-
-      //////////////////
-      if (unmount) {
-        return;
-      }
-
-      getTransactionsByDate(convertedDate).then((res) => {
-        transactionOptions === "expense" && setProducts(res.expenseByDay);
-        transactionOptions === "income" && setProducts(res.incomeByDay);
-      });
-
-      return () => {
-        setUnmount(true);
-      };
-      //////////////////
+      return;
     }
 
     setVisibleForm(false);
-  }, [
-    isMobile,
-    setProducts,
-    jumpBetweenDevices,
-    convertedDate,
-    products,
-    transactionOptions,
-    unmount,
-  ]);
+  }, [isMobile, jumpBetweenDevices]);
 
   const handleBtnClick = (evt) => {
     if (evt.target.name === "expense") {
@@ -182,10 +119,7 @@ const ReportSection = () => {
                   <div className={styles.transactionDate}>
                     <Datepicker />
                   </div>
-                  <ProductListMobile
-                    visible={products}
-                    data={convertedDateList}
-                  />
+                  <ProductListMobile />
                 </>
               )}
 
@@ -216,7 +150,6 @@ const ReportSection = () => {
               onClick={() => {
                 setVisibleForm(false);
                 setJumpBetweenDevices(false);
-                setUnmount(false);
               }}
             >
               <svg className={styles.icon} width="18" height="12">
