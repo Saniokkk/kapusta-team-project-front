@@ -9,11 +9,14 @@ import {
 } from "services/transactionsApi";
 import { calendarSelectors } from "../../../redux/extraInfo";
 import { makeNumberWithSpaces } from "helpers/numberWithSpaces";
+import { ModalLogout } from "components/ModalLogout";
 import icon from "assets/symbol-icons.svg";
 import s from "./ProductList.module.scss";
 
 const ProductList = () => {
   const [data, setData] = useState([]);
+  const [modalState, setModalState] = useState(false);
+  const [clickedId, setClickedId] = useState("");
 
   const dispatch = useDispatch();
   const totalBalance = useSelector(selectors.getUserBalance);
@@ -66,6 +69,12 @@ const ProductList = () => {
     }
   };
 
+  const handleClickOnDelete = (event) => {
+    const { id } = event.target;
+    setClickedId(id);
+    setModalState(!modalState);
+  };
+
   const handleDelete = (id) => {
     if (transactionType === "expense") {
       deleteTransaction("expense", id).then((res) => {
@@ -73,6 +82,8 @@ const ProductList = () => {
           authOperations.updateCurrentUser({ totalBalance: res.totalBalance })
         );
       });
+
+      setModalState(!modalState);
     }
 
     if (transactionType === "income") {
@@ -82,6 +93,8 @@ const ProductList = () => {
         );
       });
     }
+
+    setModalState(!modalState);
   };
 
   return (
@@ -108,9 +121,10 @@ const ProductList = () => {
                   <td className={sumClass}>{negativeSum(sum)}</td>
                   <td>
                     <button
+                      id={_id}
                       className={s.button}
                       type="button"
-                      onClick={() => handleDelete(_id)}
+                      onClick={handleClickOnDelete}
                     >
                       <svg className={s.icon} width="18" height="18">
                         <use href={`${icon}#icon-delete`} />
@@ -235,6 +249,15 @@ const ProductList = () => {
           )}
         </tbody>
       </table>
+
+      {modalState && (
+        <ModalLogout
+          onClose={() => setModalState(!modalState)}
+          handleClickLeft={() => handleDelete(clickedId)}
+          handleClickRight={() => setModalState(!modalState)}
+          modalTitle="Видалити транзакцію?"
+        />
+      )}
     </>
   );
 };
