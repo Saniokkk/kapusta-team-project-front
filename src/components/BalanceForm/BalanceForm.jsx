@@ -69,7 +69,7 @@ const BalanceForm = () => {
           decimalScale={2}
           disabled={balance ? "disabled" : ""}
           placeholder={"00.00 UAH"}
-          integerLimit= {7}
+          
         />
         {balance === 0 && <ModalBalanceError />}
 
