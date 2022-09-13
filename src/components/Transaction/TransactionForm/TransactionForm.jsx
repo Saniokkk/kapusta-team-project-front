@@ -99,6 +99,9 @@ const TransactionForm = () => {
             placeholder="Опис продукту"
             value={description}
             onChange={formik.handleChange}
+            minLength="3"
+            maxLength="20"
+            pattern="[a-zA-Z\u0400-\u04ff]{3,30}"
           />
           <span className={s.borderRight}></span>
         </label>
