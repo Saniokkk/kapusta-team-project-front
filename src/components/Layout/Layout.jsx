@@ -12,7 +12,7 @@ const Layout = () => {
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
-  }, [dispatch]);
+  });
 
   return (
     <>

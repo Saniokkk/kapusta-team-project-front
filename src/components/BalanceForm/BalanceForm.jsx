@@ -2,7 +2,7 @@ import NumberFormat from "react-number-format";
 import selectors from "redux/auth/auth-selector";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import {toast} from "react-toastify"
+import {toast} from "react-toastify";
 import authOperations from "redux/auth/auth-operations";
 import { ModalBalanceError } from "components/ModalBalanceError";
 import { useState, useEffect } from "react";
@@ -22,12 +22,12 @@ const BalanceForm = () => {
   useEffect(() => {
     if (totalBalance !== null) {
       setAmount(totalBalance);
-      setBalance(totalBalance);
+      setBalance(totalBalance); 
     }
     if (balance) {
       setDisable(true);
     }
-  }, [balance, disable, totalBalance]);
+  }, [balance,disable,totalBalance]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -55,7 +55,8 @@ const BalanceForm = () => {
       </div>
 
       <div className={styles.formInputBox}>
-        <NumberFormat
+
+          <NumberFormat
           className={styles.formInput}
           autoComplete="off"
           name="input"
@@ -69,9 +70,8 @@ const BalanceForm = () => {
           decimalScale={2}
           disabled={balance ? "disabled" : ""}
           placeholder={"00.00 UAH"}
-          
         />
-        {balance === 0 && <ModalBalanceError />}
+        {totalBalance === 0  && <ModalBalanceError />}
 
         {viewPort.width > 1279 && (
           <BalanceBtn onSubmit={handleSubmit} balance={balance} />
