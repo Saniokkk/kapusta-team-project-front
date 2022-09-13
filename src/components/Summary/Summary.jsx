@@ -33,13 +33,16 @@ export function Summary() {
     <div className={s.wrapper}>
       <h2 className={s.title}>Зведення</h2>
       <ul className={s.list}>
-        {newData &&
+        {newData.length > 0 ? (
           newData.map(([key, value], index) => (
             <li key={index}>
               <span>{key}</span>
               <span>{makeNumberWithSpaces(value)}</span>
             </li>
-          ))}
+          ))
+        ) : (
+          <li className={s.notification}>немає даних</li>
+        )}
       </ul>
     </div>
   );
