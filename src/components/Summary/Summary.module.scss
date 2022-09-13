@@ -49,3 +49,11 @@
   border: none;
   opacity: 0.6;
 }
+
+.list li.loaderWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
