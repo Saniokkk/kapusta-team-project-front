@@ -101,25 +101,23 @@ const ProductList = () => {
           {data &&
             data.map(({ _id, date, description, category, sum }) => {
               return (
-                <>
-                  <tr key={_id}>
-                    <td>{convertDate(date)}</td>
-                    <td>{description}</td>
-                    <td>{category === "Здоровя" ? "Здоров'я" : category}</td>
-                    <td className={sumClass}>{negativeSum(sum)}</td>
-                    <td>
-                      <button
-                        className={s.button}
-                        type="button"
-                        onClick={() => handleDelete(_id)}
-                      >
-                        <svg className={s.icon} width="18" height="18">
-                          <use href={`${icon}#icon-delete`} />
-                        </svg>
-                      </button>
-                    </td>
-                  </tr>
-                </>
+                <tr key={_id}>
+                  <td>{convertDate(date)}</td>
+                  <td>{description}</td>
+                  <td>{category === "Здоровя" ? "Здоров'я" : category}</td>
+                  <td className={sumClass}>{negativeSum(sum)}</td>
+                  <td>
+                    <button
+                      className={s.button}
+                      type="button"
+                      onClick={() => handleDelete(_id)}
+                    >
+                      <svg className={s.icon} width="18" height="18">
+                        <use href={`${icon}#icon-delete`} />
+                      </svg>
+                    </button>
+                  </td>
+                </tr>
               );
             })}
           {data.length > 0 ? (
