@@ -18,6 +18,12 @@
   &Avatar {
     width: 32px;
     height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    color: var(--primary-text-color);
+    background-color: var(--grey-bg-u-color);
     margin-right: 16px;
     border-radius: 50%;
   }

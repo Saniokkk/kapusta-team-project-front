@@ -93,7 +93,7 @@ const ReportSection = () => {
               </div>
 
               <div className={styles.transitionReport}>
-                <NavLink to="/report" exact className={styles.link}>
+                <NavLink to="/report" exact="true" className={styles.link}>
                   <Report />
                 </NavLink>
               </div>

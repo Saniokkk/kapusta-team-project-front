@@ -1,7 +1,6 @@
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import authSelectors from "redux/auth/auth-selector";
-import avatar from "assets/image/avatar.png";
 import authOperations from "redux/auth/auth-operations";
 import { useDispatch } from "react-redux";
 import icon from "assets/sprite-icons.svg";
@@ -26,7 +25,7 @@ export const UserMenu = () => {
           className={styled.user}
         >
           <div className={styled.userMeta}>
-            <img className={styled.userAvatar} src={avatar} alt="Аватар" />
+            <span className={styled.userAvatar}>{userName.slice(0, 1)}</span>
             <p className={styled.userName}>{userName.split("@")[0]}</p>
           </div>
           <button

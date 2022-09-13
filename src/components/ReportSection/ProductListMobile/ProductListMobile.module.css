@@ -62,7 +62,7 @@ ul li {
 
   .transactionListItem .categories {
     display: flex;
-    margin-right: 12px;
+    margin-right: 6px;
     width: 82px;
     height: 7px;
     font-family: "Roboto", sans-serif;
@@ -78,7 +78,7 @@ ul li {
     display: flex;
     align-items: center;
     height: 20px;
-
+    width: 90px;
     font-family: "Roboto", sans-serif;
     font-style: normal;
     font-weight: 700;
@@ -89,6 +89,7 @@ ul li {
     text-align: right;
     letter-spacing: 0.04em;
     margin-bottom: 5px;
+    justify-content: flex-end;
   }
 
   .red {
@@ -108,7 +109,7 @@ button {
 
 .button {
   display: flex;
-  margin-left: 10px;
+  margin-left: 18px;
   height: 32px;
   border-radius: 50%;
   border: 1px solid transparent;
