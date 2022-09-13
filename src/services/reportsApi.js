@@ -15,3 +15,10 @@ export async function getTransactionsByMonth(month, year) {
   const { data } = await axios.get(`/report/byCategory/${month}/${year}`);
   return data;
 }
+
+export async function getTransactionsByCategory(category, month, year) {
+  const { data } = await axios.get(
+    `/report/amountByDescription/${category}/${month}/${year}`
+  );
+  return data;
+}

@@ -1,86 +1,11 @@
-import { useState } from 'react';
+// import { useState } from 'react';
+// import { useSelector } from 'react-redux';
+// import { getMonth, getYear } from 'redux/extraInfo/extraInfo-selectors';
+// import { getTransactionsByCategory } from 'services/reportsApi';
 import spriteIcons from '../../assets/sprite-icons.svg';
 import styles from './CardExpenses.module.scss';
 
-// { title: 'Продукти', pathIcon: 'products', sum: 5000.0 },
-
-const categoryItems = [
-  {
-    category: 'products',
-    sum: 200,
-    title: 'овочі',
-  },
-  {
-    category: 'products',
-    sum: 500,
-    title: 'фрукти',
-  },
-  {
-    category: 'products',
-    sum: 700,
-    title: 'мясо',
-  },
-  {
-    category: 'products',
-    sum: 450,
-    title: 'солодощі',
-  },
-  {
-    category: 'housing',
-    sum: 7000,
-    title: 'диван',
-  },
-  {
-    category: 'housing',
-    sum: 4500,
-    title: 'шафа-купе',
-  },
-  {
-    category: 'housing',
-    sum: 1500,
-    title: 'посуд',
-  },
-  {
-    category: 'housing',
-    sum: 700,
-    title: 'інше',
-  },
-];
-
 export const CardExpenses = ({ pathIcon, title, sum, onClick }) => {
-  const [chartItems, setChartItems] = useState([]);
-  // const [chartTitle, setChartTitle] = useState([]);
-  // const [chartSum, setChartSum] = useState([]);
-
-  const onBtnClick = (path) => {
-    const filteredArr = categoryItems.filter((item) => item.category === path);
-    console.log(filteredArr);
-    setChartItems(filteredArr);
-
-    // setChartTitle((prevState) => [...prevState, item.description]);
-  };
-
-  onClick(chartItems);
-
-  // console.log('path', path);
-
-  // const getCategoryItems = () => {
-  //   categoryItems.map((item) => {
-  //     if (pathIcon === item.category) {
-  //       setChartTitle(item.description);
-  //       setChartSum(item.sum);
-  //     }
-  //   });
-  // };
-
-  // useEffect(() => {
-
-  //   getCategoryItems();
-  // }, []);
-
-  // console.log('chartTitle', chartTitle);
-  // console.log('chartSum', chartSum);
-
   return (
     // <Link to={}></Link>
     <li className={styles.item}>
@@ -89,8 +14,7 @@ export const CardExpenses = ({ pathIcon, title, sum, onClick }) => {
       <svg
         className={styles.icon}
         onClick={() => {
-          onBtnClick(pathIcon);
-          // console.log('pathIcon', pathIcon);
+          onClick(pathIcon);
         }}
       >
         <use
