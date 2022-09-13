@@ -19,6 +19,10 @@ const register = createAsyncThunk("/auth/register", async (credentials) => {
   try {
     const { data } = await axios.post("/auth/register", credentials);
     token.set(data.user.token);
+    toast.success("You have successfully registered", {
+      position: toast.POSITION.TOP_RIGHT,
+      theme: "light",
+    });
     return data;
   } catch (error) {
     const codeError = error.response.status;
@@ -83,7 +87,6 @@ const fetchCurrentUser = createAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistToken = state.auth.token;
-    console.log(persistToken);
     if (persistToken === null) {
       return thunkAPI.rejectWithValue();
     }
@@ -92,7 +95,7 @@ const fetchCurrentUser = createAsyncThunk(
       const { data } = await axios.get("/user/current");
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(console.log(error));
+      return thunkAPI.rejectWithValue();
     }
   }
 );
