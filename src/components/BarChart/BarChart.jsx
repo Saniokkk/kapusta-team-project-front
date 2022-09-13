@@ -11,15 +11,6 @@ import {
   Text,
 } from 'recharts';
 
-// const items = [
-//   {
-//     id: 1,
-//     title: 'банани',
-//     sum: 5000.0,
-//   },
-// ];
-
-//  { title: 'Продукти', pathIcon: 'products', sum: 5000.0 },
 const renderCustomizedLabel = (props) => {
   const { x, y, width, value } = props;
   const radius = 10;
@@ -46,13 +37,11 @@ const renderCustomizedLabel = (props) => {
 };
 
 const Chart = ({ items }) => {
-  console.log(items);
-  // const Chart = () => {
+  // console.log(items);
   const sortedData = [...items].sort((a, b) => b.sum - a.sum);
 
   let chartWidth = 200;
   if (sortedData.length > 2) {
-    console.log(sortedData);
     // chartWidth = 400;
     chartWidth = 83 * sortedData.length;
   }
@@ -76,16 +65,16 @@ const Chart = ({ items }) => {
     // <ResponsiveContainer width={758} height='99%' className={styles.centered}>
     <ResponsiveContainer
       width={chartWidth}
-      height='99%'
+      height={'100%'}
       className={styles.centered}
     >
       <BarChart
-        // className={styles.barChart}
+        className={styles.barChart}
         data={sortedData}
         maxBarSize={38}
-        width={400}
+        width={366}
         // width={200}
-        // height={350}
+        // height={450}
         barCategoryGap={25}
         // barGap={5}
         // style={{ stroke: '#fff', strokeWidth: 2 }}

@@ -9,11 +9,16 @@ import {
 } from "services/transactionsApi";
 import { calendarSelectors } from "../../../redux/extraInfo";
 import { makeNumberWithSpaces } from "helpers/numberWithSpaces";
+import { ModalLogout } from "components/ModalLogout";
+import { TailSpin } from "react-loader-spinner";
 import icon from "assets/symbol-icons.svg";
 import s from "./ProductList.module.scss";
 
 const ProductList = () => {
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [modalState, setModalState] = useState(false);
+  const [clickedId, setClickedId] = useState("");
 
   const dispatch = useDispatch();
   const totalBalance = useSelector(selectors.getUserBalance);
@@ -27,22 +32,32 @@ const ProductList = () => {
   const sumClass = transactionType === "expense" ? `${s.red}` : `${s.green}`;
 
   useEffect(() => {
+    setIsLoading(true);
+
     if (transactionType === "expense") {
-      getTransactionsByDate(convertedDate).then((ta) => {
-        setData(ta.expenseByDay);
-      });
+      getTransactionsByDate(convertedDate)
+        .then((ta) => {
+          setData(ta.expenseByDay);
+        })
+        .then(() => setIsLoading(false));
     }
 
     if (transactionType === "income") {
-      getTransactionsByDate(convertedDate).then((ta) => {
-        setData(ta.incomeByDay);
-      });
+      getTransactionsByDate(convertedDate)
+        .then((ta) => {
+          setData(ta.incomeByDay);
+        })
+        .then(() => setIsLoading(false));
     }
   }, [convertedDate, transactionType, totalBalance]);
 
   const convertDate = (date) => {
-    const convertedDate = date.slice(0, -14).replace(/-/g, ".");
-    return convertedDate;
+    const year = date.slice(0, -20);
+    const month = date.slice(5, -17);
+    const day = date.slice(8, -14);
+    const result = `${day}.${month}.${year}`;
+
+    return result;
   };
 
   const negativeSum = (price) => {
@@ -62,22 +77,40 @@ const ProductList = () => {
     }
   };
 
-  const handleDelete = (id) => {
+  const handleClickOnDelete = (event) => {
+    const { id } = event.target;
+    setClickedId(id);
+    setModalState(!modalState);
+  };
+
+  const handleDelete = async (id) => {
     if (transactionType === "expense") {
-      deleteTransaction("expense", id).then((res) => {
+      await deleteTransaction("expense", id).then((res) => {
+        setIsLoading(true);
+
         dispatch(
           authOperations.updateCurrentUser({ totalBalance: res.totalBalance })
         );
+
+        setIsLoading(false);
       });
+
+      setModalState(!modalState);
     }
 
     if (transactionType === "income") {
       deleteTransaction("income", id).then((res) => {
+        setIsLoading(true);
+
         dispatch(
           authOperations.updateCurrentUser({ totalBalance: res.totalBalance })
         );
+
+        setIsLoading(false);
       });
     }
+
+    setModalState(!modalState);
   };
 
   return (
@@ -94,135 +127,168 @@ const ProductList = () => {
           </tr>
         </thead>
         <tbody>
-          {data &&
-            data.map(({ _id, date, description, category, sum }) => {
-              return (
-                <tr key={_id}>
-                  <td>{convertDate(date)}</td>
-                  <td>{description}</td>
-                  <td>{category === "Здоровя" ? "Здоров'я" : category}</td>
-                  <td className={sumClass}>{negativeSum(sum)}</td>
-                  <td>
-                    <button
-                      className={s.button}
-                      type="button"
-                      onClick={() => handleDelete(_id)}
-                    >
-                      <svg className={s.icon} width="18" height="18">
-                        <use href={`${icon}#icon-delete`} />
-                      </svg>
-                    </button>
-                  </td>
+          {isLoading ? (
+            <tr className={s.loaderWrapper}>
+              <td>
+                <TailSpin
+                  height="100"
+                  width="100"
+                  color="#ff751d"
+                  ariaLabel="loading-indicator"
+                />
+              </td>
+            </tr>
+          ) : (
+            <>
+              {data &&
+                data.map(({ _id, date, description, category, sum }) => {
+                  return (
+                    <tr key={_id}>
+                      <td>{convertDate(date)}</td>
+                      <td>{description}</td>
+                      <td>{category === "Здоровя" ? "Здоров'я" : category}</td>
+                      <td className={sumClass}>{negativeSum(sum)}</td>
+                      <td>
+                        <button
+                          id={_id}
+                          className={s.button}
+                          type="button"
+                          onClick={handleClickOnDelete}
+                        >
+                          <svg className={s.icon} width="18" height="18">
+                            <use href={`${icon}#icon-delete`} />
+                          </svg>
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              {data.length > 0 ? (
+                <>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </>
+              ) : (
+                <tr className={s.notification}>
+                  <td>за цей період транзакцій немає</td>
                 </tr>
-              );
-            })}
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
+              )}
+            </>
+          )}
         </tbody>
       </table>
+
+      {modalState && (
+        <ModalLogout
+          onClose={() => setModalState(!modalState)}
+          handleClickLeft={() => handleDelete(clickedId)}
+          handleClickRight={() => setModalState(!modalState)}
+          modalTitle="Видалити транзакцію?"
+        />
+      )}
     </>
   );
 };

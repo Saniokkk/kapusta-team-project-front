@@ -125,13 +125,12 @@
   }
   .wrapper {
     /* width: 605px; */
-    position: absolute;
+    /* position: absolute; */
     left: 35px;
     bottom: 40px;
     width: 630px;
-    height: 314px;
-    /* margin: 0 auto; */
-    overflow: auto;
+
+    overflow-x: auto;
 
     background-image: linear-gradient(#f5f6fbd3 2px, transparent 2px);
     background-size: 100% 35px;
@@ -147,11 +146,16 @@
 
   .graphBox {
     width: 1034px;
+    height: 422px;
+    /* overflow: hidden; */
   }
   .wrapper {
-    /* position: static; */
+    position: static;
     /* width: 605px; */
     width: 758px;
+    /* height: 450px; */
+    overflow-y: hidden;
+    overflow-x: hidden;
     left: 142px;
     /* bottom: 35px; */
     /* height: 345px; */
