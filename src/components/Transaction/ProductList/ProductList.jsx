@@ -41,8 +41,12 @@ const ProductList = () => {
   }, [convertedDate, transactionType, totalBalance]);
 
   const convertDate = (date) => {
-    const convertedDate = date.slice(0, -14).replace(/-/g, ".");
-    return convertedDate;
+    const year = date.slice(0, -20);
+    const month = date.slice(5, -17);
+    const day = date.slice(8, -14);
+    const result = `${day}.${month}.${year}`;
+
+    return result;
   };
 
   const negativeSum = (price) => {
