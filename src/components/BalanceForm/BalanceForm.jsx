@@ -75,7 +75,7 @@ const BalanceForm = () => {
           disabled={balance ? "disabled" : ""}
           placeholder={"00.00 UAH"}
         />
-        {totalBalance === 0  && <ModalBalanceError />}
+        {totalBalance === null  && <ModalBalanceError />}
 
         {viewPort.width > 1279 && (
           <BalanceBtn onSubmit={handleSubmit} balance={balance} />
