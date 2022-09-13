@@ -1,8 +1,8 @@
 import axios from "axios";
 
 // type === income OR expense
-export async function getTransactionsByType(type) {
-  const { data } = await axios.get(`/report/currentYear/${type}`);
+export async function getTransactionsSummaryByYear(year, type) {
+  const { data } = await axios.get(`/report/summaryByMonth/${year}/${type}`);
   return data;
 }
 

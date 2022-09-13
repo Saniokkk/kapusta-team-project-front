@@ -30,14 +30,12 @@ const ProductList = () => {
     if (transactionType === "expense") {
       getTransactionsByDate(convertedDate).then((ta) => {
         setData(ta.expenseByDay);
-        console.log("wtf", ta.expenseByDay);
       });
     }
 
     if (transactionType === "income") {
       getTransactionsByDate(convertedDate).then((ta) => {
         setData(ta.incomeByDay);
-        console.log(ta.incomeByDay);
       });
     }
   }, [convertedDate, transactionType, totalBalance]);
