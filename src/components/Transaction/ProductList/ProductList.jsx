@@ -39,7 +39,7 @@ const ProductList = () => {
         .then((ta) => {
           setData(ta.expenseByDay);
         })
-        .then(() => setIsLoading(true));
+        .then(() => setIsLoading(false));
     }
 
     if (transactionType === "income") {
