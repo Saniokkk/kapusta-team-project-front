@@ -37,6 +37,10 @@ const BalanceForm = () => {
       setAmount("")
       return
     }
+    if(amount > 9999999){
+    toast.warn("Завелике значення. Максимальна довжина суми 7 знаків")
+    return
+    }
     dispatch(authOperations.updateCurrentUser({ totalBalance: amount }));
   };
 
