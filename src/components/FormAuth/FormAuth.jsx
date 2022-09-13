@@ -19,7 +19,9 @@ export const FormAuth = () => {
 
     if (!values.email) {
       errors.email = "Обов'язкове поле для заповнення";
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+    } else if (
+      !/^.{1,}[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+    ) {
       errors.email = "Невірна адреса електронної пошти";
     }
 

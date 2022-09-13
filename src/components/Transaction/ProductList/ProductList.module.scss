@@ -232,4 +232,41 @@ button {
 
 .icon {
   margin: auto;
+  pointer-events: none;
+}
+
+/* NOTIFICATION */
+
+.notification {
+  width: 100%;
+  height: 100%;
+  border-right: 2px solid var(--grey-bg-home-color);
+}
+
+.notification td {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--primary-text-color);
+  opacity: 0.6;
+}
+
+/* LOADER */
+
+.loaderWrapper {
+  width: 100%;
+  height: 100%;
+  border-right: 2px solid var(--grey-bg-home-color);
+}
+
+.loaderWrapper td {
+  padding: 0;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }

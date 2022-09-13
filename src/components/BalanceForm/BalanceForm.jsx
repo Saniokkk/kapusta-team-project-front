@@ -34,8 +34,10 @@ const BalanceForm = () => {
     setBalance(amount);
     if(amount < 0){
       toast.warn("Баланс не може бути від'ємним")
+      setAmount("")
       return
     }
+    console.log(amount)
     dispatch(authOperations.updateCurrentUser({ totalBalance: amount }));
   };
 

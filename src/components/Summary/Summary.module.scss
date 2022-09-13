@@ -38,3 +38,14 @@
 
   list-style: none;
 }
+
+/* NOTIFICATION */
+
+.list li.notification {
+  justify-content: center;
+  height: 100%;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  opacity: 0.6;
+}
