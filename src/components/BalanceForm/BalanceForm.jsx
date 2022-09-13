@@ -2,7 +2,7 @@ import NumberFormat from "react-number-format";
 import selectors from "redux/auth/auth-selector";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 import authOperations from "redux/auth/auth-operations";
 import { ModalBalanceError } from "components/ModalBalanceError";
 import { useState, useEffect } from "react";
@@ -22,24 +22,24 @@ const BalanceForm = () => {
   useEffect(() => {
     if (totalBalance !== null) {
       setAmount(totalBalance);
-      setBalance(totalBalance); 
+      setBalance(totalBalance);
     }
     if (balance) {
       setDisable(true);
     }
-  }, [balance,disable,totalBalance]);
+  }, [balance, disable, totalBalance]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setBalance(amount);
-    if(amount < 0){
-      toast.warn("Баланс не може бути від'ємним")
-      setAmount("")
-      return
+    if (amount < 0) {
+      toast.warn("Баланс не може бути від'ємним");
+      setAmount("");
+      return;
     }
-    if(amount > 9999999){
-    toast.warn("Завелике значення. Максимальна довжина суми 7 знаків")
-    return
+    if (amount > 9999999) {
+      toast.warn("Завелике значення. Максимальна довжина суми 7 знаків");
+      return;
     }
     dispatch(authOperations.updateCurrentUser({ totalBalance: amount }));
   };
@@ -59,8 +59,7 @@ const BalanceForm = () => {
       </div>
 
       <div className={styles.formInputBox}>
-
-          <NumberFormat
+        <NumberFormat
           className={styles.formInput}
           autoComplete="off"
           name="input"
@@ -75,10 +74,11 @@ const BalanceForm = () => {
           disabled={balance ? "disabled" : ""}
           placeholder={"00.00 UAH"}
         />
-        {totalBalance === 0  && <ModalBalanceError />}
-
+        {(totalBalance === undefined || totalBalance === null) && (
+          <ModalBalanceError />
+        )}
         {viewPort.width > 1279 && (
-          <BalanceBtn onSubmit={handleSubmit} balance={balance} />
+          <BalanceBtn onSubmit={handleSubmit} balance={totalBalance} />
         )}
       </div>
     </form>
