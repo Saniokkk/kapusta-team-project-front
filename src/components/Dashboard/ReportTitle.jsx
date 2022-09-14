@@ -5,8 +5,10 @@ import { addCurrentType } from 'redux/extraInfo/extraInfo-slice';
 import spriteIcons from '../../assets/sprite-icons.svg';
 
 import styles from './ReportSummary.module.css';
+import { useState } from 'react';
 
-export const ReportTitle = ({ category }) => {
+export const ReportTitle = ({ category, items, func }) => {
+  const [array, setItems] = useState();
   const transactionOption = useSelector(getCurrentType);
   const navigate = useNavigate();
   const dispatch = useDispatch();

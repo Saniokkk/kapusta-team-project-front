@@ -39,11 +39,11 @@ import { ReportTitle } from './ReportTitle';
 //   },
 // ];
 
-export const Dashboard = ({ category }) => {
+export const Dashboard = () => {
   const [items, setItems] = useState([]); //all expenses or income
   const [totalExp, setTotalExp] = useState(null);
   const [totalInc, setTotalInc] = useState(null);
-  const [chart, setChart] = useState([]);
+  const [chartItems, setChartItems] = useState([]);
 
   const [array, setArray] = useState([]);
 
@@ -66,14 +66,12 @@ export const Dashboard = ({ category }) => {
         const expenses = localizationExpense(
           transactions.totalExpanseByCategory
         );
+
         const income = localizationIncome(transactions.totalIncomeByCategory);
 
-        // const expenses = localizationExpense(dataExpenses);
-        // const income = localizationIncome(dataIncome);
-
-        if (option === 'витрати') {
+        // if (option === 'витрати') {
+        if (transactionOption === 'expense') {
           setItems(expenses);
-
           // getFirstItem();
           const expensesFirstObj = expenses[0];
           // console.log('expensesFirstObj', expensesFirstObj.pathIcon);
@@ -83,36 +81,42 @@ export const Dashboard = ({ category }) => {
             year
           );
           const expDescrData = expDescriptions.reportByMonthForYear;
-
-          // console.log('expDescriptions', expDescriptions);
-          // console.log('expDescrData', expDescrData);
-
+          console.log('expDescriptions', expDescriptions);
+          console.log('expDescrData', expDescrData);
           const keys = Object.keys(expDescrData);
           // console.log('keys', keys);
-
-          let arrDescr = [];
+          let details = [];
           for (const key of keys) {
-            let object = { title: key, sum: expDescrData[key] };
+            let modifiedDetails = { title: key, sum: expDescrData[key] };
             // console.log('objectDescr', object);
-            arrDescr.push(object);
+            details.push(modifiedDetails);
             // console.log('arrDescr', arrDescr);
-            setArray(arrDescr);
+            setArray(details);
+            console.log('arrayExp', array);
           }
-        } else if (option === 'дохід') {
+          // } else if (option === 'дохід') {
+          return;
+        }
+        console.log('transactionOption', transactionOption);
+        if (transactionOption === 'income') {
+          // const income = localizationIncome(transactions.totalIncomeByCategory);
           setItems(income);
           // getFirstItem();
+          // console.log('resultIncome', items);
 
+          // const expensesFirstObj = income[0];
           const expensesFirstObj = income[0];
-          // console.log('items0', expensesFirstObj.pathIcon);
-          const expDescriptions = getTransactionsByCategory(
+
+          console.log('itemsIncome 0', expensesFirstObj);
+          const incomeDescriptions = await getTransactionsByCategory(
             expensesFirstObj.pathIcon,
             month,
             year
           );
-          const expDescrData = expDescriptions.reportByMonthForYear;
+          const expDescrData = incomeDescriptions.reportByMonthForYear;
 
-          // console.log('expDescriptions', expDescriptions);
-          // console.log('expDescrData', expDescrData);
+          console.log('expDescriptionsIncome', incomeDescriptions);
+          console.log('expDescrDataIncome', expDescrData);
 
           const keys = Object.keys(expDescrData);
           // console.log('keys', keys);
@@ -122,8 +126,9 @@ export const Dashboard = ({ category }) => {
             let object = { title: key, sum: expDescrData[key] };
             // console.log('objectDescr', object);
             arrDescr.push(object);
-            // console.log('arrDescr', arrDescr);
+            console.log('arrDescrIncome', arrDescr);
             setArray(arrDescr);
+            return arrDescr;
           }
           // setItems(dataExpenses);
         }
@@ -186,18 +191,17 @@ export const Dashboard = ({ category }) => {
   const onClick = (path) => {
     async function getItems() {
       try {
-        const items = await getTransactionsByCategory(path, month, year);
-        const itemsCharts = items.reportByMonthForYear;
+        const fetchItems = await getTransactionsByCategory(path, month, year);
+        const items = fetchItems.reportByMonthForYear;
 
-        const keys = Object.keys(itemsCharts);
-        let array = [];
+        const keys = Object.keys(items);
+        let itemsArray = [];
         for (const key of keys) {
-          let object = { title: key, sum: itemsCharts[key] };
-          array.push(object);
+          let modifiedItems = { title: key, sum: items[key] };
+          itemsArray.push(modifiedItems);
 
-          setChart(array);
+          setChartItems(itemsArray);
         }
-        // onClick(chartItems);
       } catch (error) {
         console.log(error);
       }
@@ -209,9 +213,9 @@ export const Dashboard = ({ category }) => {
   // const firstItem = items[0];
   // console.log('firstItem', firstItem.pathIcon);
   console.log('array', array);
-  console.log('chart', chart);
+  // console.log('chartItems', chartItems);
+  console.log('items', items);
 
-  // console.log('items', items[0]);
   return (
     <>
       <ProfitStats totalExp={totalExp} totalInc={totalInc} />
@@ -232,9 +236,9 @@ export const Dashboard = ({ category }) => {
 
       <div className={styles.graphBox}>
         <div className={styles.testDiv}>
-          {chart.length === 0 && <ReportChart items={array} />}
+          {chartItems.length === 0 && <ReportChart items={array} />}
           {items.length > 0 ? (
-            <ReportChart items={chart} />
+            <ReportChart items={chartItems} />
           ) : (
             <div className={styles.notification}>
               <h2>ЗА ЦЕЙ ПЕРІОД ТРАНСАКЦІЙ НЕМАЄ</h2>
@@ -245,14 +249,3 @@ export const Dashboard = ({ category }) => {
     </>
   );
 };
-
-// {
-//   /* {viewPort.width < 767 ? (
-//           <MobileChart items={chart} />
-//         ) : (
-//           <Chart items={chart} />
-//         )} */
-// }
-// {
-//   /* <Chart items={itemsforChart} /> */
-// }
