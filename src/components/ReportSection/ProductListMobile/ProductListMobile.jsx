@@ -100,6 +100,14 @@ const ProductListMobile = () => {
     }
   };
 
+  const trimmedString = (description) => {
+    if (description.length > 15) {
+      return `${description.slice(0, 15).trim()}${"..."}`;
+    }
+
+    return description.trim();
+  };
+
   return (
     <>
       <ul className={styles.transactionList}>
@@ -109,7 +117,9 @@ const ProductListMobile = () => {
               <li key={_id} className={styles.transactionListItem}>
                 <ul>
                   <li>
-                    <p className={styles.description}>{description}</p>
+                    <p className={styles.description}>
+                      {trimmedString(description)}
+                    </p>
                     <p className={styles.date}>{convertDate(date)}</p>
                   </li>
                   <li className={styles.categories}>
