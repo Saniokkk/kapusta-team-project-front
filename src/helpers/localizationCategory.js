@@ -5,13 +5,6 @@ const func = (acc, item, path, title = item[0]) => {
     sum: item[1],
   });
 };
-// const func = (acc, item, path, title = item[0]) => {
-//   return acc.push({
-//     ['title']: title,
-//     ['pathIcon']: path,
-//     ['sum']: item[1],
-//   });
-// };
 
 export const localizationExpense = (obj) => {
   const arr = Object.entries(obj);
@@ -100,4 +93,4 @@ const totalExpanseByCategory = {
   Інше: 200,
 };
 
-console.log(localizationExpense(totalExpanseByCategory));
+// console.log(localizationExpense(totalExpanseByCategory));

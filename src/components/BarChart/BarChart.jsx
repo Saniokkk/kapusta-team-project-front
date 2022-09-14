@@ -74,12 +74,7 @@ const Chart = ({ items }) => {
         />
         <YAxis tickCount={600} orientation='top' hide={true} />
         <Text scaleToFit={true} width={30} />
-        <Bar
-          dataKey='sum'
-          barSize={38}
-          radius={[10, 10, 0, 0]}
-          className={styles.bar}
-        >
+        <Bar dataKey='sum' barSize={38} radius={[10, 10, 0, 0]}>
           <LabelList dataKey='sum' content={renderCustomizedLabel} />
           {sortedData.map((entry, index) => (
             <Cell fill={index % 3 === 0 ? '#FF751D' : '#FFDAC0'} />

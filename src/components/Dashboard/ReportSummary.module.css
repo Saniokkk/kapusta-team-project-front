@@ -190,4 +190,16 @@
     color: var(--primary-text-color);
     opacity: 0.9;
   }
+  /* .notificationTitle {
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 1.14;
+    text-transform: uppercase;
+    color: var(--primary-text-color);
+    opacity: 0.9;
+  } */
 }

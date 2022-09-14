@@ -1,12 +1,10 @@
-// import Chart from 'components/BarChart/BarChart';
-// import MobileChart from 'components/BarChart/MobileChart';
 import { CardExpenses } from 'components/CardExpenses';
 import { ProfitStats } from 'components/ProfitStats/ProfitStats';
 import {
   localizationExpense,
   localizationIncome,
 } from 'helpers/localizationCategory';
-// import useWindowDimensions from 'hooks/useWindowDimensions';
+
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
@@ -23,22 +21,6 @@ import ReportChart from './ReportChart';
 import styles from './ReportSummary.module.css';
 import { ReportTitle } from './ReportTitle';
 
-// const data = [
-//   {
-//     sum: 500.0,
-//     title: 'овочі',
-//   },
-//   {
-//     sum: 1000.0,
-//     title: 'фрукти',
-//   },
-
-//   {
-//     sum: 6000.0,
-//     title: 'овочі',
-//   },
-// ];
-
 export const Dashboard = () => {
   const [items, setItems] = useState([]); //all expenses or income
   const [totalExp, setTotalExp] = useState(null);
@@ -51,14 +33,9 @@ export const Dashboard = () => {
   const month = useSelector(getMonth);
   const year = useSelector(getYear);
 
-  // const path = 'products';
-
   const option = transactionOption === 'income' ? 'дохід' : 'витрати';
 
   useEffect(() => {
-    // if (items.length < 0) {
-    //   return;
-    // }
     async function getTransactions() {
       try {
         const transactions = await getTransactionsByMonth(month, year);
@@ -72,42 +49,35 @@ export const Dashboard = () => {
         // if (option === 'витрати') {
         if (transactionOption === 'expense') {
           setItems(expenses);
-          // getFirstItem();
+
           const expensesFirstObj = expenses[0];
-          // console.log('expensesFirstObj', expensesFirstObj.pathIcon);
+
           const expDescriptions = await getTransactionsByCategory(
             expensesFirstObj.pathIcon,
             month,
             year
           );
           const expDescrData = expDescriptions.reportByMonthForYear;
-          console.log('expDescriptions', expDescriptions);
-          console.log('expDescrData', expDescrData);
+
           const keys = Object.keys(expDescrData);
-          // console.log('keys', keys);
+
           let details = [];
           for (const key of keys) {
             let modifiedDetails = { title: key, sum: expDescrData[key] };
-            // console.log('objectDescr', object);
+
             details.push(modifiedDetails);
-            // console.log('arrDescr', arrDescr);
+
             setArray(details);
-            console.log('arrayExp', array);
           }
           // } else if (option === 'дохід') {
-          return;
         }
-        console.log('transactionOption', transactionOption);
+
+        // if (option === 'дохід') {
         if (transactionOption === 'income') {
           // const income = localizationIncome(transactions.totalIncomeByCategory);
           setItems(income);
-          // getFirstItem();
-          // console.log('resultIncome', items);
-
-          // const expensesFirstObj = income[0];
           const expensesFirstObj = income[0];
 
-          console.log('itemsIncome 0', expensesFirstObj);
           const incomeDescriptions = await getTransactionsByCategory(
             expensesFirstObj.pathIcon,
             month,
@@ -115,69 +85,17 @@ export const Dashboard = () => {
           );
           const expDescrData = incomeDescriptions.reportByMonthForYear;
 
-          console.log('expDescriptionsIncome', incomeDescriptions);
-          console.log('expDescrDataIncome', expDescrData);
-
           const keys = Object.keys(expDescrData);
-          // console.log('keys', keys);
 
           let arrDescr = [];
           for (const key of keys) {
             let object = { title: key, sum: expDescrData[key] };
-            // console.log('objectDescr', object);
+
             arrDescr.push(object);
-            console.log('arrDescrIncome', arrDescr);
             setArray(arrDescr);
             return arrDescr;
           }
-          // setItems(dataExpenses);
         }
-
-        // async function getFirstItem() {
-        //   const expensesFirstObj = items[0];
-
-        //   const expDescriptions = await getTransactionsByCategory(
-        //     expensesFirstObj.pathIcon,
-        //     month,
-        //     year
-        //   );
-        //   const expDescrData = expDescriptions.reportByMonthForYear;
-
-        //   const keys = Object.keys(expDescrData);
-
-        //   let arrDescr = [];
-        //   for (const key of keys) {
-        //     let object = { title: key, sum: expDescrData[key] };
-        //     // console.log('objectDescr', object);
-        //     arrDescr.push(object);
-        //     // console.log('arrDescr', arrDescr);
-        //     setArray(arrDescr);
-        //     return arrDescr;
-        //   }
-        // }
-        // const expensesFirstObj = expenses[0];
-        // // console.log('expensesFirstObj', expensesFirstObj.pathIcon);
-        // const expDescriptions = await getTransactionsByCategory(
-        //   expensesFirstObj.pathIcon,
-        //   month,
-        //   year
-        // );
-        // const expDescrData = expDescriptions.reportByMonthForYear;
-
-        // // console.log('expDescriptions', expDescriptions);
-        // // console.log('expDescrData', expDescrData);
-
-        // const keys = Object.keys(expDescrData);
-        // // console.log('keys', keys);
-
-        // let arrDescr = [];
-        // for (const key of keys) {
-        //   let object = { title: key, sum: expDescrData[key] };
-        //   // console.log('objectDescr', object);
-        //   arrDescr.push(object);
-        //   // console.log('arrDescr', arrDescr);
-        //   setArray(arrDescr);
-        // }
 
         setTotalExp(transactions.totalExpense);
         setTotalInc(transactions.totalIncome);
@@ -210,12 +128,6 @@ export const Dashboard = () => {
     getItems();
   };
 
-  // const firstItem = items[0];
-  // console.log('firstItem', firstItem.pathIcon);
-  console.log('array', array);
-  // console.log('chartItems', chartItems);
-  console.log('items', items);
-
   return (
     <>
       <ProfitStats totalExp={totalExp} totalInc={totalInc} />
@@ -240,8 +152,8 @@ export const Dashboard = () => {
           {items.length > 0 ? (
             <ReportChart items={chartItems} />
           ) : (
-            <div className={styles.notification}>
-              <h2>ЗА ЦЕЙ ПЕРІОД ТРАНСАКЦІЙ НЕМАЄ</h2>
+            <div className={styles.notificationTitle}>
+              {/* <h2>ЗА ЦЕЙ ПЕРІОД ТРАНСАКЦІЙ НЕМАЄ</h2> */}
             </div>
           )}
         </div>
