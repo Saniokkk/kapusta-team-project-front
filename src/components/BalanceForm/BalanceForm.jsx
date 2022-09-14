@@ -35,6 +35,7 @@ const BalanceForm = () => {
     if (amount < 0) {
       toast.warn("Баланс не може бути від'ємним");
       setAmount("");
+      dispatch(authOperations.updateCurrentUser({ totalBalance: 0 }));
       return;
     }
     if (amount > 9999999) {
