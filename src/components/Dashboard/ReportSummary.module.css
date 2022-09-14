@@ -69,30 +69,25 @@
   overflow: hidden;
 }
 
-/* // .list {
-//   display: inline-block;
-//   display: grid;
-//   grid-template-columns: repeat(3, 1fr);
-//   margin: 0 auto;
-
-//   width: 280px;
-// } */
 .graphBox {
   margin-right: auto;
   margin-left: auto;
   /* padding: 20px 138px 19px 135px; */
   padding: 15px;
-  width: 100%;
+  /* width: 100%; */
+  width: 320px;
   height: auto;
 
   background: #ffffff;
 }
-/* .sectionLine {
+.testDiv {
   width: 280px;
-  border-top: 0.5px solid #e0e5eb;
-  background-color: #e0e5eb;
-  margin: 0 auto;
-} */
+  height: 500px;
+
+  /* margin: 0 auto; */
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 
 /* // tablet */
 @media screen and (min-width: 768px) {
@@ -114,18 +109,27 @@
   .graphBox {
     margin-right: auto;
     margin-left: auto;
-    /* padding: 10px; */
-    padding-top: 20px;
+    padding-bottom: 9px;
+    padding-top: 30px;
+
     width: 704px;
     height: 422px;
-    position: relative;
-    /* overflow: scroll; */
+
     box-shadow: 0px 10px 60px rgba(170, 178, 197, 0.2);
     border-radius: 30px;
   }
-  .wrapper {
-    /* width: 605px; */
-    /* position: absolute; */
+  .testDiv {
+    width: 638px;
+    height: 100%;
+    margin: 0 auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    background-image: linear-gradient(#f5f6fbd3 2px, transparent 2px);
+    background-size: 100% 35px;
+  }
+  /* .wrapper {
+    
     left: 35px;
     bottom: 40px;
     width: 630px;
@@ -134,7 +138,7 @@
 
     background-image: linear-gradient(#f5f6fbd3 2px, transparent 2px);
     background-size: 100% 35px;
-  }
+  } */
 }
 /* desktop */
 @media screen and (min-width: 1280px) {
@@ -147,20 +151,43 @@
   .graphBox {
     width: 1034px;
     height: 422px;
-    /* overflow: hidden; */
+
+    padding-bottom: 9px;
+    padding-top: 30px;
   }
-  .wrapper {
+  /* .wrapper {
     position: static;
-    /* width: 605px; */
+   
     width: 758px;
-    /* height: 450px; */
+    
     overflow-y: hidden;
     overflow-x: hidden;
     left: 142px;
-    /* bottom: 35px; */
-    /* height: 345px; */
-    /* height: 382px; */
+   
     margin: 0 auto;
     overflow: auto;
+  } */
+  .testDiv {
+    width: 758px;
+    height: 100%;
+    margin: 0 auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    background-image: linear-gradient(#f5f6fbd3 2px, transparent 2px);
+    background-size: 100% 35px;
+  }
+  .notification {
+    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 1.14;
+    text-transform: uppercase;
+    color: var(--primary-text-color);
+    opacity: 0.9;
   }
 }

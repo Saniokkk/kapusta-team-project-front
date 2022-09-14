@@ -2,6 +2,7 @@
 // import { useSelector } from 'react-redux';
 // import { getMonth, getYear } from 'redux/extraInfo/extraInfo-selectors';
 // import { getTransactionsByCategory } from 'services/reportsApi';
+
 import spriteIcons from '../../assets/sprite-icons.svg';
 import styles from './CardExpenses.module.scss';
 
@@ -13,7 +14,12 @@ export const CardExpenses = ({ pathIcon, title, sum, onClick }) => {
 
       <svg
         className={styles.icon}
+        // className={isActive ? 'styles.active' : styles.icon}
+        // style={({ isActive }) => (isActive ? activeClassName : null)}
+        // style={{}}
         onClick={() => {
+          // activeClassName={styles.active}
+
           onClick(pathIcon);
         }}
       >

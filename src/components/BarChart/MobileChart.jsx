@@ -4,142 +4,109 @@ import {
   Cell,
   XAxis,
   YAxis,
-  // CartesianGrid,
   LabelList,
   ResponsiveContainer,
-  Text,
-  // Label,
-  // Brush,
 } from 'recharts';
 import styles from './BarChart.module.css';
 
-// const data = [
-//   {
-//     title: 'Продукти',
-//     amount: 5000,
-//   },
-//   {
-//     title: 'Алкоголь',
-//     amount: 200,
-//   },
-//   {
-//     title: 'Розваги',
-//     amount: 800,
-//   },
-
-// ];
-
-// let formatter = new Intl.NumberFormat('ua-UA', {
-//   style: 'currency',
-//   currency: 'UAH',
-// });
-
-const renderCustomizedLabel = (props) => {
-  const { x, y, width, value } = props;
-  const radius = 10;
-
+const renderCustomizedLabel = ({ x, y, width, value }) => {
+  const label = value ? value.toString() + ' грн' : '';
+  if (width < 90) {
+    width = 90;
+  }
   return (
     <g>
       <text
-        width={10}
-        height={20}
-        x={x + width / 2}
-        y={y - radius}
-        fontSize={12}
+        // width={11}
+        y={y}
+        x={width}
+        dx={0}
+        dy={-10}
+        fontSize={11}
         fontFamily='Roboto'
         fontWeight={400}
         letterSpacing={'0.02em'}
         fill='#52555F'
         textAnchor='middle'
-        dominantBaseline='middle'
       >
-        {value.toString() + ' грн'}
+        {label}
+      </text>
+    </g>
+  );
+};
+const renderBarLabel = (props) => {
+  const { x, y, value } = props;
+  let label = value;
+  if (value.length > 8) {
+    label = value.substr(0, 8) + '...';
+  }
+
+  return (
+    <g>
+      <text
+        x={x}
+        y={y}
+        dx={0}
+        dy={-10}
+        fontSize={11}
+        fontFamily='Roboto'
+        fontWeight={400}
+        letterSpacing={'0.02em'}
+        fill='#52555F'
+      >
+        {label}
       </text>
     </g>
   );
 };
 
 const MobileChart = ({ items }) => {
-  const sortedData = [...items].sort((a, b) => b.amount - a.amount);
-  let chartWidth = 83 * sortedData.length;
+  const sortedData = [...items].sort((a, b) => b.sum - a.sum);
+  let chartHeight = 83 * sortedData.length;
 
-  // if (sortedData.length > 2) {
-  //   // chartWidth = 400;
-  //    chartWidth = 83 * sortedData.length;
-  // }
   return (
     <>
       <ResponsiveContainer
         width='99%'
-        height={chartWidth}
+        height={chartHeight}
         className={styles.centered}
       >
         <BarChart
-          width={280}
-          height={580}
           data={sortedData}
           layout='vertical'
           margin={{
-            top: 5,
-            right: 20,
-            left: 20,
-            bottom: 5,
+            top: 0,
+            right: 5,
+            left: 5,
+            bottom: 0,
           }}
         >
           <XAxis
             type='number'
             dataKey='sum'
-            // tickCount={500}
-            ticks={[
-              0, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4500, 5000,
-              5500,
-            ]}
-            axisLine={false}
-            tickLine={false}
-            hide={true}
-            domain={['dataMin', 'dataMax']}
-            // label={{ position: 'insideTop' }}
-            // allowDataOverflow={true}
-            // type='category'
-            // axisLine={false}
-            // tickLine={false}
-            // minTickGap={5}
-            // fontSize={12}
-            // fontWeight={400}
-            // fontFamily={'Roboto'}
-            // letterSpacing={'0.02em'}
+            tickCount={600}
+            hide
+            allowDataOverflow={true}
+            minTickGap={5}
           ></XAxis>
-          <YAxis
-            type='category'
-            dataKey='title'
-            axisLine={false}
-            tickLine={false}
-            // minTickGap={5}
-            fontSize={12}
-            fontWeight={400}
-            fontFamily={'Roboto'}
-            letterSpacing={'0.02em'}
-            // type='number'
-            // domain={}
-            // domain={[-1, 1]}
-            // orientation='right'
-          />
-          <Text scaleToFit={true} width={30} />
-          {/* <Brush dataKey='name' height={30} stroke='#8884d8' /> */}
+          <YAxis type='category' dataKey='title' hide />
+
           <Bar
             dataKey='sum'
-            // fill={'#FFDAC0'}
+            fill={'#FFDAC0'}
             radius={[0, 10, 10, 0]}
             barSize={15}
-            // label={{ position: 'top' }}
-            // style={{ stroke: '#000' }}
+            label={renderCustomizedLabel}
           >
-            <LabelList dataKey='sum' content={renderCustomizedLabel} />
+            <LabelList
+              dataKey='title'
+              content={renderBarLabel}
+              fill='#52555F'
+            />
             {sortedData.map((entry, index) => (
               <Cell fill={index % 3 === 0 ? '#FF751D' : '#FFDAC0'} />
             ))}
           </Bar>
-          {/* <LabelList dataKey='amount' content={renderCustomizedLabel} /> */}
         </BarChart>
       </ResponsiveContainer>
     </>
