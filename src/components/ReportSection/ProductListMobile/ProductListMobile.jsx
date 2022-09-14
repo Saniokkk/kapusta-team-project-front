@@ -75,22 +75,28 @@ const ProductListMobile = () => {
     setModalState(!modalState);
   };
 
-  const handleDelete = (id, category) => {
+  const handleDelete = async (id, category) => {
     if (category !== "Доп.дохід" || category !== "Дохід") {
-      deleteTransaction("expense", id).then((res) => {
+      try {
+        const res = await deleteTransaction("expense", id);
         dispatch(
           authOperations.updateCurrentUser({ totalBalance: res.totalBalance })
         );
         setModalState(!modalState);
-      });
+      } catch (error) {
+        console.log(error.message);
+      }
     }
     if (category === "Доп.дохід" || category === "Дохід") {
-      deleteTransaction("income", id).then((res) => {
+      try {
+        const res = await deleteTransaction("income", id);
         dispatch(
           authOperations.updateCurrentUser({ totalBalance: res.totalBalance })
         );
         setModalState(!modalState);
-      });
+      } catch (error) {
+        console.log(error.message);
+      }
     }
   };
 
