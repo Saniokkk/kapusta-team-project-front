@@ -10,14 +10,6 @@ import styles from './ReportPage.module.css';
 
 const IncomeReportPage = () => {
   return (
-    // <>
-    //   <li>
-    //     <NavLink to='/trans' state={{ from: 'income' }}>
-    //       ExpensesReportPage
-    //     </NavLink>
-    //     ;
-    //   </li>
-    // </>
     <BackgroundBottom>
       <div className={styles.reportWrapper}>
         <ButtonToHome />
