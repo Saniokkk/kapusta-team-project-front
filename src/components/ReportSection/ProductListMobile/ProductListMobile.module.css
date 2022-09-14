@@ -34,6 +34,7 @@ ul li {
 
   .transactionListItem .description {
     height: 20px;
+    width: 44px;
     font-family: "Roboto", sans-serif;
     font-style: normal;
     font-weight: 700;
