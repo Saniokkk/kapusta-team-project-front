@@ -220,5 +220,5 @@
   background: var(--clear-btn-bg);
   color: var(--clear-btn-text);
   border: 2px solid var(--clear-btn-border);
-  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
