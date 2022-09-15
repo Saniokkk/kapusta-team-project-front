@@ -23,7 +23,7 @@ ul li {
   .transactionList .transactionListItem {
     display: flex;
     height: 46px;
-    border-bottom: 1px solid var(--grey-bg-home-color);
+    border-bottom: 1px solid var(--list-accent);
   }
 
   .transactionList .transactionListItem ul {
@@ -35,30 +35,26 @@ ul li {
   .transactionListItem .description {
     height: 20px;
     width: 44px;
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
     font-weight: 700;
     font-size: 12px;
     line-height: 1.16;
     display: flex;
     align-items: center;
     letter-spacing: 0.04em;
-    color: #52555f;
+    color: var(--basic-icon-color);
     margin-bottom: 3px;
   }
 
   .transactionListItem .date {
     width: 44px;
     height: 7px;
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
     font-weight: 400;
     font-size: 8px;
     line-height: 1.12;
     letter-spacing: 0.04em;
     text-transform: uppercase;
     margin-right: 20px;
-    color: #52555f;
+    color: var(--list-item-text);
   }
 
   .transactionListItem .categories {
@@ -66,13 +62,11 @@ ul li {
     margin-right: 6px;
     width: 82px;
     height: 7px;
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
     font-weight: 400;
     font-size: 8px;
     line-height: 1.12;
     letter-spacing: 0.04em;
-    color: #52555f;
+    color: var(--list-item-text);
   }
 
   .transactionListItem .sum {
@@ -80,8 +74,6 @@ ul li {
     align-items: center;
     height: 20px;
     width: 90px;
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
     font-weight: 700;
     font-size: 12px;
     line-height: 1.16;
@@ -114,16 +106,11 @@ button {
   height: 32px;
   border-radius: 50%;
   border: 1px solid transparent;
-  background-color: var(--product-bg-list);
-  fill: var(--product-list-btn);
+  background: none;
+  fill: var(--basic-icon-color);
   transition-property: background-color;
   transition-duration: 250ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.button:hover,
-.button:focus {
-  background-color: var(--grey-bg-home-color);
 }
 
 /* ICON */

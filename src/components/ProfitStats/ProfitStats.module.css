@@ -5,7 +5,7 @@
   align-items: center;
 
   text-align: center;
-  background: var(--white-color);
+  background: var(--body-bg-color);
   margin-bottom: 32px;
   margin-left: auto;
   margin-right: auto;
@@ -13,8 +13,6 @@
 
   width: 280px;
   height: 85px;
-  font-family: "Roboto";
-  font-style: normal;
   font-weight: 700;
   font-size: 14px;
   line-height: 16px;
@@ -22,6 +20,7 @@
   color: var(--primary-text-color);
 
   box-shadow: 5px 10px 20px var(--form-wrapper-shadow);
+  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 20px;
 }
 .operationsData {
@@ -61,11 +60,11 @@
     border-radius: 30px;
   }
   .operationsData {
-    width: 200px;
+    width: 50%;
     flex-direction: row;
   }
   .incomeOperations {
-    width: 200px;
+    width: 50%;
     flex-direction: row;
     display: inline-block;
     text-align: end;
@@ -92,6 +91,6 @@
   .data {
     flex-direction: row;
     width: 1034px;
-    background: var(--white-color);
+    background: var(--body-bg-color);
   }
 }

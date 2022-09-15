@@ -26,6 +26,7 @@
   line-height: 14px;
   letter-spacing: 0.02em;
   color: var(--balans-form-color);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media screen and (min-width: 768px) {
     margin-bottom: 0px;
@@ -53,9 +54,10 @@
   height: 44px;
 
   padding-right: 16px;
-  background-color: var(--grey-bg-home-color);
-  border: 2px solid var(--white-color);
+  background-color: var(--balance-input-bg);
+  border: 2px solid var(--balance-border);
   border-radius: 22px 0 0 22px;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   text-align: right;
   @media screen and (min-width: 768px) {
     border-radius: 16px;
@@ -96,14 +98,15 @@
   line-height: 14px;
   text-transform: uppercase;
   color: var(--balans-form-color);
-  background-color: var(--grey-bg-home-color);
+  background-color: var(--balance-bg);
   padding: 12px 22px 12px 18px;
-  border: 2px solid var(--white-color);
+  border: 2px solid var(--balance-border);
   border-radius: 0px 22px 22px 0px;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media screen and (min-width: 768px) {
     margin-left: 15px;
-    border: 2px solid var(--white-color);
+    border: 2px solid var(--balance-border);
     border-radius: 16px;
     padding: 12px 6px;
   }
@@ -111,6 +114,10 @@
   &:not([disabled]):hover {
     background-color: var(--accent-color);
     color: var(--white-color);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
   }
 }
 

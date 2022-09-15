@@ -1,13 +1,18 @@
 import { useDispatch } from "react-redux";
 import DatePicker from "react-datepicker";
+import { registerLocale } from "react-datepicker";
+import { uk } from "date-fns/locale";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import { addDate } from "redux/extraInfo/extraInfo-slice";
+import icon from "assets/symbol-icons.svg";
 import s from "./Datepicker.module.css";
 
 export default function Datepicker() {
   const [startDate, setStartDate] = useState(new Date());
   const dispatch = useDispatch();
+
+  registerLocale("uk", uk);
 
   const updateDate = (date) => {
     const year = String(date.getFullYear());
@@ -23,8 +28,11 @@ export default function Datepicker() {
 
   return (
     <div className={s.calendarWrapper}>
-      <span className={s.watch}></span>
+      <svg className={s.icon} width="20" height="20">
+        <use href={`${icon}#icon-calendar`} />
+      </svg>
       <DatePicker
+        locale="uk"
         dateFormat="dd.MM.yyyy"
         selected={startDate}
         onChange={handleDateChange}

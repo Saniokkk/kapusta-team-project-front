@@ -6,11 +6,11 @@ import {
   YAxis,
   LabelList,
   ResponsiveContainer,
-} from 'recharts';
-import styles from './BarChart.module.css';
+} from "recharts";
+import styles from "./BarChart.module.css";
 
 const renderCustomizedLabel = ({ x, y, width, value }) => {
-  const label = value ? value.toString() + ' грн' : '';
+  const label = value ? value.toString() + " грн" : "";
   if (width < 90) {
     width = 90;
   }
@@ -23,11 +23,11 @@ const renderCustomizedLabel = ({ x, y, width, value }) => {
         dx={0}
         dy={-10}
         fontSize={11}
-        fontFamily='Roboto'
+        fontFamily="Roboto"
         fontWeight={400}
-        letterSpacing={'0.02em'}
-        fill='#52555F'
-        textAnchor='middle'
+        letterSpacing={"0.02em"}
+        fill="var(--clear-btn-text)"
+        textAnchor="middle"
       >
         {label}
       </text>
@@ -38,7 +38,7 @@ const renderBarLabel = (props) => {
   const { x, y, value } = props;
   let label = value;
   if (value.length > 8) {
-    label = value.substr(0, 8) + '...';
+    label = value.substr(0, 8) + "...";
   }
 
   return (
@@ -49,10 +49,10 @@ const renderBarLabel = (props) => {
         dx={0}
         dy={-10}
         fontSize={11}
-        fontFamily='Roboto'
+        fontFamily="Roboto"
         fontWeight={400}
-        letterSpacing={'0.02em'}
-        fill='#52555F'
+        letterSpacing={"0.02em"}
+        fill="var(--clear-btn-text)"
       >
         {label}
       </text>
@@ -67,13 +67,13 @@ const MobileChart = ({ items }) => {
   return (
     <>
       <ResponsiveContainer
-        width='99%'
+        width="99%"
         height={chartHeight}
         className={styles.centered}
       >
         <BarChart
           data={sortedData}
-          layout='vertical'
+          layout="vertical"
           margin={{
             top: 0,
             right: 5,
@@ -82,29 +82,29 @@ const MobileChart = ({ items }) => {
           }}
         >
           <XAxis
-            type='number'
-            dataKey='sum'
+            type="number"
+            dataKey="sum"
             tickCount={600}
             hide
             allowDataOverflow={true}
             minTickGap={5}
           ></XAxis>
-          <YAxis type='category' dataKey='title' hide />
+          <YAxis type="category" dataKey="title" hide />
 
           <Bar
-            dataKey='sum'
-            fill={'#FFDAC0'}
+            dataKey="sum"
+            fill={"#FFDAC0"}
             radius={[0, 10, 10, 0]}
             barSize={15}
             label={renderCustomizedLabel}
           >
             <LabelList
-              dataKey='title'
+              dataKey="title"
               content={renderBarLabel}
-              fill='#52555F'
+              fill="#52555F"
             />
             {sortedData.map((entry, index) => (
-              <Cell fill={index % 3 === 0 ? '#FF751D' : '#FFDAC0'} />
+              <Cell fill={index % 3 === 0 ? "#FF751D" : "#FFDAC0"} />
             ))}
           </Bar>
         </BarChart>

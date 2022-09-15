@@ -6,6 +6,7 @@
   line-height: 14px;
   letter-spacing: 0.04em;
   color: var(--primary-text-color);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   // color: #52555f;
 
   align-items: center;
@@ -59,19 +60,20 @@
   // display: none;
   fill: orange;
 }
+
 .svg1 {
-  fill: #f5f6fb;
-  // fill: var(--grey-bg-home-color);
+  fill: var(--report-bg-color);
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .svg2 {
   display: block;
   height: 30px;
-  fill: #071f41;
-  // fill: var(--dark-blue-color);
+  fill: var(--report-icon-color);
   position: absolute;
   top: 20px;
   left: 30px;
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 // .wrapperSvg {

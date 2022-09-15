@@ -6,6 +6,7 @@
     font-size: 10px;
     line-height: 1.2;
     color: var(--primary-text-color);
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
     @media screen and (min-width: 768px) {
       font-size: 12px;
@@ -18,24 +19,29 @@
     line-height: 1.2;
     margin-bottom: 12px;
     margin-top: 20px;
+    color: var(--black-text-color);
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
     @media screen and (min-width: 768px) {
       font-size: 12px;
-      line-height: 1.16;
+      line-height: 1.17;
     }
   }
 
   &Input {
     width: 100%;
     padding: 17px 19px;
-    background: var(--grey-bg-auth-color);
+    color: var(--black-text-color);
+    background: var(--report-bg-color);
     border-radius: 30px;
     border: none;
     outline: none;
     position: relative;
+    transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
     &::placeholder {
       color: var(--email-text-color);
+      transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     @media screen and (min-width: 768px) {
@@ -46,6 +52,8 @@
 
   &Submit {
     padding: 12px 33px;
+    width: 122px;
+    height: 44px;
     background: var(--accent-color);
     border-radius: 16px;
     border: none;
@@ -56,7 +64,7 @@
     text-transform: uppercase;
     color: var(--white-color);
     transition: background 1250ms cubic-bezier(0.4, 0, 0.2, 1);
-    filter: drop-shadow(1px 3px 5px var(--form-submit-shodow));
+    filter: drop-shadow(1px 3px 5px var(--form-submit-shadow));
 
     &:disabled {
       background: var(--form-submit-disable);
@@ -65,7 +73,9 @@
 
   &Signup {
     padding: 12px 15px;
-    background: var(--grey-bg-home-color);
+    width: 122px;
+    height: 44px;
+    background: var(--register-btn-bg);
     border-radius: 16px;
     border: none;
     outline: none;
@@ -75,10 +85,10 @@
     line-height: 1.16;
     letter-spacing: 0.02em;
     text-transform: uppercase;
-    color: var(--primary-text-color);
+    color: var(--register-btn-text);
 
     transition: background 1250ms cubic-bezier(0.4, 0, 0.2, 1);
-    filter: drop-shadow(1px 3px 5px var(--balans-form-color));
+    filter: drop-shadow(1px 3px 5px var(--register-btn-shadow));
 
     &:disabled {
       background: var(--form-signup-disable);
@@ -123,4 +133,11 @@
   position: absolute;
   top: 15px;
   right: 15px;
+  fill: var(--basic-icon-color);
+  opacity: 0.4;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.eye:hover {
+  opacity: 1;
 }

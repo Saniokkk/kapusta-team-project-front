@@ -1,25 +1,25 @@
-import { CardExpenses } from 'components/CardExpenses';
-import { ProfitStats } from 'components/ProfitStats/ProfitStats';
+import { CardExpenses } from "components/CardExpenses";
+import { ProfitStats } from "components/ProfitStats/ProfitStats";
 import {
   localizationExpense,
   localizationIncome,
-} from 'helpers/localizationCategory';
+} from "helpers/localizationCategory";
 
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import {
   getCurrentType,
   getMonth,
   getYear,
-} from 'redux/extraInfo/extraInfo-selectors';
+} from "redux/extraInfo/extraInfo-selectors";
 import {
   getTransactionsByCategory,
   getTransactionsByMonth,
-} from 'services/reportsApi';
-import ReportChart from './ReportChart';
+} from "services/reportsApi";
+import ReportChart from "./ReportChart";
 
-import styles from './ReportSummary.module.css';
-import { ReportTitle } from './ReportTitle';
+import styles from "./ReportSummary.module.css";
+import { ReportTitle } from "./ReportTitle";
 
 export const Dashboard = () => {
   const [items, setItems] = useState([]); //all expenses or income
@@ -33,7 +33,7 @@ export const Dashboard = () => {
   const month = useSelector(getMonth);
   const year = useSelector(getYear);
 
-  const option = transactionOption === 'income' ? 'дохід' : 'витрати';
+  const option = transactionOption === "income" ? "дохід" : "витрати";
 
   useEffect(() => {
     async function getTransactions() {
@@ -47,7 +47,7 @@ export const Dashboard = () => {
         const income = localizationIncome(transactions.totalIncomeByCategory);
 
         // if (option === 'витрати') {
-        if (transactionOption === 'expense') {
+        if (transactionOption === "expense") {
           setItems(expenses);
 
           const expensesFirstObj = expenses[0];
@@ -73,7 +73,7 @@ export const Dashboard = () => {
         }
 
         // if (option === 'дохід') {
-        if (transactionOption === 'income') {
+        if (transactionOption === "income") {
           // const income = localizationIncome(transactions.totalIncomeByCategory);
           setItems(income);
           const expensesFirstObj = income[0];
@@ -140,7 +140,7 @@ export const Dashboard = () => {
             ))
           ) : (
             <h3 className={styles.notification}>
-              ЗА ЦЕЙ ПЕРІОД ТРАНСАКЦІЙ НЕМАЄ
+              ЗА ЦЕЙ ПЕРІОД ТРАНЗАКЦІЙ НЕМАЄ
             </h3>
           )}
         </ul>

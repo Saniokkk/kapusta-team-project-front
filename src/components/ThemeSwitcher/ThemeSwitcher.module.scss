@@ -1,0 +1,46 @@
+.checkbox {
+  opacity: 0;
+
+  // &:checked + .labelThemeSwitcher {
+  //   background-color: #3e3e42;
+  // }
+
+  &:checked + .label .ball {
+    transform: translateX(22px);
+  }
+}
+
+.label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 5px;
+  height: 28px;
+  width: 52px;
+  background-color: var(--report-bg-color);
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.iconSun,
+.iconMoon {
+  fill: var(--basic-icon-color);
+}
+
+.iconSun {
+  margin-left: 3px;
+}
+
+.iconMoon {
+  margin-right: 3px;
+}
+
+.ball {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}

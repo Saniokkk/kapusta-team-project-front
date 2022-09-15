@@ -46,15 +46,15 @@
   line-height: 1.7;
   letter-spacing: 0.02em;
   color: var(--black-text-color);
-  background-color: var(--grey-bg-home-color);
+  background-color: var(--report-bg-color);
   border: none;
   border-top: 2px solid;
   border-bottom: 2px solid;
   outline: none;
-  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   @media screen and (min-width: 768px) {
-    background-color: var(--white-color);
+    background-color: var(--input-bg);
   }
 }
 
@@ -63,10 +63,11 @@
   width: 280px;
   border: 2px solid;
   border-radius: 16px 16px 0px 0px;
-  border-color: var(--white-color);
+  border-color: var(--balance-border);
 
   &::placeholder {
-    color: var(--description-color);
+    color: var(--placeholder-text);
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &:focus {
@@ -77,7 +78,7 @@
     width: 184px;
     border-right: 0px;
     border-radius: 16px 0px 0px 0px;
-    border-color: var(--grey-bg-home-color);
+    border-color: var(--input-border);
 
     &:focus + .borderRight {
       opacity: 1;
@@ -96,10 +97,11 @@
   text-align: right;
   border: 2px solid;
   border-radius: 22px;
-  border-color: var(--white-color);
+  border-color: var(--balance-border);
 
   &::placeholder {
     color: var(--black-text-color);
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &:focus {
@@ -112,10 +114,10 @@
     font-weight: 400;
     border-left: 0px;
     border-radius: 0px 16px 16px 0px;
-    border-color: var(--grey-bg-home-color);
+    border-color: var(--input-border);
 
     &::placeholder {
-      color: var(--description-color);
+      color: var(--placeholder-text);
     }
 
     &:focus + .borderLeft {
@@ -154,7 +156,7 @@
 
 .borderMiddle {
   left: 124px;
-  background-color: var(--white-color);
+  background-color: var(--balance-border);
   opacity: 1;
   transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -175,7 +177,8 @@
   right: 0;
   transform: translateY(-50%);
   margin-right: 22px;
-  fill: var(--primary-text-color);
+  fill: var(--basic-icon-color);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: text;
 
   @media screen and (min-width: 768px) {
@@ -214,7 +217,8 @@
 }
 
 .clearBtn {
-  background: var(--white-color);
-  color: var(--primary-text-color);
-  border: 2px solid var(--grey-bg-auth-color);
+  background: var(--clear-btn-bg);
+  color: var(--clear-btn-text);
+  border: 2px solid var(--clear-btn-border);
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
