@@ -1,6 +1,6 @@
-import logo from "assets/image/name.svg";
-import styled from "./MainTitle.module.scss";
 import { motion } from "framer-motion";
+import { ReactComponent as KapustaTitle } from "assets/image/name.svg";
+import styled from "./MainTitle.module.scss";
 
 export const MainTitle = () => {
   return (
@@ -11,7 +11,7 @@ export const MainTitle = () => {
       className={styled.containerTitle}
     >
       <h1 className={styled.title}>
-        <img className={styled.cabbage} src={logo} alt="cabbage" />
+        <KapustaTitle className={styled.cabbage} />
       </h1>
       <p className={styled.preTitle}>Smart Finance</p>
     </motion.div>

@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   font-size: 12px;
-  line-height: 1.16;
+  line-height: 1.17;
   color: var(--primary-text-color);
 
   &Meta {
@@ -26,10 +26,13 @@
     background-color: var(--grey-bg-u-color);
     margin-right: 16px;
     border-radius: 50%;
+    pointer-events: none;
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   &Name {
     display: none;
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
     @media screen and (min-width: 768px) {
       display: inline-block;
@@ -38,14 +41,21 @@
   }
 
   &Logout {
+    padding: 15px 0;
     color: inherit;
     border: none;
     outline: none;
     background-color: transparent;
     text-decoration-line: underline;
+
+    &:hover .userBtnText {
+      color: var(--accent-color);
+    }
   }
 
   &BtnText {
+    line-height: 1.17;
+    transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
     display: none;
 
     @media screen and (min-width: 768px) {
@@ -56,6 +66,7 @@
 
 .iconLogout {
   display: block;
+  fill: var(--logout-btn-color);
 
   @media screen and (min-width: 768px) {
     display: none;

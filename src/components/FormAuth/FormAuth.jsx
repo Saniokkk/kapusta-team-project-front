@@ -31,7 +31,7 @@ export const FormAuth = () => {
       !/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,16}$/.test(values.password)
     ) {
       errors.password =
-        "пароль повинен містити принаймні одну цифру, одну велику та малу літеру та один спеціальний символ !@#$%^&*";
+        "Пароль повинен містити принаймні одну цифру, одну велику та малу літеру та один спеціальний символ: !@#$%^&*";
     }
 
     return errors;
@@ -44,6 +44,7 @@ export const FormAuth = () => {
     },
     validate,
     validateOnChange: false,
+    validateOnBlur: false,
     onSubmit: (values, { resetForm }) => {
       const { email, password, button } = values;
       if (button === "register") {
@@ -148,7 +149,7 @@ export const FormAuth = () => {
       </form>
       {stateRegister && (
         <ModalLogout
-          modalTitle="на вашу пошту було відправлено листа з підтвердженням регистрації"
+          modalTitle="на вашу пошту було відправлено листа з підтвердженням реєстрації"
           onClose={() => setStateRegister(!stateRegister)}
         />
       )}

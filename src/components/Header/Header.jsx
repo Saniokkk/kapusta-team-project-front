@@ -4,6 +4,7 @@ import { Container } from "components/Container";
 import { Logo } from "components/Logo";
 import { UserMenu } from "components/UserMenu";
 import styled from "../Header/Header.module.scss";
+import { ThemeSwitcher } from "components/ThemeSwitcher";
 
 export const Header = () => {
   const user = useSelector(authSelectors.getIsLoggedIn);
@@ -13,6 +14,7 @@ export const Header = () => {
       <header className={styled.header}>
         <Logo />
         {user && <UserMenu />}
+        <ThemeSwitcher />
       </header>
     </Container>
   );

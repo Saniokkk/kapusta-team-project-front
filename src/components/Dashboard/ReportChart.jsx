@@ -1,6 +1,6 @@
-import MobileChart from 'components/BarChart/MobileChart';
-import Chart from 'components/BarChart/BarChart';
-import useWindowDimensions from 'hooks/useWindowDimensions';
+import MobileChart from "components/BarChart/MobileChart";
+import Chart from "components/BarChart/BarChart";
+import useWindowDimensions from "hooks/useWindowDimensions";
 
 const ReportChart = ({ items }) => {
   const viewPort = useWindowDimensions();

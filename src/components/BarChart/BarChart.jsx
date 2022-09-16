@@ -1,4 +1,4 @@
-import styles from './BarChart.module.css';
+import styles from "./BarChart.module.css";
 import {
   BarChart,
   Bar,
@@ -8,7 +8,7 @@ import {
   LabelList,
   ResponsiveContainer,
   Text,
-} from 'recharts';
+} from "recharts";
 
 const renderCustomizedLabel = (props) => {
   const { x, y, width, value } = props;
@@ -21,14 +21,14 @@ const renderCustomizedLabel = (props) => {
         x={x + width / 2}
         y={y - 10}
         fontSize={12}
-        fontFamily='Roboto'
+        fontFamily="Roboto"
         fontWeight={400}
-        letterSpacing={'0.02em'}
-        fill='#52555F'
-        textAnchor='middle'
-        dominantBaseline='middle'
+        letterSpacing={"0.02em"}
+        fill="var(--clear-btn-text)"
+        textAnchor="middle"
+        dominantBaseline="middle"
       >
-        {value.toString() + ' грн'}
+        {value.toString() + " грн"}
       </text>
     </g>
   );
@@ -45,7 +45,7 @@ const Chart = ({ items }) => {
   return (
     <ResponsiveContainer
       width={chartWidth}
-      height={'100%'}
+      height={"100%"}
       className={styles.centered}
     >
       <BarChart
@@ -61,23 +61,24 @@ const Chart = ({ items }) => {
         }}
       >
         <XAxis
-          dataKey='title'
-          type='category'
+          dataKey="title"
+          type="category"
           axisLine={false}
           tickLine={false}
           minTickGap={5}
           fontSize={12}
           fontWeight={400}
-          fontFamily={'Roboto'}
-          letterSpacing={'0.02em'}
+          fontFamily={"Roboto"}
+          letterSpacing={"0.02em"}
           lineHeight={14}
+          stroke="var(--clear-btn-text)"
         />
-        <YAxis tickCount={600} orientation='top' hide={true} />
+        <YAxis tickCount={600} orientation="top" hide={true} />
         <Text scaleToFit={true} width={30} />
-        <Bar dataKey='sum' barSize={38} radius={[10, 10, 0, 0]}>
-          <LabelList dataKey='sum' content={renderCustomizedLabel} />
+        <Bar dataKey="sum" barSize={38} radius={[10, 10, 0, 0]}>
+          <LabelList dataKey="sum" content={renderCustomizedLabel} />
           {sortedData.map((entry, index) => (
-            <Cell fill={index % 3 === 0 ? '#FF751D' : '#FFDAC0'} />
+            <Cell key={index} fill={index % 3 === 0 ? "#FF751D" : "#FFDAC0"} />
           ))}
         </Bar>
       </BarChart>

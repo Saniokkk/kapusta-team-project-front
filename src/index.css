@@ -1,4 +1,6 @@
 @import "./css/normalize.scss";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
 :root {
   --black-text-color: #000000;
   --primary-text-color: #52555f;
@@ -20,7 +22,7 @@
   --grey-bg-auth-color: #f6f7fb;
   --grey-bg-home-color: #f5f6fb;
   --grey-bg-u-color: #f5f6fa;
-  --report-bg-color: #f2f5fc;
+  --report-bg-color: #f5f6fb;
   --category-btn-fill: #f1f1f1;
 
   --logout-btn-color: #cbccd0;
@@ -47,9 +49,85 @@
   --google-btn-shadow: rgba(170, 178, 197, 0.2);
   --modal-logaut-shadow: rgba(82, 85, 95, 0.4);
   --balans-form-color: rgba(82, 85, 95, 0.7);
-  --form-submit-shodow: rgba(255, 107, 8, 0.35);
+  --form-submit-shadow: rgba(255, 107, 8, 0.35);
   --report-bg-balans: rgb(160, 174, 246);
   --product-bg-list: rgba(255, 255, 255, 0.1);
+  --register-btn-shadow: rgba(82, 85, 95, 0.15);
+
+  --body-bg-color: #ffffff;
+  --report-window-bg-color: #ffffff;
+  --category-type-bg-inactive: #f6f7fb;
+  --category-type-bg-active: #fefefe;
+  --balance-input-bg: #f5f6fb;
+  --input-bg: #ffffff;
+  --input-border: #f5f6fb;
+  --placeholder-text: #c7ccdc;
+  --clear-btn-bg: #ffffff;
+  --clear-btn-text: #52555f;
+  --clear-btn-border: #f6f7fb;
+  --list-accent: #f5f6fb;
+  --list-bg: #ffffff;
+  --list-item-text: #000000;
+  --summary-item-border-bg: #ffffff;
+  --summary-text: #52555f;
+  --basic-icon-color: #52555f;
+  --delete-btn-hover-bg: #f5f6fb;
+  --balance-bg: #f5f6fb;
+  --balance-border: #ffffff;
+  --category-hover-text: #52555f;
+  --register-btn-text: #52555f;
+  --register-btn-bg: #f5f6fb;
+  --modal-text: #52555f;
+  --modal-bg: #ffffff;
+  --cancel-btn-border: #f6f7fb;
+  --report-icon-color: #071f41;
+}
+
+[data-theme="dark"] {
+  --black-text-color: #fffcf2;
+  --report-bg-color: #252422;
+  --primary-text-color: #ccc5b9;
+  --grey-bg-u-color: #252422;
+  --email-text-color: #ccc5b9;
+
+  --plus-balance-color: #2eaf3b;
+  --minus-balance-color: #fd1d33;
+
+  --logout-btn-color: #ccc5b9;
+
+  --balans-form-color: rgba(255, 252, 242, 0.7);
+  --form-wrapper-shadow: rgb(0 0 0 / 22%);
+  --google-btn-shadow: rgb(0 0 0 / 32%);
+  --modal-logaut-shadow: rgb(0 0 0 / 32%);
+  --modal-logaut-backdrop: rgba(50, 50, 50, 0.5);
+
+  --body-bg-color: #403d39;
+  --report-window-bg-color: #403d39;
+  --category-type-bg-inactive: #2c2c2c;
+  --category-type-bg-active: #3d3a36;
+  --balance-input-bg: #252422;
+  --input-bg: #403d39;
+  --input-border: #252422;
+  --placeholder-text: #ccc5b9;
+  --clear-btn-bg: #403d39;
+  --clear-btn-text: #ccc5b9;
+  --clear-btn-border: #252422;
+  --list-accent: #252422;
+  --list-bg: #403d39;
+  --list-item-text: #ccc5b9;
+  --summary-item-border-bg: #403d39;
+  --summary-text: #ccc5b9;
+  --basic-icon-color: #fffcf2;
+  --delete-btn-hover-bg: #252422;
+  --balance-bg: #252422;
+  --balance-border: #403d39;
+  --category-hover-text: #fffcf2;
+  --register-btn-text: #52555f;
+  --register-btn-bg: #f5f6fb;
+  --modal-text: #fffcf2;
+  --modal-bg: #252422;
+  --cancel-btn-border: #3d3b37;
+  --report-icon-color: #bec0c8;
 }
 
 body {
@@ -58,6 +136,8 @@ body {
   font-weight: 400;
   font-size: 14px;
   letter-spacing: 0.04em;
+  background-color: var(--body-bg-color);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -76,7 +156,7 @@ input::-webkit-inner-spin-button {
 /* SCROLLBAR */
 
 ::-webkit-scrollbar-track {
-  background: var(--grey-bg-home-color);
+  background: var(--list-accent);
 }
 
 ::-webkit-scrollbar {

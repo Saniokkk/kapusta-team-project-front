@@ -8,7 +8,7 @@ export const Loader = () => {
         <TailSpin
           height="150"
           width="150"
-          color="#081224"
+          color="#ff751d"
           ariaLabel="loading-indicator"
         />
       </div>

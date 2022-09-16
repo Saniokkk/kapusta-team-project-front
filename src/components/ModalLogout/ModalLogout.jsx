@@ -57,32 +57,29 @@ const ModalLogout = ({
         transition={{ duration: 0.6 }}
         className={s.modal}
       >
-        <svg className={s.closeBtn} onClick={onClose} width={17} height={18}>
+        <svg className={s.closeBtn} onClick={onClose} width={13} height={13}>
           <use href={`${icon}#icon-close`} />
         </svg>
-        <div className={s.title}>
-          <p>{modalTitle}</p>
-        </div>
 
-        <div className={s.buttons}>
-          <div className={s.divBtn} ref={(el) => (buttons = el)}>
-            <motion.button
-              className={s.outBtnn}
-              onClick={handleClickLeft}
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            >
-              {modalButtonLeft}
-            </motion.button>
-            <motion.button
-              className={s.outBtn}
-              onClick={handleClickRight}
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            >
-              {modalButtonRight}
-            </motion.button>
-          </div>
+        <h3 className={s.title}>{modalTitle}</h3>
+
+        <div className={s.divBtn} ref={(el) => (buttons = el)}>
+          <motion.button
+            className={s.outBtnn}
+            onClick={handleClickLeft}
+            whileHover={{ scale: 1.1 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          >
+            {modalButtonLeft}
+          </motion.button>
+          <motion.button
+            className={s.outBtn}
+            onClick={handleClickRight}
+            whileHover={{ scale: 1.1 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          >
+            {modalButtonRight}
+          </motion.button>
         </div>
       </motion.div>
     </div>,
