@@ -2,7 +2,7 @@ import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 
-axios.defaults.baseURL = "https://kapusta42back-end.herokuapp.com/api";
+axios.defaults.baseURL = "https://kapusta-team-project-back.onrender.com/api";
 
 const token = {
   set(token) {
